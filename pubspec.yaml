@@ -17,3 +17,46 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/fonts/
+  
+  fonts:
+    - family: JosefinSans
+      fonts:
+        - asset: assets/fonts/JosefinSans/JosefinSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/JosefinSans/JosefinSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/JosefinSans/JosefinSans-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/JosefinSans/JosefinSans-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/JosefinSans/JosefinSans-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/JosefinSans/JosefinSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/JosefinSans/JosefinSans-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/JosefinSans/JosefinSans-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/JosefinSans/JosefinSans-VariableFont_wght.ttf
+        - asset: assets/fonts/JosefinSans/JosefinSans-Italic-VariableFont_wght.ttf
+          style: italic
