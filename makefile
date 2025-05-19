@@ -7,6 +7,9 @@ spxl:
 2pxl:
 	adb connect 192.168.53.25
 
+s24_s24:
+	adb connect 192.168.53.246
+
 clean:
 	flutter clean
 	flutter pub get

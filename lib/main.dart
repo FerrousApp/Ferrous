@@ -1,5 +1,7 @@
-import 'package:ferrous/pages/onboarding/onboarding copy.dart';
-import 'package:ferrous/pages/w.pinentry/wb.pinentry.dart';
+import 'dart:io';
+
+import 'package:ferrous/pages/onboarding/onboarding.dart';
+import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ Future<void> main() async {
   // force portrait
   // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   // set status bar color and nav bar color
   // SystemChrome.setSystemUIOverlayStyle(
@@ -24,10 +26,16 @@ Future<void> main() async {
   //   ),
   // );
 
-  // set high refresh rate
-  await FlutterDisplayMode.setHighRefreshRate();
+  // set high refresh rate on android
+  if (Platform.isAndroid) {
+    await FlutterDisplayMode.setHighRefreshRate();
+  }
 
-  runApp(const MainApp());
+  runApp(
+    const ProviderScope(
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends ConsumerWidget {
@@ -35,21 +43,23 @@ class MainApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: lightTheme,
+    return SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        darkTheme: lightTheme,
 
-      home: OnboardingPage(),
+        home: OnboardingPage(),
 
-      // home: Scaffold(
-      //   body: Center(
-      //     child: Text(
-      //       'Hello World!',
-      //       style: TextStyle(),
-      //     ),
-      //   ),
-      // ),
+        // home: Scaffold(
+        //   body: Center(
+        //     child: Text(
+        //       'Hello World!',
+        //       style: TextStyle(),
+        //     ),
+        //   ),
+        // ),
+      ),
     );
   }
 }
