@@ -1,0 +1,5 @@
+TODO - Pin Auth Screen
+
+Add vibration feedback on tap (Vibration package).
+Hook up biometric login (local_auth package).
+Animate PIN dots (AnimatedSwitcher).

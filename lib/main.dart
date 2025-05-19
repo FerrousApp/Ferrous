@@ -1,3 +1,6 @@
+import 'package:ferrous/pages/lockscreen/lockscreen.dart';
+import 'package:ferrous/themes/dark.dart';
+import 'package:ferrous/themes/light.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,19 +13,19 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'JosefinSans',
-      ),
+      theme: lightTheme,
+      darkTheme: lightTheme,
 
-      ///
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            'Hello World!',
-            style: TextStyle(),
-          ),
-        ),
-      ),
+      home: PinEntryScreen(),
+
+      // home: Scaffold(
+      //   body: Center(
+      //     child: Text(
+      //       'Hello World!',
+      //       style: TextStyle(),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
