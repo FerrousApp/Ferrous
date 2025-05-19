@@ -1,35 +1,17 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// class Lockscreen extends ConsumerStatefulWidget {
-//   const Lockscreen({super.key});
-
-//   @override
-//   ConsumerState<ConsumerStatefulWidget> createState() => _LockscreenState();
-// }
-
-// class _LockscreenState extends ConsumerState<Lockscreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [],
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:ferrous/pages/w.pinentry/components/number_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PinEntryScreen extends StatefulWidget {
-  const PinEntryScreen({super.key});
+class WelcomeBackPinEntryScreen extends ConsumerStatefulWidget {
+  const WelcomeBackPinEntryScreen({super.key});
 
   @override
-  State<PinEntryScreen> createState() => _PinEntryScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _WelcomeBackPinEntryScreenState();
 }
 
-class _PinEntryScreenState extends State<PinEntryScreen> {
+class _WelcomeBackPinEntryScreenState
+    extends ConsumerState<WelcomeBackPinEntryScreen> {
   String enteredPin = '';
   final int pinLength = 4;
 
@@ -38,8 +20,17 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
     setState(() {
       if (enteredPin.length < pinLength) {
         enteredPin += number;
+        _onPinCompleted();
       }
     });
+  }
+
+// TODO: stream buider listens to page, if pin is correct, navigate to home page, else show error
+  void _onPinCompleted() {
+    if (enteredPin.length == pinLength) {
+      // Handle PIN completion
+      print('PIN entered: $enteredPin');
+    }
   }
 
   void _onBackspacePressed() {
@@ -64,7 +55,10 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
 
               const Text(
                 'Welcome Back Obiajulu',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
+                  height: 0,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -101,28 +95,43 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
               const SizedBox(height: 60),
 
               // Number Pad
-              GridView.count(
+              GridView.builder(
                 shrinkWrap: true,
-                crossAxisCount: 3,
-                childAspectRatio: 1.5,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                children: [
-                  for (int i = 1; i <= 9; i++)
-                    _NumberButton(
-                      number: i.toString(),
+                // Disable internal scrolling
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.5,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                ),
+                // 1-9, 0, empty space for fingerprint and backspace
+                itemCount: 12,
+                itemBuilder: (context, index) {
+                  // empty fingerprint space
+                  if (index == 9) return const SizedBox.shrink();
+
+                  // 0 bbutton count
+                  if (index == 10) {
+                    return NumberButton(
+                      number: '0',
                       onPressed: _onNumberPressed,
-                    ),
-                  const SizedBox.shrink(), // Empty space on the left of 0
-                  _NumberButton(
-                    number: '0',
+                    );
+                  }
+                  // Backspace button
+                  if (index == 11) {
+                    return IconButton(
+                      onPressed: _onBackspacePressed,
+                      icon: const Icon(Icons.backspace),
+                    );
+                  }
+
+                  // finally numbers 1 - 9
+                  return NumberButton(
+                    number: (index + 1).toString(),
                     onPressed: _onNumberPressed,
-                  ),
-                  IconButton(
-                    onPressed: _onBackspacePressed,
-                    icon: const Icon(Icons.backspace),
-                  ),
-                ],
+                  );
+                },
               ),
 
               const Spacer(),
@@ -131,7 +140,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Handle logout
+                    print("handle log out");
                   },
                   child: const Text(
                     'Not your account? Log out',
@@ -141,36 +150,6 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _NumberButton extends StatelessWidget {
-  final String number;
-  final Function(String) onPressed;
-
-  const _NumberButton({
-    required this.number,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: const CircleBorder(),
-        padding: const EdgeInsets.all(20),
-        backgroundColor: Colors.grey.withValues(alpha: 0.1),
-      ),
-      onPressed: () => onPressed(number),
-      child: Text(
-        number,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w400,
         ),
       ),
     );
