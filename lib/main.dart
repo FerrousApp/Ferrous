@@ -1,8 +1,10 @@
+import 'package:ferrous/pages/onboarding/onboarding copy.dart';
 import 'package:ferrous/pages/w.pinentry/wb.pinentry.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 Future<void> main() async {
@@ -22,6 +24,9 @@ Future<void> main() async {
   //   ),
   // );
 
+  // set high refresh rate
+  await FlutterDisplayMode.setHighRefreshRate();
+
   runApp(const MainApp());
 }
 
@@ -31,10 +36,11 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: lightTheme,
 
-      home: WelcomeBackPinEntryScreen(),
+      home: OnboardingPage(),
 
       // home: Scaffold(
       //   body: Center(

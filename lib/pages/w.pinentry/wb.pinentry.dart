@@ -2,16 +2,16 @@ import 'package:ferrous/pages/w.pinentry/components/number_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class WelcomeBackPinEntryScreen extends ConsumerStatefulWidget {
-  const WelcomeBackPinEntryScreen({super.key});
+class WelcomeBackPinEntryPage extends ConsumerStatefulWidget {
+  const WelcomeBackPinEntryPage({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
-      _WelcomeBackPinEntryScreenState();
+      _WelcomeBackPinEntryPageState();
 }
 
-class _WelcomeBackPinEntryScreenState
-    extends ConsumerState<WelcomeBackPinEntryScreen> {
+class _WelcomeBackPinEntryPageState
+    extends ConsumerState<WelcomeBackPinEntryPage> {
   String enteredPin = '';
   final int pinLength = 4;
 
@@ -30,6 +30,7 @@ class _WelcomeBackPinEntryScreenState
     if (enteredPin.length == pinLength) {
       // Handle PIN completion
       print('PIN entered: $enteredPin');
+      enteredPin = ''; // Clear the entered PIN
     }
   }
 

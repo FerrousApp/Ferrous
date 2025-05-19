@@ -1,5 +1,6 @@
 import 'package:ferrous/misc/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 class OnBoardingData {
@@ -9,14 +10,14 @@ class OnBoardingData {
   OnBoardingData({required this.title, required this.description});
 }
 
-class OnlineOnboarding extends StatefulWidget {
-  const OnlineOnboarding({super.key});
+class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({super.key});
 
   @override
-  State<OnlineOnboarding> createState() => _OnlineOnboardingState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnlineOnboardingState extends State<OnlineOnboarding> {
+class _OnboardingPageState extends State<OnboardingPage> {
   final PageController _controller = PageController();
   int activeIndex = 0;
 
@@ -39,9 +40,7 @@ class _OnlineOnboardingState extends State<OnlineOnboarding> {
 
   @override
   Widget build(BuildContext context) {
-    const baseUrl =
-        "https://raw.githubusercontent.com/yunweneric/flutter-open-ui/refs/heads/onboarding_ui_ch_2/assets/images";
-
+ 
     return Scaffold(
       body: Column(
         children: [
@@ -57,7 +56,7 @@ class _OnlineOnboardingState extends State<OnlineOnboarding> {
                   activeIndex = page;
                 });
               },
-              itemBuilder: (c, i) {
+              itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
@@ -65,34 +64,32 @@ class _OnlineOnboardingState extends State<OnlineOnboarding> {
                       AnimatedRotation(
                         curve: Curves.easeOut,
                         duration: const Duration(milliseconds: 500),
-                        turns: activeIndex == i
+                        turns: activeIndex == index
                             ? 0.0
-                            : activeIndex > i
+                            : activeIndex > index
                                 ? -0.1
                                 : 0.1,
-                        child: Image.network(
-                          "$baseUrl/onboarding_${i + 1}.svg",
-                          height: AppSizing.height(context) * 0.5,
-                        ),
+                        child: Lottie.asset('assets/lotties/blocks.json'),
+                   
                       ),
                       AnimatedOpacity(
                         duration: const Duration(milliseconds: 1500),
-                        opacity: activeIndex == i ? 1 : 0,
+                        opacity: activeIndex == index ? 1 : 0,
                         child: AnimatedScale(
                           alignment: Alignment.topCenter,
                           duration: const Duration(milliseconds: 500),
-                          scale: activeIndex == i ? 1 : 0,
+                          scale: activeIndex == index ? 1 : 0,
                           child: Column(
                             children: [
                               Text(
-                                data[i].title,
+                                data[index].title,
                                 style:
                                     Theme.of(context).textTheme.displayMedium,
                                 textAlign: TextAlign.center,
                               ),
                               AppSizing.k20(context),
                               Text(
-                                data[i].description,
+                                data[index].description,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
