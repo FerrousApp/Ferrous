@@ -95,7 +95,7 @@ class _WelcomeBackPinEntryPageState
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: index < enteredPin.length
-                        ? Colors.blue
+                        ? const Color.fromRGBO(33, 150, 243, 1)
                         : Colors.grey.withValues(alpha: 0.3),
                   ),
                 ),
