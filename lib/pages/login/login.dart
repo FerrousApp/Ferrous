@@ -1,5 +1,4 @@
 import 'package:ferrous/misc/animate_page.dart';
-import 'package:ferrous/misc/responsive.dart';
 import 'package:ferrous/pages/2fa/2fa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

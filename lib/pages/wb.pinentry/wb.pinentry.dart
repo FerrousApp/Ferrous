@@ -32,7 +32,7 @@ class _WelcomeBackPinEntryPageState
     if (enteredPin.length == pinLength) {
       // Handle PIN completion
 
-      enteredPin == "1234"
+      enteredPin == "1111"
           ? Navigator.push(
               context,
               PageRouteAnimations.fadeTransitionRoute(

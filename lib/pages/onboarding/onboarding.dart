@@ -1,5 +1,6 @@
 import 'package:ferrous/misc/animate_page.dart';
-import 'package:ferrous/misc/responsive.dart';
+import 'package:ferrous/misc/appsizing.dart';
+
 import 'package:ferrous/pages/login/login.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   children: [
                     /// lottie
                     Lottie.asset(
-                      'assets/lotties/blocks.json',
+                      'assets/lotties/$index.json',
+                      height: 300,
+                      width: 300,
                     ),
 
                     ///
