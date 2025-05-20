@@ -88,10 +88,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       enableDrag: true,
                       context: context,
                       backgroundColor: Colors.white,
-                      builder: ((context) => const SizedBox(
-                            // height: 300,
-                            child: CurrencyChangeModal(),
-                          )),
+                      builder: ((context) => CurrencyChangeModal()),
                     );
                   },
                   label: const Text(
@@ -162,12 +159,12 @@ class _HomePageState extends ConsumerState<HomePage> {
             // const SizedBox(height: 16),
 
             // Balances List
-
             SizedBox(
               height: 200,
               child: ListView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
+                  clipBehavior: Clip.hardEdge,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return BalanceItem(

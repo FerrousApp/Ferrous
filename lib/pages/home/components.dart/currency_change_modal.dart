@@ -9,7 +9,7 @@ class CurrencyChangeModal extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currencyFormat = NumberFormat.currency(symbol: '\$');
     return ListView.builder(
-      itemCount: 5,
+      itemCount: 10,
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return ListTile(

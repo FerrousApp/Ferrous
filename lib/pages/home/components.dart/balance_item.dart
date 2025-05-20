@@ -31,9 +31,7 @@ class BalanceItem extends ConsumerWidget {
         child: Icon(icon),
       ),
 
-      // TODO: for transactions
-      // splashColor:
-      //     amount < 0 ? Colors.red : Colors.green.withValues(alpha: 0.2),
+    
       title: Text(title),
       subtitle: Text(subtitle),
       trailing: Text(
