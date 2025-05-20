@@ -36,7 +36,7 @@ class _WelcomeBackPinEntryPageState
           ? Navigator.push(
               context,
               PageRouteAnimations.fadeTransitionRoute(
-                WalletPage(),
+                PrimaryPage(),
               ))
           : null;
 

@@ -58,41 +58,38 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 });
               },
               itemBuilder: (context, index) {
-                return Container(
-                  color: Colors.blue,
-                  child: Column(
-                    children: [
-                      /// lottie
-                      Lottie.asset(
-                        'assets/lotties/blocks.json',
+                return Column(
+                  children: [
+                    /// lottie
+                    Lottie.asset(
+                      'assets/lotties/blocks.json',
+                    ),
+
+                    ///
+                    ListTile(
+                      title: Text(
+                        data.elementAt(index).title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          height: 2,
+                          fontSize: 22,
+                          // color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
 
                       ///
-                      ListTile(
-                        title: Text(
-                          data.elementAt(index).title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            height: 2,
-                            fontSize: 22,
-                            // color: Colors.white,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-
-                        ///
-                        subtitle: Text(
-                          data.elementAt(index).description,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w300,
-                            // color: Colors.white,
-                          ),
+                      subtitle: Text(
+                        data.elementAt(index).description,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          // color: Colors.white,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 );
               },
             ),
