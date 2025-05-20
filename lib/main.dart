@@ -13,6 +13,8 @@ Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();
 
+  // bubble gum sans for logo
+
   // force portrait
   // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
