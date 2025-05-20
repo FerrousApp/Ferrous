@@ -40,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: isSmallScreen ? 6 : 12,
-          vertical: 16,
+          vertical: 6,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 TextButton.icon(
                   style: TextButton.styleFrom(
-                    padding: const EdgeInsets.all(0),
+                    padding: EdgeInsets.zero,
                     overlayColor: Colors.transparent,
                   ),
                   iconAlignment: IconAlignment.end,
@@ -76,7 +76,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     style: TextStyle(color: Colors.grey),
                   ),
                 ),
-                const SizedBox(height: 4),
+                // const SizedBox(height: 4)
                 Text(
                   balance > 1000000
                       ? compactCurrencyFormat.format(balance)
