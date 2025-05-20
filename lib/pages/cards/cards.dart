@@ -26,7 +26,7 @@ class _CardsPageState extends ConsumerState<CardsPage> {
 
             ///
             Text(
-              'Coming Soon',
+              'Coming Soon!',
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.grey.shade700,

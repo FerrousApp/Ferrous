@@ -27,7 +27,7 @@ class _WelcomeBackPinEntryPageState
     });
   }
 
-// TODO: stream buider listens to page, if pin is correct, navigate to home page, else show error
+
   void _onPinCompleted() {
     if (enteredPin.length == pinLength) {
       // Handle PIN completion
