@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
+
 import 'package:lottie/lottie.dart';
 
 class CardsPage extends ConsumerStatefulWidget {
@@ -27,7 +27,10 @@ class _CardsPageState extends ConsumerState<CardsPage> {
             ///
             Text(
               'Coming Soon',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.grey.shade700,
+              ),
             ),
           ],
         ),

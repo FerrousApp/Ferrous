@@ -6,6 +6,7 @@ class NumberButton extends ConsumerWidget {
   final Function(String) onPressed;
 
   const NumberButton({
+    super.key,
     required this.number,
     required this.onPressed,
   });
@@ -13,10 +14,8 @@ class NumberButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO: remove ink response as it is a security risk
-    return InkResponse(
+    return GestureDetector(
       onTap: () => onPressed(number),
-      radius: 10,
-      splashColor: Colors.blue,
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(

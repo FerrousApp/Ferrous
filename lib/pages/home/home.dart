@@ -2,6 +2,7 @@ import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/home/components.dart/action_button.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
 import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
+import 'package:ferrous/pages/home/components.dart/recommended_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -29,6 +30,15 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: Text("OM"),
         ),
         actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.bubble_chart_outlined,
+              color: Colors.amber,
+            ),
+            onPressed: () {
+              print("for ION AI");
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {},
@@ -86,16 +96,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  'Username / Tag',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                  ),
-                ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 10),
 
             // Action Buttons
             Row(
@@ -124,7 +127,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 10),
 
             // Recent Transactions Header
             Row(
@@ -148,48 +151,24 @@ class _HomePageState extends ConsumerState<HomePage> {
             // Balances List
 
             SizedBox(
-              height: 150,
+              height: 200,
               child: ListView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return BalanceItem(
-                      title: 'XRPL USD',
+                      title: 'Ripple United States Dollar • XRPL',
                       amount: 9.00,
                       currencyFormat: currencyFormat,
-                      subtitle: 'Ripple United States Dollar • Algorand',
+                      subtitle: 'RLUSD',
                       icon: Icons.credit_card,
                     );
                   }),
             ),
 
-            // Column(
-            //   children: [
-            //     BalanceItem(
-            //       title: 'Card deposit',
-            //       amount: -9.00,
-            //       currencyFormat: currencyFormat,
-            //       subtitle: 'May 14 2025',
-            //       icon: Icons.credit_card,
-            //     ),
-            //     BalanceItem(
-            //       title: 'NGN to USD',
-            //       amount: 15000.00,
-            //       currencyFormat: currencyFormat,
-            //       subtitle: 'Swap • May 14 2025',
-            //       icon: Icons.currency_exchange,
-            //       isCurrency: true,
-            //     ),
-            //   ],
-            // ),
-            // const SizedBox(height: 24),
-
-            // Recommended Section
-
-            // const SizedBox(height: 16),
             ListTile(
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: EdgeInsets.only(top: 10),
               title: const Text(
                 'Recommended',
                 style: TextStyle(
@@ -198,44 +177,17 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
 
-// TODO: touch me
               ///
               subtitle: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: List.generate(
                     3,
-                    (index) => Container(
-                      width: 200,
-                      margin: const EdgeInsets.only(right: 12),
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.shade200),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.blue.shade50,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Icon(Icons.star, color: Colors.blue),
-                          ),
-                          const SizedBox(height: 12),
-                          const Text(
-                            'Bills',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Pay your bills with ease',
-                            style: TextStyle(color: Colors.grey.shade600),
-                          ),
-                        ],
-                      ),
+                    (index) => RecommendedItem(
+                      icon: Icons.star,
+                      iconColor: Colors.blue,
+                      title: "Bills",
+                      subtitle: "Pay your bills",
                     ),
                   ),
                 ),

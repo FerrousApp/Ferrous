@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
@@ -25,6 +27,9 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   final PageController _onboardingController = PageController();
   int activeIndex = 0;
 
+  // timer for chnging page every 2 seconds
+  Timer? _timer;
+
   List<OnBoardingData> data = [
     OnBoardingData(
         title: "Lightning Fast Payments",
@@ -36,8 +41,36 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     OnBoardingData(
         title: "Tap. Send. Done.",
         description:
-            "No delays, no confusion. Just tap, send, and you're done. Crypto made effortless!"),
+            "No delays, no confusion. Just tap, send, and you're done. Payments made effortless!"),
   ];
+
+  void _startAutoScroll() {
+    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+      if (activeIndex < data.length - 1) {
+        activeIndex++;
+      } else {
+        activeIndex = 0;
+      }
+      _onboardingController.animateToPage(
+        activeIndex,
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _onboardingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
