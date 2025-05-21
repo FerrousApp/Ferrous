@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
 import 'package:ferrous/pages/login/login.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
+import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -82,7 +84,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             width: AppSizing.width(context),
 
             ///
-            //TODO trigger page change every 2 seconds
+
             child: PageView.builder(
               controller: _onboardingController,
               itemCount: data.length,
@@ -165,6 +167,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
         ///
         title: TextButton(
+          onLongPress: () {
+            print("long press");
+            ref.read(themeModeProvider.notifier).changeTheme();
+          },
           onPressed: () {
             Navigator.push(
               context,
@@ -215,10 +221,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             overlayColor: Colors.transparent,
           ),
           child: Text(
-            "Login",
+            "Log In",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.black
+                  : Colors.white,
               fontSize: 15,
             ),
           ),

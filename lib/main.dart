@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:ferrous/pages/onboarding/onboarding.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
+import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   // flutter binding stuff
@@ -37,27 +39,44 @@ Future<void> main() async {
   );
 }
 
-class MainApp extends ConsumerWidget {
+class MainApp extends ConsumerStatefulWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _MainAppState();
+}
+
+class _MainAppState extends ConsumerState<MainApp> {
+  loadPreferredThemeOnStartup() {
+    SharedPreferences.getInstance().then((prefs) {
+      bool? isNight = prefs.getBool('night');
+
+      if (isNight == null) {
+        ref.watch(themeModeProvider.notifier).setTheme(ThemeMode.system);
+      }
+
+      if (isNight == true) {
+        ref.watch(themeModeProvider.notifier).toDark();
+      }
+
+      if (isNight == false) {
+        ref.watch(themeModeProvider.notifier).toLight();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+// load theme on startup
+    loadPreferredThemeOnStartup();
+
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
-        darkTheme: lightTheme,
-
+        darkTheme: darkTheme,
+        themeMode: ref.watch(themeModeProvider),
         home: OnboardingPage(),
-
-        // home: Scaffold(
-        //   body: Center(
-        //     child: Text(
-        //       'Hello World!',
-        //       style: TextStyle(),
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }

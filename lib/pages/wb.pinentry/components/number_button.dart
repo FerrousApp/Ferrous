@@ -4,16 +4,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class NumberButton extends ConsumerWidget {
   final String number;
   final Function(String) onPressed;
+  final Color color;
 
   const NumberButton({
     super.key,
     required this.number,
     required this.onPressed,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: remove ink response as it is a security risk
     return GestureDetector(
       onTap: () => onPressed(number),
       child: Container(
@@ -24,8 +25,8 @@ class NumberButton extends ConsumerWidget {
         ),
         child: Text(
           number,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: color,
             fontSize: 24,
             fontWeight: FontWeight.w400,
           ),

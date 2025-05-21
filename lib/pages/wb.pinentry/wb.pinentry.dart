@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/pages/wb.pinentry/components/number_button.dart';
@@ -26,7 +28,6 @@ class _WelcomeBackPinEntryPageState
       }
     });
   }
-
 
   void _onPinCompleted() {
     if (enteredPin.length == pinLength) {
@@ -95,7 +96,8 @@ class _WelcomeBackPinEntryPageState
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: index < enteredPin.length
-                        ? const Color.fromRGBO(33, 150, 243, 1)
+                        ? Color(Random().nextInt(0xFFFFFFFF))
+                            .withValues(alpha: 1)
                         : Colors.grey.withValues(alpha: 0.3),
                   ),
                 ),
@@ -119,13 +121,21 @@ class _WelcomeBackPinEntryPageState
               itemCount: 12,
               itemBuilder: (context, index) {
                 // empty fingerprint space
-                if (index == 9) return const SizedBox.shrink();
+                if (index == 9) {
+                  return IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.fingerprint_rounded),
+                  );
+                }
 
                 // 0 bbutton count
                 if (index == 10) {
                   return NumberButton(
                     number: '0',
                     onPressed: _onNumberPressed,
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.black
+                        : Colors.white70,
                   );
                 }
                 // Backspace button
@@ -140,6 +150,9 @@ class _WelcomeBackPinEntryPageState
                 return NumberButton(
                   number: (index + 1).toString(),
                   onPressed: _onNumberPressed,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white70,
                 );
               },
             ),
@@ -152,9 +165,11 @@ class _WelcomeBackPinEntryPageState
                 onPressed: () {
                   print("handle log out");
                 },
-                child: const Text(
+                child: Text(
                   'Not your account? Log out',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(
+                    color: Colors.redAccent,
+                  ),
                 ),
               ),
             ),

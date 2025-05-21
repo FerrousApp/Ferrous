@@ -29,7 +29,6 @@ class ProfilePage extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 30,
-                  backgroundColor: Colors.blueAccent,
                   child: Text(
                     "OM",
                     style: TextStyle(
