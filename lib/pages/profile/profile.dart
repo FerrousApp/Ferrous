@@ -2,6 +2,15 @@ import 'package:ferrous/misc/appsizing.dart';
 import 'package:flutter/material.dart';
 
 // TODO: fix  me still
+
+List<DetailRow> detailed = [
+  DetailRow(title: "First Name", value: "Obiajulu"),
+  DetailRow(title: "Middle Name", value: ""),
+  DetailRow(title: "Last Name", value: "Mbanefo"),
+  DetailRow(title: "Date of birth", value: "02/04/2003"),
+  DetailRow(title: "Phone Number", value: "7050940544"),
+];
+
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -20,9 +29,9 @@ class ProfilePage extends StatelessWidget {
           vertical: 6,
         ),
         child: Column(
-          // mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ///
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const CircleAvatar(
@@ -41,30 +50,42 @@ class ProfilePage extends StatelessWidget {
               ),
               subtitle: Text("adamant@potato.com"),
             ),
+
+            ///
             const SizedBox(height: 30),
+
+            ///
             const Text(
               "PERSONAL DETAILS",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
             ),
+
+            ///
             const SizedBox(height: 10),
+
+            ///
             Card(
               elevation: 0,
-              // color: Colors.grey[100],
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
+                borderRadius: BorderRadius.circular(
+                  16,
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: const [
-                    DetailRow(title: "First Name", value: "Obiajulu"),
-                    DetailRow(title: "Middle Name", value: ""),
-                    DetailRow(title: "Last Name", value: "Mbanefo"),
-                    DetailRow(title: "Date of birth", value: "02/04/2003"),
-                    DetailRow(title: "Phone Number", value: "7050940544"),
-                  ],
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  itemCount: detailed.length,
+                  itemBuilder: (context, index) => detailed[index],
                 ),
               ),
             ),
+
+            ///
             const SizedBox(height: 30),
             const Text(
               "FERROUS ID",
@@ -77,7 +98,8 @@ class ProfilePage extends StatelessWidget {
             Card(
               clipBehavior: Clip.antiAlias,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
+                borderRadius: BorderRadius.circular(16),
+              ),
               elevation: 0,
               child: ListTile(
                 contentPadding: const EdgeInsets.all(20),
@@ -117,6 +139,7 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
+/// this is just fine, do not try to change to list tile
 class DetailRow extends StatelessWidget {
   final String title;
   final String value;
