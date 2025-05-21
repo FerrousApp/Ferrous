@@ -25,6 +25,7 @@ Future<void> main() async {
   //   ),
   // );
 
+  // set high refresh rate for android
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }
