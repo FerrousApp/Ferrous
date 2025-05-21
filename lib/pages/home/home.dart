@@ -1,5 +1,6 @@
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/misc/backpage_ink.dart';
 import 'package:ferrous/pages/ai/ai.dart';
 import 'package:ferrous/pages/home/components.dart/action_button.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
@@ -185,6 +186,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       currencyFormat: currencyFormat,
                       subtitle: 'RLUSD',
                       icon: Icons.credit_card,
+                      // blockchainUnicode: '\u{1F680}',
+                      blockchainUnicode: '\u{27E0}',
                     );
                   }),
             ),

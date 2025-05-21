@@ -8,6 +8,7 @@ class BalanceItem extends ConsumerWidget {
   final NumberFormat currencyFormat;
   final String subtitle;
   final IconData icon;
+  final String blockchainUnicode;
 
   const BalanceItem({
     super.key,
@@ -16,22 +17,40 @@ class BalanceItem extends ConsumerWidget {
     required this.currencyFormat,
     required this.subtitle,
     required this.icon,
+    required this.blockchainUnicode,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(8),
+
+      leading: Badge(
+        backgroundColor: Colors.amber, // color will change to match blockchain
+        alignment: Alignment.topLeft,
+
+        label: Text(
+          blockchainUnicode,
+          style: TextStyle(
+            height: 1,
+          ),
         ),
-        child: Icon(icon),
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade100,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(icon),
+        ),
       ),
+
+      // full name and blockchain
       title: Text(title),
+
+      // ticker symbol
       subtitle: Text(subtitle),
+
       trailing: Text(
         currencyFormat.format(amount),
         style: TextStyle(

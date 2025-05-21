@@ -16,7 +16,7 @@ class PageRouteAnimations {
     );
   }
 
-  // Add other animation types as needed
+  /// Add other animation types as needed
   static Route slideTransitionRoute(Widget page, {int durationMs = 300}) {
     return PageRouteBuilder(
       pageBuilder: (_, __, ___) => page,

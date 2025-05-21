@@ -18,11 +18,13 @@ class RecommendedItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkResponse(
+    
+      splashFactory: InkSparkle.splashFactory,
       onTap: () {
         print("inked");
       },
       highlightColor: Colors.transparent,
-      splashColor: Colors.blue,
+      splashColor: Colors.transparent,
       child: Container(
         width: 200,
         clipBehavior: Clip.hardEdge,

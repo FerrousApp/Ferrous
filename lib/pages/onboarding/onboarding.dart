@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/misc/backpage_ink.dart';
 
 import 'package:ferrous/pages/login/login.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
@@ -76,6 +77,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      ///
       body: Column(
         children: [
           SizedBox(
@@ -157,10 +159,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
       ///
       bottomNavigationBar: ListTile(
-        // contentPadding: EdgeInsets.all(0),
-
-        // tileColor: Colors.black,
-        // tileColor: Colors.transparent,
+        // contentPadding: EdgeInsets.symmetric(horizontal: 60),
 
         ///
         title: TextButton(
@@ -175,13 +174,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 WelcomeBackPinEntryPage(),
               ),
             );
-
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => WelcomeBackPinEntryPage(),
-            //   ),
-            // );
           },
           clipBehavior: Clip.antiAlias,
           style: TextButton.styleFrom(
@@ -216,6 +208,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           },
           style: TextButton.styleFrom(
             overlayColor: Colors.transparent,
+            // backgroundColor: Colors.pink,
+            padding: EdgeInsets.all(0),
           ),
           child: Text(
             "Log In",
