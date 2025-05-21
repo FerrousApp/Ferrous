@@ -1,6 +1,6 @@
 # Ferrous
 
-## **📲Lightning fast on-chain payments, right from your phone.**
+## **📲Lightning fast payments, right from your phone.**
 *Pay anyone, anywhere!*  
 
 
