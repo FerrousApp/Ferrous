@@ -47,6 +47,7 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
+  // load the preferred theme on startup
   loadPreferredThemeOnStartup() {
     SharedPreferences.getInstance().then((prefs) {
       bool? isNight = prefs.getBool('night');
@@ -67,7 +68,7 @@ class _MainAppState extends ConsumerState<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-// load theme on startup
+    // load theme on startup
     loadPreferredThemeOnStartup();
 
     return SafeArea(

@@ -15,11 +15,11 @@ class CustomActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: IconButton(
+      title: IconButton.filledTonal(
         icon: Icon(icon, size: 20),
         onPressed: onPressed,
         alignment: Alignment.center,
-        style: ElevatedButton.styleFrom(
+        style: IconButton.styleFrom(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 12),
           shape: const CircleBorder(),

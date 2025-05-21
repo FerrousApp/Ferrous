@@ -30,8 +30,6 @@ class BalanceItem extends ConsumerWidget {
         ),
         child: Icon(icon),
       ),
-
-    
       title: Text(title),
       subtitle: Text(subtitle),
       trailing: Text(

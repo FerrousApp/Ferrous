@@ -23,32 +23,23 @@ class ProfilePage extends StatelessWidget {
           // mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const CircleAvatar(
-                  radius: 30,
-                  child: Text(
-                    "OM",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const CircleAvatar(
+                radius: 30,
+                child: Text(
+                  "OM",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Obiajulu Mbanefo",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 4),
-                    Text("adamant@potato.com"),
-                  ],
-                )
-              ],
+              ),
+              title: Text(
+                "Obiajulu Mbanefo",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text("adamant@potato.com"),
             ),
             const SizedBox(height: 30),
             const Text(
@@ -58,7 +49,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 10),
             Card(
               elevation: 0,
-              color: Colors.grey[100],
+              // color: Colors.grey[100],
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16)),
               child: Padding(
@@ -139,8 +130,15 @@ class DetailRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(color: Colors.black54)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.w500)),
+          Text(
+            title,
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
