@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
+
   /// text font
   fontFamily: 'JosefinSans',
 
   // scaffold background color
   scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    surfaceTintColor: Colors.black,
+  ),
 
   ///
   // inputDecorationTheme: InputDecorationTheme(

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ferrous/pages/onboarding/onboarding.dart';
+import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -24,7 +25,6 @@ Future<void> main() async {
   //   ),
   // );
 
-  // set high refresh rate on android
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }

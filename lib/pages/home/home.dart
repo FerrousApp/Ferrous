@@ -5,6 +5,7 @@ import 'package:ferrous/pages/home/components.dart/action_button.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
 import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
 import 'package:ferrous/pages/home/components.dart/recommended_items.dart';
+import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -28,7 +29,14 @@ class _HomePageState extends ConsumerState<HomePage> {
       appBar: AppBar(
         // backgroundColor: Colors.blue,
         leading: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageRouteAnimations.fadeTransitionRoute(
+                ProfilePage(),
+              ),
+            );
+          },
           child: Text("OM"),
         ),
         actions: [
@@ -37,8 +45,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               print("for ION AI");
               Navigator.push(
                 context,
-                PageRouteAnimations.fadeTransitionRoute(
+                PageRouteAnimations.slideTransitionRoute(
                   IONAIPage(),
+                  durationMs: 1000,
                 ),
               );
             },

@@ -24,12 +24,16 @@ class _FilterSheetDatePickerState extends State<FilterSheetDatePicker> {
     );
 
     if (picked != null) {
-      if (_toDate != null && _fromDate != null) {
-        // if the to date is before the from date
+      /// Checks if both `_fromDate` and `_toDate` are not null, then compares them.
+      /// If `_fromDate` is after `_toDate`, it prints an error message indicating the invalid date range.
+      /// Otherwise, it confirms that the selected dates are valid.
+      /// This block is typically used to validate a date range selection before proceeding with further logic.
+      if (_fromDate != null && _toDate != null) {
         if (_fromDate!.isAfter(_toDate!)) {
-          log("from date is after to date");
+          log("From date cannot be after To date");
+        } else {
+          log("Dates are valid");
         }
-        // Your logic here
       }
       setState(() {
         if (isFrom) {

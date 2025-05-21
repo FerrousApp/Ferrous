@@ -52,21 +52,37 @@ class FilterModal extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Wrap(
               spacing: 8,
-              children: const [
+              children: [
                 FilterChip(
-                    label: Text("Show all"), selected: true, onSelected: null),
+                  label: Text("Show all"),
+                  selected: true,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("USD 🇺🇸"), selected: false, onSelected: null),
+                  label: Text("USD 🇺🇸"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("GBP 🇬🇧"), selected: false, onSelected: null),
+                  label: Text("GBP 🇬🇧"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("EUR 🇪🇺"), selected: false, onSelected: null),
+                  label: Text("EUR 🇪🇺"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("NGN 🇳🇬"), selected: false, onSelected: null),
+                  label: Text("NGN 🇳🇬"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("Ethereum \u{039E}"),
-                    selected: false,
-                    onSelected: null),
+                  label: Text("Ethereum \u{039E}"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
               ],
             ),
           ),
@@ -84,15 +100,27 @@ class FilterModal extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Wrap(
               spacing: 8,
-              children: const [
+              children: [
                 FilterChip(
-                    label: Text("Show all"), selected: true, onSelected: null),
+                  label: Text("Show all"),
+                  selected: true,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("Deposit"), selected: false, onSelected: null),
+                  label: Text("Deposit"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("Withdraw"), selected: false, onSelected: null),
+                  label: Text("Withdraw"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
                 FilterChip(
-                    label: Text("Convert"), selected: false, onSelected: null),
+                  label: Text("Convert"),
+                  selected: false,
+                  onSelected: (value) {},
+                ),
               ],
             ),
           ),
@@ -110,7 +138,6 @@ class FilterModal extends StatelessWidget {
             children: [
               TextButton.icon(
                 style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
                   overlayColor: Colors.transparent,
                 ),
                 iconAlignment: IconAlignment.end,

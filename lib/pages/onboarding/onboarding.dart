@@ -95,10 +95,31 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 return Column(
                   children: [
                     /// lottie
-                    Lottie.asset(
-                      'assets/lotties/$index.json',
-                      height: 300,
-                      width: 300,
+
+                    Container(
+                      decoration: BoxDecoration(
+                        color:
+                            Colors.transparent, // base color of the container
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: index == 0
+                                ? Colors.amber.withValues(alpha: 0.7)
+                                : index == 1
+                                    ? Colors.white
+                                        .withValues(alpha: 0.7) // glow color
+                                    : Colors.blue
+                                        .withValues(alpha: 0.7), // glow color
+                            blurRadius: 200, // softness of the shadow
+                            spreadRadius: 80, // how wide the glow spreads
+                          ),
+                        ],
+                      ),
+                      child: Lottie.asset(
+                        'assets/lotties/$index.json',
+                        height: 300,
+                        width: 300,
+                      ),
                     ),
 
                     ///
@@ -109,7 +130,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         style: TextStyle(
                           height: 2,
                           fontSize: 22,
-                          // color: Colors.white,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -121,7 +141,10 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w300,
-                          // color: Colors.white,
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.black54
+                                  : Colors.white60,
                         ),
                       ),
                     ),
