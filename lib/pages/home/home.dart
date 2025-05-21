@@ -102,7 +102,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                   },
                   label: const Text(
                     'United States Dollar',
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
                 // const SizedBox(height: 4)
@@ -156,6 +158,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   'Balances',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Colors.grey,
                     fontSize: 16,
                   ),
                 ),
@@ -192,6 +195,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 'Recommended',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: Colors.grey,
                   fontSize: 16,
                 ),
               ),
