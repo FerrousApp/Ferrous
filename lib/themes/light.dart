@@ -8,12 +8,19 @@ ThemeData lightTheme = ThemeData(
 
   // scaffold background color
   scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
-
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
     elevation: 0,
     surfaceTintColor: Colors.black,
   ),
+
+  /// for the predictive back on pages
+  // pageTransitionsTheme: PageTransitionsTheme(
+  //   builders: {
+  //     TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+  //     // TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+  //   },
+  // )
 
   ///
   // inputDecorationTheme: InputDecorationTheme(

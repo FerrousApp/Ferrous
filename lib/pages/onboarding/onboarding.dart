@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:ferrous/misc/animate_page.dart';
 import 'package:ferrous/misc/appsizing.dart';
@@ -84,7 +83,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             width: AppSizing.width(context),
 
             ///
-
             child: PageView.builder(
               controller: _onboardingController,
               itemCount: data.length,
@@ -97,7 +95,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                 return Column(
                   children: [
                     /// lottie
-
                     Container(
                       decoration: BoxDecoration(
                         color:
