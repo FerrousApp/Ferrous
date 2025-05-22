@@ -1,4 +1,4 @@
-import 'package:ferrous/misc/animate_page.dart';
+import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/pages/2fa/2fa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,9 +84,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        PageRouteAnimations.fadeTransitionRoute(
-                          TwoStepVerificationPage(),
-                        ),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const TwoStepVerificationPage()),
                       );
                       // Navigate to email link/passwordless sign-in
                     },

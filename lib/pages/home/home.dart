@@ -1,4 +1,4 @@
-import 'package:ferrous/misc/animate_page.dart';
+import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/misc/backpage_ink.dart';
 import 'package:ferrous/pages/ai/ai.dart';
@@ -33,9 +33,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           onPressed: () {
             Navigator.push(
               context,
-              PageRouteAnimations.fadeTransitionRoute(
-                ProfilePage(),
-              ),
+              MaterialPageRoute(builder: (context) => ProfilePage()),
             );
           },
           child: Text("OM"),
@@ -194,12 +192,16 @@ class _HomePageState extends ConsumerState<HomePage> {
 
             ListTile(
               contentPadding: EdgeInsets.only(top: 10),
-              title: const Text(
-                'Recommended',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                  fontSize: 16,
+
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: const Text(
+                  'Recommended',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
                 ),
               ),
 

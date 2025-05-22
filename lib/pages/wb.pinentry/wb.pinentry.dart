@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:ferrous/misc/animate_page.dart';
+import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/backpage_ink.dart';
 import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/pages/wb.pinentry/components/number_button.dart';
@@ -37,9 +37,10 @@ class _WelcomeBackPinEntryPageState
       enteredPin == "1111"
           ? Navigator.push(
               context,
-              PageRouteAnimations.fadeTransitionRoute(
-                PrimaryPage(),
-              ))
+              MaterialPageRoute(
+                builder: (context) => const PrimaryPage(),
+              ),
+            )
           : null;
 
       print('PIN entered: $enteredPin');

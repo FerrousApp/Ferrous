@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ferrous/misc/animate_page.dart';
+import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/misc/backpage_ink.dart';
 
@@ -78,83 +78,85 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       ///
-      body: Column(
-        children: [
-          SizedBox(
-            height: AppSizing.height(context) * 0.8,
-            width: AppSizing.width(context),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: AppSizing.height(context) * 0.8,
+              width: AppSizing.width(context),
 
-            ///
-            child: PageView.builder(
-              controller: _onboardingController,
-              itemCount: data.length,
-              onPageChanged: (page) {
-                setState(() {
-                  activeIndex = page;
-                });
-              },
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    /// lottie
-                    Container(
-                      decoration: BoxDecoration(
-                        color:
-                            Colors.transparent, // base color of the container
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: index == 0
-                                ? Colors.amber.withValues(alpha: 0.7)
-                                : index == 1
-                                    ? Colors.white
-                                        .withValues(alpha: 0.7) // glow color
-                                    : Colors.blue
-                                        .withValues(alpha: 0.7), // glow color
-                            blurRadius: 200, // softness of the shadow
-                            spreadRadius: 80, // how wide the glow spreads
-                          ),
-                        ],
-                      ),
-                      child: Lottie.asset(
-                        'assets/lotties/$index.json',
-                        height: 300,
-                        width: 300,
-                      ),
-                    ),
-
-                    ///
-                    ListTile(
-                      title: Text(
-                        data.elementAt(index).title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          height: 2,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
+              ///
+              child: PageView.builder(
+                controller: _onboardingController,
+                itemCount: data.length,
+                onPageChanged: (page) {
+                  setState(() {
+                    activeIndex = page;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      /// lottie
+                      Container(
+                        decoration: BoxDecoration(
+                          color:
+                              Colors.transparent, // base color of the container
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: index == 0
+                                  ? Colors.amber.withValues(alpha: 0.7)
+                                  : index == 1
+                                      ? Colors.white
+                                          .withValues(alpha: 0.7) // glow color
+                                      : Colors.blue
+                                          .withValues(alpha: 0.7), // glow color
+                              blurRadius: 200, // softness of the shadow
+                              spreadRadius: 80, // how wide the glow spreads
+                            ),
+                          ],
+                        ),
+                        child: Lottie.asset(
+                          'assets/lotties/$index.json',
+                          height: 300,
+                          width: 300,
                         ),
                       ),
 
                       ///
-                      subtitle: Text(
-                        data.elementAt(index).description,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
-                          color:
-                              Theme.of(context).brightness == Brightness.light
-                                  ? Colors.black54
-                                  : Colors.white60,
+                      ListTile(
+                        title: Text(
+                          data.elementAt(index).title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            height: 2,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+
+                        ///
+                        subtitle: Text(
+                          data.elementAt(index).description,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black54
+                                    : Colors.white60,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          )
-        ],
+                    ],
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
 
       ///
@@ -170,8 +172,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           onPressed: () {
             Navigator.push(
               context,
-              PageRouteAnimations.fadeTransitionRoute(
-                WelcomeBackPinEntryPage(),
+              MaterialPageRoute(
+                builder: (context) => const WelcomeBackPinEntryPage(),
               ),
             );
           },
@@ -201,8 +203,8 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
             print("login");
             Navigator.push(
               context,
-              PageRouteAnimations.fadeTransitionRoute(
-                LoginPage(),
+              MaterialPageRoute(
+                builder: (context) => const LoginPage(),
               ),
             );
           },
