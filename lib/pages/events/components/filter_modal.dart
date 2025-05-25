@@ -1,4 +1,4 @@
-import 'package:ferrous/pages/history/components/filter_date_picker.dart';
+import 'package:ferrous/pages/events/components/filter_date_picker.dart';
 import 'package:flutter/material.dart';
 
 //TODO: get currencies unicode

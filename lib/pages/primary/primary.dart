@@ -1,5 +1,5 @@
 import 'package:ferrous/pages/cards/cards.dart';
-import 'package:ferrous/pages/history/history.dart';
+import 'package:ferrous/pages/events/events.dart';
 import 'package:ferrous/pages/home/home.dart';
 import 'package:ferrous/pages/more/more.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
@@ -38,7 +38,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
         itemBuilder: ((context, index) => const [
               HomePage(),
               CardsPage(),
-              HistoryPage(),
+              EventsPage(),
               MorePage(),
             ].elementAt(index)),
       ),

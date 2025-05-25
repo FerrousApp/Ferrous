@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/backpage_ink.dart';
 import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/pages/wb.pinentry/components/number_button.dart';
@@ -66,125 +65,127 @@ class _WelcomeBackPinEntryPageState
           BackpageInk(),
 
           ///
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 40),
-
-                const Text(
-                  'Welcome Back Obiajulu',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    height: 0,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+          SingleChildScrollView(
+            
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 40),
+            
+                  const Text(
+                    'Welcome Back Obiajulu',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      height: 0,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Enter your 4-Digit PIN',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Enter your 4-Digit PIN',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 40),
-
-                // PIN Dots Indicator
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    pinLength,
-                    (index) => Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 12),
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index < enteredPin.length
-                            ? Color(Random().nextInt(0xFFFFFFFF))
-                                .withValues(alpha: 1)
-                            : Colors.grey.withValues(alpha: 0.3),
+                  const SizedBox(height: 40),
+            
+                  // PIN Dots Indicator
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      pinLength,
+                      (index) => Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 12),
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: index < enteredPin.length
+                              ? Color(Random().nextInt(0xFFFFFFFF))
+                                  .withValues(alpha: 1)
+                              : Colors.grey.withValues(alpha: 0.3),
+                        ),
                       ),
                     ),
                   ),
-                ),
-
-                const SizedBox(height: 60),
-
-                // Number Pad
-                GridView.builder(
-                  shrinkWrap: true,
-                  // Disable internal scrolling
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1.5,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 16,
-                  ),
-                  // 1-9, 0, empty space for fingerprint and backspace
-                  itemCount: 12,
-                  itemBuilder: (context, index) {
-                    // empty fingerprint space
-                    if (index == 9) {
-                      return IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.fingerprint_rounded),
-                      );
-                    }
-
-                    // 0 bbutton count
-                    if (index == 10) {
+            
+                  const SizedBox(height: 60),
+            
+                  // Number Pad
+                  GridView.builder(
+                    shrinkWrap: true,
+                    // Disable internal scrolling
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 1.5,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                    ),
+                    // 1-9, 0, empty space for fingerprint and backspace
+                    itemCount: 12,
+                    itemBuilder: (context, index) {
+                      // empty fingerprint space
+                      if (index == 9) {
+                        return IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.fingerprint_rounded),
+                        );
+                      }
+            
+                      // 0 bbutton count
+                      if (index == 10) {
+                        return NumberButton(
+                          number: '0',
+                          onPressed: _onNumberPressed,
+                          color: Theme.of(context).brightness == Brightness.light
+                              ? Colors.black
+                              : Colors.white70,
+                        );
+                      }
+                      // Backspace button
+                      if (index == 11) {
+                        return IconButton(
+                          onPressed: _onBackspacePressed,
+                          icon: const Icon(Icons.backspace),
+                        );
+                      }
+            
+                      // finally numbers 1 - 9
                       return NumberButton(
-                        number: '0',
+                        number: (index + 1).toString(),
                         onPressed: _onNumberPressed,
                         color: Theme.of(context).brightness == Brightness.light
                             ? Colors.black
                             : Colors.white70,
                       );
-                    }
-                    // Backspace button
-                    if (index == 11) {
-                      return IconButton(
-                        onPressed: _onBackspacePressed,
-                        icon: const Icon(Icons.backspace),
-                      );
-                    }
-
-                    // finally numbers 1 - 9
-                    return NumberButton(
-                      number: (index + 1).toString(),
-                      onPressed: _onNumberPressed,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.black
-                          : Colors.white70,
-                    );
-                  },
-                ),
-
-                const Spacer(),
-
-                // Footer
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      print("handle log out");
                     },
-                    child: Text(
-                      'Not your account? Log out',
-                      style: TextStyle(
-                        color: Colors.redAccent,
+                  ),
+            
+                  const Spacer(),
+            
+                  // Footer
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        print("handle log out");
+                      },
+                      child: Text(
+                        'Not your account? Log out',
+                        style: TextStyle(
+                          color: Colors.redAccent,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          
         ],
       ),
     );

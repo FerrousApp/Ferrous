@@ -1,6 +1,6 @@
 import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
-import 'package:ferrous/misc/backpage_ink.dart';
+
 import 'package:ferrous/pages/ai/ai.dart';
 import 'package:ferrous/pages/home/components.dart/action_button.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
@@ -24,7 +24,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     final isSmallScreen = AppSizing.width(context) < 600;
     final currencyFormat = NumberFormat.currency(symbol: '\$');
     final compactCurrencyFormat = NumberFormat.compactCurrency(symbol: '\$');
-    final balance = 10000;
+    final balance = 1000000;
 
     return Scaffold(
       appBar: AppBar(
@@ -114,6 +114,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
+                    color: Colors.transparent
                   ),
                 ),
               ],
@@ -180,7 +181,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   itemBuilder: (context, index) {
                     return BalanceItem(
                       title: 'Ripple United States Dollar • XRPL',
-                      amount: 9.00,
+                      amount: 0.00,
                       currencyFormat: currencyFormat,
                       subtitle: 'RLUSD',
                       icon: Icons.credit_card,
