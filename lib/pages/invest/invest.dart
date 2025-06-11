@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:lottie/lottie.dart';
 
-class CardsPage extends ConsumerStatefulWidget {
-  const CardsPage({super.key});
+class InvestPage extends ConsumerStatefulWidget {
+  const InvestPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CardsPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _InvestPageState();
 }
 
-class _CardsPageState extends ConsumerState<CardsPage> {
+class _InvestPageState extends ConsumerState<InvestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

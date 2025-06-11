@@ -7,6 +7,7 @@ class FilterModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // todo: change to list view
     return SingleChildScrollView(
       padding: MediaQuery.of(context).viewInsets.add(
             const EdgeInsets.symmetric(

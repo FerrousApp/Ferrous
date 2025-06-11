@@ -114,7 +114,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.transparent
+                    // color: Colors.transparent
                   ),
                 ),
               ],
@@ -181,7 +181,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   itemBuilder: (context, index) {
                     return BalanceItem(
                       title: 'Ripple United States Dollar • XRPL',
-                      amount: 0.00,
+                      amount: 19.00,
                       currencyFormat: currencyFormat,
                       subtitle: 'RLUSD',
                       icon: Icons.credit_card,

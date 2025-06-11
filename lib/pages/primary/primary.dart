@@ -1,4 +1,4 @@
-import 'package:ferrous/pages/cards/cards.dart';
+import 'package:ferrous/pages/invest/invest.dart';
 import 'package:ferrous/pages/events/events.dart';
 import 'package:ferrous/pages/home/home.dart';
 import 'package:ferrous/pages/more/more.dart';
@@ -37,7 +37,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
         },
         itemBuilder: ((context, index) => const [
               HomePage(),
-              CardsPage(),
+              InvestPage(),
               EventsPage(),
               MorePage(),
             ].elementAt(index)),
@@ -58,8 +58,8 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.credit_card),
-            label: 'Cards',
+            icon: Icon(Icons.trending_up),
+            label: 'Invest',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.history),

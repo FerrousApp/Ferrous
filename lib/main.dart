@@ -71,14 +71,12 @@ class _MainAppState extends ConsumerState<MainApp> {
     // load theme on startup
     loadPreferredThemeOnStartup();
 
-    return SafeArea(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ref.watch(themeModeProvider),
-        home: OnboardingPage(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ref.watch(themeModeProvider),
+      home: OnboardingPage(),
     );
   }
 }
