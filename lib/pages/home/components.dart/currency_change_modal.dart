@@ -18,7 +18,7 @@ class CurrencyChangeModal extends ConsumerWidget {
           subtitle: Text(currencyFormat.format(100)),
           trailing: Icon(
             Icons.check_circle_sharp,
-            color: Colors.black,
+            // color: Colors.black,
           ),
           onTap: () {
             // Handle USD selection

@@ -1,241 +1,104 @@
+import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/pages/more/components/more_action_tile.dart';
+// import 'package:ferrous/pages/more/components/more_action_tile.dart';
+import 'package:ferrous/themes/theme_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 
-class MorePage extends ConsumerStatefulWidget {
+class MorePage extends ConsumerWidget {
   const MorePage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MorePageState();
-}
-
-class _MorePageState extends ConsumerState<MorePage> {
-  @override
-  Widget build(BuildContext context) {
-    final isSmallScreen = MediaQuery.of(context).size.width < 600;
-    final currencyFormat = NumberFormat.currency(symbol: '\$');
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isSmallScreen = AppSizing.width(context) < 600;
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.blue,
-        leading: TextButton(
-          onPressed: () {},
-          child: Text("OM"),
+        title: const Text(
+          'More',
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+      ),
+
+      ///
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: isSmallScreen ? 6 : 12,
+          vertical: 6,
+        ),
+        children: [
+          ///
+          const Text(
+            "PERSONAL DETAILS",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
+          ),
+
+          Card(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                itemCount: 5,
+                itemBuilder: (context, index) => MoreActionTile(
+                  icon: Icons.person,
+                  text: "My Profile",
+                  onTap: () {},
+                ),
+              ),
+            ),
+          ),
+
+          ///
+          // const SizedBox(height: 10),
+
+          const Text(
+            "APP SETTING",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
+          ),
+
+          Card(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                itemCount: 1,
+                itemBuilder: (context, index) => MoreActionTile(
+                  icon: Icons.color_lens_outlined,
+                  text: "Change app theme",
+                  onTap: () {
+                    ref.read(themeModeProvider.notifier).changeTheme();
+                  },
+                  trailing: ref.watch(themeModeProvider) == ThemeMode.light
+                      ? Icons.wb_sunny_outlined
+                      : Icons.mode_night_outlined,
+                ),
+              ),
+            ),
           ),
         ],
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: isSmallScreen ? 16 : 24,
-          vertical: 16,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Balance Section
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'United States Dollar',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  currencyFormat.format(0.04),
-                  style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '77 068',
-                  style: TextStyle(
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-
-            // Action Buttons
-            Row(
-              children: [
-                Expanded(
-                  child: _buildActionButton(
-                    icon: Icons.add,
-                    label: 'Add Money',
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildActionButton(
-                    icon: Icons.send,
-                    label: 'Send',
-                    onPressed: () {},
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _buildActionButton(
-                    icon: Icons.swap_horiz,
-                    label: 'Convert',
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-
-            // Recent Transactions Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'RECENT TRANSACTIONS',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('See all'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-
-            // Transaction List
-            Column(
-              children: [
-                _buildTransactionItem(
-                  title: 'Card deposit',
-                  amount: -9.00,
-                  currencyFormat: currencyFormat,
-                  subtitle: 'May 14 2025',
-                  icon: Icons.credit_card,
-                ),
-                _buildTransactionItem(
-                  title: 'NGN to USD',
-                  amount: 15000.00,
-                  currencyFormat: currencyFormat,
-                  subtitle: 'Swap • May 14 2025',
-                  icon: Icons.currency_exchange,
-                  isCurrency: true,
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-
-            // Recommended Section
-            const Text(
-              'Recommended',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 16),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  3,
-                  (index) => Container(
-                    width: 200,
-                    margin: const EdgeInsets.only(right: 12),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade200),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.blue.shade50,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: const Icon(Icons.star, color: Colors.blue),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Investment Plans',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Grow your money',
-                          style: TextStyle(color: Colors.grey.shade600),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required VoidCallback onPressed,
-  }) {
-    return ElevatedButton.icon(
-      icon: Icon(icon, size: 20),
-      label: Text(label),
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTransactionItem({
-    required String title,
-    required double amount,
-    required NumberFormat currencyFormat,
-    required String subtitle,
-    required IconData icon,
-    bool isCurrency = false,
-  }) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Icon(icon),
-      ),
-      title: Text(title),
-      subtitle: Text(subtitle),
-      trailing: Text(
-        isCurrency
-            ? '¥${NumberFormat('#,##0').format(amount)}'
-            : currencyFormat.format(amount),
-        style: TextStyle(
-          color: amount < 0 ? Colors.red : Colors.green,
-          fontWeight: FontWeight.bold,
-        ),
       ),
     );
   }

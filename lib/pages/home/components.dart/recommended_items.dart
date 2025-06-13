@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class RecommendedItem extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
-
   final String title;
   final String subtitle;
+  final VoidCallback onTap;
 
   const RecommendedItem({
     super.key,
@@ -13,6 +13,7 @@ class RecommendedItem extends StatelessWidget {
     required this.iconColor,
     required this.title,
     required this.subtitle,
+    required this.onTap,
   });
 
   @override
@@ -20,9 +21,7 @@ class RecommendedItem extends StatelessWidget {
     return InkResponse(
     
       splashFactory: InkSparkle.splashFactory,
-      onTap: () {
-        print("inked");
-      },
+      onTap: onTap,
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
       child: Container(
