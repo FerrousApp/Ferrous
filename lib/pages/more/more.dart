@@ -1,4 +1,5 @@
 import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/pages/ai/ai.dart';
 import 'package:ferrous/pages/more/components/more_action_tile.dart';
 // import 'package:ferrous/pages/more/components/more_action_tile.dart';
 import 'package:ferrous/themes/theme_provider.dart';
@@ -64,7 +65,7 @@ class MorePage extends ConsumerWidget {
           // const SizedBox(height: 10),
 
           const Text(
-            "APP SETTING",
+            "APP",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.grey,
@@ -84,17 +85,33 @@ class MorePage extends ConsumerWidget {
                 physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                itemCount: 1,
-                itemBuilder: (context, index) => MoreActionTile(
-                  icon: Icons.color_lens_outlined,
-                  text: "Change app theme",
-                  onTap: () {
-                    ref.read(themeModeProvider.notifier).changeTheme();
-                  },
-                  trailing: ref.watch(themeModeProvider) == ThemeMode.light
-                      ? Icons.wb_sunny_outlined
-                      : Icons.mode_night_outlined,
-                ),
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return MoreActionTile(
+                      icon: Icons.bubble_chart_outlined,
+                      text: "ION AI",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IONAIPage(),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                  return MoreActionTile(
+                    icon: Icons.color_lens_outlined,
+                    text: "Change app theme",
+                    onTap: () {
+                      ref.read(themeModeProvider.notifier).changeTheme();
+                    },
+                    trailing: ref.watch(themeModeProvider) == ThemeMode.light
+                        ? Icons.wb_sunny_outlined
+                        : Icons.mode_night_outlined,
+                  );
+                },
               ),
             ),
           ),

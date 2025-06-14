@@ -38,6 +38,35 @@ class _HomePageState extends ConsumerState<HomePage> {
           },
           child: Text("OM"),
         ),
+
+        ///
+        actions: [
+          InkResponse(
+            onTap: () {
+              print("for ION AI");
+              Navigator.push(
+                context,
+                PageRouteAnimations.slideTransitionRoute(
+                  IONAIPage(),
+                  durationMs: 1000,
+                ),
+              );
+            },
+            splashColor: Colors.amberAccent,
+            child: Hero(
+              transitionOnUserGestures: true,
+              tag: 'ionIcon',
+              child: Icon(
+                Icons.bubble_chart_outlined,
+                color: Colors.amber,
+              ),
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined),
+            onPressed: () {},
+          ),
+        ],
       ),
 
       ///

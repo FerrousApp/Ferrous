@@ -54,7 +54,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.dashboard),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -63,10 +63,10 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.history),
-            label: 'History',
+            label: 'Events',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
+            icon: Icon(Icons.precision_manufacturing),
             label: 'More',
           ),
         ],

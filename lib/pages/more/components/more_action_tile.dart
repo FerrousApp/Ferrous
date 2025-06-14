@@ -32,7 +32,9 @@ class MoreActionTile extends ConsumerWidget {
       onLongPress: onLongPress,
       leading: Icon(
         icon,
-        color: Theme.of(context).colorScheme.primary,
+        color: text == "ION AI"
+            ? Colors.amber
+            : Theme.of(context).colorScheme.primary,
       ),
       title: Text(
         text,

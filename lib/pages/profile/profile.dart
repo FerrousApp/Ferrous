@@ -90,7 +90,10 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 30),
             const Text(
               "FERROUS ID",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),
             ),
             const SizedBox(height: 10),
 
