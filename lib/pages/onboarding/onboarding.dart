@@ -30,16 +30,18 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
   List<OnBoardingData> data = [
     OnBoardingData(
-        title: "Lightning Fast Payments",
-        description: "Experience seamless transactions with Ferrous."),
+      title: "Africa's Digital Investment Frontier",
+      description:
+          "Empowering Africans to invest in digital assets with their native currency.",
+    ),
     OnBoardingData(
-        title: "Transact With Anyone, Anywhere",
-        description:
-            "Are you paying for a service, or making cross-border payments? Ferrous delivers instant transfers with ease."),
+      title: "Lightning Fast Transactions",
+      description: "Experience seamless transactions with Ferrous.",
+    ),
     OnBoardingData(
-        title: "Tap. Send. Done.",
-        description:
-            "No delays, no confusion. Just tap, send, and you're done. Payments made effortless!"),
+      title: "Invest Intelligently. Rise Globally.",
+      description: "Secure AI-powered investments for African economies.",
+    ),
   ];
 
   void _startAutoScroll() {
@@ -102,11 +104,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                           boxShadow: [
                             BoxShadow(
                               color: index == 0
-                                  ? Colors.amber.withValues(alpha: 0.7)
+                                  ? Colors.white.withValues(alpha: 0.7)
                                   : index == 1
-                                      ? Colors.white
+                                      ? Colors.amber
                                           .withValues(alpha: 0.7) // glow color
-                                      : Colors.blue
+                                      : Colors.green
                                           .withValues(alpha: 0.7), // glow color
                               blurRadius: 200, // softness of the shadow
                               spreadRadius: 80, // how wide the glow spreads
