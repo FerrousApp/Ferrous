@@ -1,7 +1,6 @@
 # Ferrous
 
-## **📲Lightning fast payments, right from your phone.**
-*Pay anyone, anywhere!*  
+## **Africa's digital investment frontier.**  
 
 
 Ferrous is a modern blockchain payment app designed for fast, secure, and borderless transactions. Whether you're sending money to a friend, paying for a service, or making cross-border payments, Ferrous delivers instant, on-chain transfers with ease.
