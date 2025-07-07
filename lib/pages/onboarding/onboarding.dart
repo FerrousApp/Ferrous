@@ -40,7 +40,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
     ),
     OnBoardingData(
       title: "Invest Intelligently. Rise Globally.",
-      description: "Secure AI-powered investments for African economies.",
+      description: "Flexible and Secure investments for African economies.",
     ),
   ];
 

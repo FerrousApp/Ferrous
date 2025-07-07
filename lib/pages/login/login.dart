@@ -1,7 +1,6 @@
-
 import 'package:ferrous/pages/2fa/2fa.dart';
+import 'package:ferrous/pages/home/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -32,7 +31,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     try {
       // TODO: Implement your authentication logic
       await Future.delayed(const Duration(seconds: 2)); // Simulate network call
-      if (mounted) Navigator.pushReplacementNamed(context, '/home');
+      if (mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      }
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
