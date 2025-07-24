@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:ferrous/misc/backpage_ink.dart';
 import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/pages/wb.pinentry/components/number_button.dart';
 import 'package:flutter/material.dart';
