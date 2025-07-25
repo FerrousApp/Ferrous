@@ -57,22 +57,41 @@ class _WelcomeBackPinEntryPageState
   Widget build(BuildContext context) {
     return Scaffold(
       ///
-      body: ListView(
-        padding: const EdgeInsets.all(24.0),
-        children: [
-          const SizedBox(height: 40),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        scrolledUnderElevation: 0,
 
-          const Text(
-            'Welcome Back Obiajulu',
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              height: 0,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+        ///
+        title: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'Welcome Back, ',
+                style: TextStyle(
+                  height: 0,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: 'Obiajulu',
+                style: TextStyle(
+                  color: Colors.amber,
+                  height: 0,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
+        ),
+      ),
+
+      ///
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
           const Text(
             'Enter your 4-Digit PIN',
             style: TextStyle(

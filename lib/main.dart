@@ -76,7 +76,8 @@ class _MainAppState extends ConsumerState<MainApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      home: OnboardingPage(),
+      // home: OnboardingPage(),
+      home: GrowProIntroScreen(),
     );
   }
 }

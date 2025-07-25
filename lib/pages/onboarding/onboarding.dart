@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/login/login.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
+import 'package:ferrous/start/start.dart';
 import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -220,6 +221,146 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   : Colors.white,
               fontSize: 15,
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class GrowProIntroScreen extends ConsumerStatefulWidget {
+  const GrowProIntroScreen({super.key});
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _GrowProIntroScreenState();
+}
+
+class _GrowProIntroScreenState extends ConsumerState<GrowProIntroScreen> {
+  ///
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+      ///
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+
+        ///
+        title: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'Ferrous',
+                style: TextStyle(
+                  // color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: ' [FE]',
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+
+      ///
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          ///
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Lottie.asset(
+                'assets/lotties/1.json',
+                height: 300,
+                width: 300,
+              ),
+
+              ///
+              const Text(
+                'Invest.',
+                style: TextStyle(
+                  fontSize: 40,
+                  // color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                ),
+              ),
+              const Text(
+                'Diversify.',
+                style: TextStyle(
+                  fontSize: 40,
+                  // color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                ),
+              ),
+              const Text(
+                'Grow.',
+                style: TextStyle(
+                  fontSize: 40,
+                  // color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                ),
+              ),
+
+              ///
+              const SizedBox(height: 20),
+
+              ///
+              Text(
+                'Manage your investments and maximize your growth with our all-in-one financial platform.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black54
+                      : Colors.white70,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+
+      ///
+      floatingActionButton: TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.amber,
+          foregroundColor: Colors.black,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 70,
+            vertical: 16,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(36),
+          ),
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => StartPage(),
+              // builder: (context) => InvestmentSelectionPage(),
+            ),
+          );
+        },
+        onLongPress: () {
+          print("long press");
+          ref.read(themeModeProvider.notifier).changeTheme();
+        },
+        child: const Text(
+          'Start Now',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
