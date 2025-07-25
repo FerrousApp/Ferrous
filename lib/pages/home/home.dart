@@ -265,37 +265,4 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
     );
   }
-
-//   Widget _buildTransactionItem({
-//     required String title,
-//     required double amount,
-//     required NumberFormat currencyFormat,
-//     required String subtitle,
-//     required IconData icon,
-//     bool isCurrency = false,
-//   }) {
-//     return ListTile(
-//       contentPadding: EdgeInsets.zero,
-//       leading: Container(
-//         padding: const EdgeInsets.all(8),
-//         decoration: BoxDecoration(
-//           color: Colors.grey.shade100,
-//           borderRadius: BorderRadius.circular(8),
-//         ),
-//         child: Icon(icon),
-//       ),
-//       title: Text(title),
-//       subtitle: Text(subtitle),
-//       trailing: Text(
-//         isCurrency
-//             ? '¥${NumberFormat('#,##0').format(amount)}'
-//             : currencyFormat.format(amount),
-//         style: TextStyle(
-//           color: amount < 0 ? Colors.red : Colors.green,
-//           fontWeight: FontWeight.bold,
-//         ),
-//       ),
-//     );
-//   }
-// }
 }

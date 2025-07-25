@@ -101,6 +101,8 @@ class MorePage extends ConsumerWidget {
                       },
                     );
                   }
+
+                  /// TODO: add currency converter
                   return MoreActionTile(
                     icon: Icons.color_lens_outlined,
                     text: "Change app theme",
