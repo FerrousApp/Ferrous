@@ -1,6 +1,6 @@
+import 'package:ferrous/pages/home/newhome.dart';
 import 'package:ferrous/pages/invest/invest.dart';
 import 'package:ferrous/pages/events/events.dart';
-import 'package:ferrous/pages/home/home.dart';
 import 'package:ferrous/pages/more/more.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:flutter/material.dart';
