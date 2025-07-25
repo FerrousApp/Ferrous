@@ -11,6 +11,41 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  late final PageController _pageController;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 0.7);
+    Future.microtask(_startAutoScroll);
+  }
+
+  void _startAutoScroll() async {
+    while (mounted) {
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) break;
+      setState(() {
+        _currentPage = (_currentPage + 1) % 5;
+      });
+      try {
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      } catch (e) {
+        // Ignore if controller is not attached
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,56 +166,64 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           //TODO: animate me, then on tap open the page of all my investments
-          SizedBox(
-            height: 150,
-            child: PageView.builder(
-              padEnds: false,
-              physics: AlwaysScrollableScrollPhysics(),
-              controller: PageController(
-                viewportFraction: 0.7,
-              ),
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return FrostedGlassContainer(
-                  height: 0,
-                  color: Colors.amber,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        minVerticalPadding: 0,
-                        leading: Icon(
-                          Icons.pie_chart_outline,
-                          color: Colors.blue,
-                        ),
-                        title: Text(
-                          "Asset Ticker",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 150,
+              child: PageView.builder(
+                padEnds: false,
+                physics: AlwaysScrollableScrollPhysics(),
+                controller: _pageController,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return FrostedGlassContainer(
+                    height: 0,
+                    color: Colors.amber.withValues(alpha: 0.2),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 0,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                    ),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          contentPadding: EdgeInsets.all(0),
+                          minVerticalPadding: 0,
+                          leading: Icon(
+                            Icons.pie_chart_outline,
+                            color: Colors.blue,
+                          ),
+                          title: Text(
+                            "Asset Ticker",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Spacer(),
-                      ListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        minVerticalPadding: 0,
-                        title: Text(
-                          "\$100,000",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        Spacer(),
+                        ListTile(
+                          contentPadding: EdgeInsets.all(0),
+                          minVerticalPadding: 0,
+                          title: Text(
+                            "\$100,000",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          subtitle: Text(
+                            "Profit \u2191%28",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                        subtitle: Text(
-                          "Profit \u2191%28",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
 
@@ -208,15 +251,15 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           ///
-          ...List.generate(100, (index) {
+          ...List.generate(10, (index) {
             return ListTile(
-              contentPadding: EdgeInsets.all(8),
-              leading: Text("\u20BF"),
+              contentPadding: EdgeInsets.all(2),
+              leading: Icon(Icons.donut_large),
               title: Text(
                 'BTC $index',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey,
+                  // color: Colors.grey,
                   fontSize: 16,
                 ),
               ),
@@ -229,21 +272,19 @@ class _HomePageState extends ConsumerState<HomePage> {
                     "\$10,000,000,000",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    semanticsLabel: "step count",
                     style: TextStyle(
-                      color: Color.fromRGBO(82, 82, 82, 1),
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       height: 0,
                     ),
                   ),
                   Text(
-                    "steps",
-                    semanticsLabel: "step",
+                    "\u2191%28",
                     maxLines: 1,
                     style: TextStyle(
-                      color: Color.fromRGBO(82, 82, 82, 1),
-                      fontSize: 10,
+                      // color: Color.fromRGBO(82, 82, 82, 1),
+                      // fontSize: 10,\
+                      color: Colors.green,
                       fontWeight: FontWeight.w500,
                       height: 0,
                     ),
@@ -253,50 +294,6 @@ class _HomePageState extends ConsumerState<HomePage> {
               onTap: () {},
             );
           }),
-          ListTile(
-            contentPadding: EdgeInsets.all(8),
-            leading: Text("\u20BF"),
-            title: const Text(
-              'BTC',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-                fontSize: 16,
-              ),
-            ),
-            subtitle: Text("Bitcoin"),
-            trailing: Wrap(
-              direction: Axis.vertical,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              children: [
-                Text(
-                  "\$10,000,000,000", // textAlign: TextAlign.right,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  semanticsLabel: "step count",
-                  style: const TextStyle(
-                    color: Color.fromRGBO(82, 82, 82, 1),
-                    fontSize: 19,
-                    fontWeight: FontWeight.w700,
-                    height: 0,
-                  ),
-                ),
-                const Text(
-                  "steps",
-                  semanticsLabel: "step",
-                  // textAlign: TextAlign.right,
-                  maxLines: 1,
-                  style: TextStyle(
-                    color: Color.fromRGBO(82, 82, 82, 1),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                    height: 0,
-                  ),
-                ),
-              ],
-            ),
-            onTap: () {},
-          )
         ],
       ),
     );
@@ -308,6 +305,8 @@ class FrostedGlassContainer extends StatelessWidget {
   final Widget? child;
   final Color color;
   final VoidCallback? onTap;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
 
   const FrostedGlassContainer({
     super.key,
@@ -315,6 +314,8 @@ class FrostedGlassContainer extends StatelessWidget {
     this.child,
     this.color = Colors.white,
     this.onTap,
+    this.margin,
+    this.padding,
   });
 
   @override
@@ -326,26 +327,11 @@ class FrostedGlassContainer extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
           child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 4,
-              vertical: 0,
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: 12,
-            ),
+            margin: margin,
+            padding: padding,
             height: height,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  color.withValues(alpha: 0.5),
-                  color.withValues(alpha: 0.4),
-                  color.withValues(alpha: 0.3),
-                  color.withValues(alpha: 0.2),
-                  color.withValues(alpha: 0.1),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+              color: color,
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
                 color: Colors.white.withValues(alpha: 0.2),
