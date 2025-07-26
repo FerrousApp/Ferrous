@@ -178,7 +178,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 itemBuilder: (context, index) {
                   return FrostedGlassContainer(
                     height: 0,
-                    color: Colors.amber.withValues(alpha: 0.2),
+                    color: Colors.amber.withValues(alpha: 0.3),
                     margin: EdgeInsets.symmetric(
                       horizontal: 4,
                       vertical: 0,
@@ -323,7 +323,7 @@ class FrostedGlassContainer extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(12),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
           child: Container(
@@ -332,7 +332,7 @@ class FrostedGlassContainer extends StatelessWidget {
             height: height,
             decoration: BoxDecoration(
               color: color,
-              borderRadius: BorderRadius.circular(18),
+              borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: Colors.white.withValues(alpha: 0.2),
               ),
