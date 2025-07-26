@@ -125,7 +125,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   child: Text("Tokenized Real Estate"),
                 );
               }
-              if (index == 0) {
+              if (index == 1) {
                 return Container(
                   decoration: BoxDecoration(
                     color: Colors.deepPurple,
