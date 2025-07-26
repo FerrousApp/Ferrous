@@ -1,15 +1,7 @@
-import 'package:ferrous/misc/page_transition_animations.dart';
-import 'package:ferrous/misc/appsizing.dart';
+import 'dart:ui';
 
-import 'package:ferrous/pages/ai/ai.dart';
-import 'package:ferrous/pages/home/components.dart/action_button.dart';
-import 'package:ferrous/pages/home/components.dart/balance_item.dart';
-import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
-import 'package:ferrous/pages/home/components.dart/recommended_items.dart';
-import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -19,249 +11,335 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  late final PageController _pageController;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(viewportFraction: 0.7);
+    Future.microtask(_startAutoScroll);
+  }
+
+  void _startAutoScroll() async {
+    while (mounted) {
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) break;
+      setState(() {
+        _currentPage = (_currentPage + 1) % 5;
+      });
+      try {
+        _pageController.animateToPage(
+          _currentPage,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      } catch (e) {
+        // Ignore if controller is not attached
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isSmallScreen = AppSizing.width(context) < 600;
-    final currencyFormat = NumberFormat.currency(symbol: '\$');
-    final compactCurrencyFormat = NumberFormat.compactCurrency(symbol: '\$');
-    final balance = 1000000;
-
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.blue,
-        leading: TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
-            );
-          },
-          child: Text("OM"),
+        ///
+        leading: IconButton(
+          style: IconButton.styleFrom(
+            shape: CircleBorder(
+              side: BorderSide(
+                color: Colors.amberAccent,
+              ),
+            ),
+          ),
+          onPressed: () {},
+          icon: Icon(Icons.person_outline),
+        ),
+
+        ///
+        title: ListTile(
+          minVerticalPadding: 0,
+          contentPadding: const EdgeInsets.all(0),
+          title: Text(
+            "Good Morning,",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text(
+            "Obiajulu",
+            style: TextStyle(
+              color: Colors.amber,
+            ),
+          ),
         ),
 
         ///
         actions: [
-          InkResponse(
-            onTap: () {
-              print("for ION AI");
-              Navigator.push(
-                context,
-                PageRouteAnimations.slideTransitionRoute(
-                  IONAIPage(),
-                  durationMs: 1000,
-                ),
-              );
-            },
-            splashColor: Colors.amberAccent,
-            child: Hero(
-              transitionOnUserGestures: true,
-              tag: 'ionIcon',
-              child: Icon(
-                Icons.bubble_chart_outlined,
-                color: Colors.amber,
-              ),
-            ),
-          ),
           IconButton(
-            icon: const Icon(Icons.notifications_outlined),
             onPressed: () {},
+            icon: Icon(Icons.notifications),
           ),
         ],
       ),
 
       ///
       body: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: isSmallScreen ? 6 : 12,
-          vertical: 6,
-        ),
+        padding: const EdgeInsets.all(16.0),
+        shrinkWrap: true,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 0,
+            ),
+            minVerticalPadding: 0,
+            title: Text(
+              "My portfolio value",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            subtitle: Text(
+              "\$1,000,000",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 36,
+                // height: 2,
+              ),
+            ),
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.visibility_outlined),
+            ),
+          ),
+
+          ///
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Balance Section
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextButton.icon(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      overlayColor: Colors.transparent,
-                    ),
-                    iconAlignment: IconAlignment.end,
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                    ),
-                    onPressed: () {
-                      print("dollar bills");
-
-                      /// show the currency change modal
-                      showModalBottomSheet(
-                        showDragHandle: true,
-                        enableDrag: true,
-                        context: context,
-                        // backgroundColor: Colors.white,
-                        backgroundColor: Colors.black,
-                        builder: ((context) => CurrencyChangeModal()),
-                      );
-                    },
-                    label: const Text(
-                      'United States Dollar',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  // const SizedBox(height: 4)
-                  Text(
-                    balance > 1000000
-                        ? compactCurrencyFormat.format(balance)
-                        : currencyFormat.format(balance),
-                    style: const TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      // color: Colors.transparent
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              // Action Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.add,
-                      label: 'Add Money',
-                      onPressed: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.send_outlined,
-                      label: 'Send',
-                      onPressed: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.swap_horiz,
-                      label: 'Convert',
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              // Recent Transactions Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Balances',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('See all'),
-                  ),
-                ],
-              ),
-              // const SizedBox(height: 16),
-
-              // Balances List
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    clipBehavior: Clip.hardEdge,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return BalanceItem(
-                        title: 'Ripple United States Dollar • XRPL',
-                        amount: 19.00,
-                        currencyFormat: currencyFormat,
-                        subtitle: 'RLUSD',
-                        icon: Icons.credit_card,
-                        // blockchainUnicode: '\u{1F680}',
-                        blockchainUnicode: '\u{27E0}',
-                      );
-                    }),
-              ),
-
-              ListTile(
-                contentPadding: EdgeInsets.only(top: 10),
-
-                title: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: const Text(
-                    'Recommended',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.green.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(36),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 6,
+                  vertical: 0,
+                ),
+                child: Text(
+                  "24hr profit is \$500,000",
+                  style: TextStyle(
+                    color: Colors.green,
                   ),
                 ),
+              ),
 
-                ///
-                subtitle: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      3,
-                      (index) {
-                        ///
-                        if (index == 0) {
-                          return RecommendedItem(
-                            icon: Icons.people,
-                            iconColor: Colors.blue,
-                            title: "Community",
-                            subtitle: "Join our community",
-                            onTap: () {
-                              print("inked community");
-                            },
-                          );
-                        }
+              /// profit percent
+              Text("\u219124%"),
+            ],
+          ),
 
-                        ///
-                        if (index == 1) {
-                          return RecommendedItem(
-                            icon: Icons.bar_chart,
-                            iconColor: Colors.blue,
-                            title: "Investment",
-                            subtitle: "Grow your money",
-                            onTap: () {
-                              print("inked invest");
-                            },
-                          );
-                        }
+          ///
+          SizedBox(
+            height: 30,
+          ),
 
-                        return RecommendedItem(
-                          icon: Icons.star,
-                          iconColor: Colors.blue,
-                          title: "Bills",
-                          subtitle: "Pay your bills",
-                          onTap: () {
-                            print("inked");
-                          },
-                        );
-                      },
+          ///
+          Text(
+            "My Portfolio",
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+
+          //
+          SizedBox(
+            height: 10,
+          ),
+
+          //TODO: animate me, then on tap open the page of all my investments
+          GestureDetector(
+            onTap: () {},
+            child: SizedBox(
+              height: 150,
+              child: PageView.builder(
+                padEnds: false,
+                physics: AlwaysScrollableScrollPhysics(),
+                controller: _pageController,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return FrostedGlassContainer(
+                    height: 0,
+                    color: Colors.amber.withValues(alpha: 0.2),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 0,
                     ),
-                  ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12,
+                    ),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          contentPadding: EdgeInsets.all(0),
+                          minVerticalPadding: 0,
+                          leading: Icon(
+                            Icons.pie_chart_outline,
+                            color: Colors.blue,
+                          ),
+                          title: Text(
+                            "Asset Ticker",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        ListTile(
+                          contentPadding: EdgeInsets.all(0),
+                          minVerticalPadding: 0,
+                          title: Text(
+                            "\$100,000",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          subtitle: Text(
+                            "Profit \u2191%28",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+
+          //
+          SizedBox(
+            height: 30,
+          ),
+
+          ///
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Explore",
+                style: TextStyle(
+                  fontSize: 18,
                 ),
+              ),
+
+              ///
+              Text(
+                "View More",
               ),
             ],
           ),
+
+          ///
+          ...List.generate(10, (index) {
+            return ListTile(
+              contentPadding: EdgeInsets.all(2),
+              leading: Icon(Icons.donut_large),
+              title: Text(
+                'BTC $index',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  // color: Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+              subtitle: Text("Bitcoin"),
+              trailing: Wrap(
+                direction: Axis.vertical,
+                crossAxisAlignment: WrapCrossAlignment.end,
+                children: [
+                  Text(
+                    "\$10,000,000,000",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      height: 0,
+                    ),
+                  ),
+                  Text(
+                    "\u2191%28",
+                    maxLines: 1,
+                    style: TextStyle(
+                      // color: Color.fromRGBO(82, 82, 82, 1),
+                      // fontSize: 10,\
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                      height: 0,
+                    ),
+                  ),
+                ],
+              ),
+              onTap: () {},
+            );
+          }),
         ],
+      ),
+    );
+  }
+}
+
+class FrostedGlassContainer extends StatelessWidget {
+  final double height;
+  final Widget? child;
+  final Color color;
+  final VoidCallback? onTap;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
+
+  const FrostedGlassContainer({
+    super.key,
+    required this.height,
+    this.child,
+    this.color = Colors.white,
+    this.onTap,
+    this.margin,
+    this.padding,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+          child: Container(
+            margin: margin,
+            padding: padding,
+            height: height,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.2),
+              ),
+            ),
+            child: child,
+          ),
+        ),
       ),
     );
   }

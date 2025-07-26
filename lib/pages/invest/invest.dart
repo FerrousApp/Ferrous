@@ -30,7 +30,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
         children: [
           //chart box
           Container(
-            height: AppSizing.height(context) * 0.35,
+            height: AppSizing.height(context) * 0.4,
             margin: EdgeInsets.only(
               bottom: 8,
             ),
@@ -39,6 +39,41 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               border: Border.all(
                 color: Colors.amber,
               ),
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.blue,
+                    child: ListTile(
+                      leading: Text("Portfolio Value"),
+                      trailing: Text(
+                        "\$3,492.00",
+                        style: TextStyle(
+                          fontSize: 34,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                ///
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    color: Colors.green,
+                  ),
+                ),
+
+                ///
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.orange,
+                  ),
+                ),
+              ],
             ),
           ),
 
