@@ -116,12 +116,31 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               mainAxisSpacing: 4,
             ),
             itemBuilder: (context, index) {
+              if (index == 0) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text("Tokenized Real Estate"),
+                );
+              }
+              if (index == 0) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text("Tokenized Bonds"),
+                );
+              }
+
               return Container(
                 decoration: BoxDecoration(
                   color: Colors.deepPurple,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Text("Call 112"),
+                child: Text("Stablecoin Liquidity Pools"),
               );
             },
           ),
