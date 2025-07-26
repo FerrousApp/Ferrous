@@ -15,11 +15,14 @@ class MorePage extends ConsumerWidget {
     final isSmallScreen = AppSizing.width(context) < 600;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'More',
-        ),
-        centerTitle: false,
         automaticallyImplyLeading: false,
+        title: Text(
+          "More",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.amber,
+          ),
+        ),
       ),
 
       ///

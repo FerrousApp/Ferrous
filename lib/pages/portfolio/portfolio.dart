@@ -42,7 +42,6 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        scrolledUnderElevation: 0,
         title: _showSearchInAppBar
             ? TextField(
                 controller: _searchController,
@@ -75,7 +74,10 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
               )
             : Text(
                 "Portfolio",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.amber,
+                ),
               ),
       ),
 

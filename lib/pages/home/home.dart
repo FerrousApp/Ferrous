@@ -209,6 +209,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           contentPadding: EdgeInsets.all(0),
                           minVerticalPadding: 0,
                           title: Text(
+                            // amount currently invested
                             "\$100,000",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -251,49 +252,68 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           ///
-          ...List.generate(10, (index) {
-            return ListTile(
-              contentPadding: EdgeInsets.all(2),
-              leading: Icon(Icons.donut_large),
-              title: Text(
-                'BTC $index',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  // color: Colors.grey,
-                  fontSize: 16,
+          ...List.generate(
+            10,
+            (index) {
+              return ListTile(
+                contentPadding: EdgeInsets.all(2),
+                leading: Icon(Icons.donut_large),
+                title: Text(
+                  'BTC $index',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    // color: Colors.grey,
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              subtitle: Text("Bitcoin"),
-              trailing: Wrap(
-                direction: Axis.vertical,
-                crossAxisAlignment: WrapCrossAlignment.end,
-                children: [
-                  Text(
-                    "\$10,000,000,000",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w700,
-                      height: 0,
+                subtitle: Text("Bitcoin"),
+                trailing: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.end,
+                  children: [
+                    Text(
+                      "\$10,000,000,000",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "\u2191%28",
-                    maxLines: 1,
-                    style: TextStyle(
-                      // color: Color.fromRGBO(82, 82, 82, 1),
-                      // fontSize: 10,\
-                      color: Colors.green,
-                      fontWeight: FontWeight.w500,
-                      height: 0,
+                    Text(
+                      "\u2191%28",
+                      maxLines: 1,
+                      style: TextStyle(
+                        // color: Color.fromRGBO(82, 82, 82, 1),
+                        // fontSize: 10,\
+                        color: Colors.green,
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              onTap: () {},
-            );
-          }),
+                  ],
+                ),
+                onTap: () {},
+              );
+            },
+          ),
+
+          ///
+          TextButton.icon(
+            onPressed: () {
+              print("view all");
+            },
+            style: TextButton.styleFrom(
+              overlayColor: Colors.transparent,
+            ),
+            icon: Icon(Icons.trending_up),
+            label: Text(
+              "View All",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.pink, height: 2),
+            ),
+          ),
         ],
       ),
     );

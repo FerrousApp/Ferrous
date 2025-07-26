@@ -1,8 +1,10 @@
-import 'package:ferrous/misc/appsizing.dart';
-import 'package:ferrous/pages/portfolio/portfolio.dart';
+import 'package:ferrous/pages/invest/quickaction_invest_tile.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/pages/portfolio/portfolio.dart';
 
 class InvestPage extends ConsumerStatefulWidget {
   const InvestPage({super.key});
@@ -21,6 +23,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
           "Invest",
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.amber,
           ),
         ),
       ),
@@ -29,6 +32,15 @@ class _InvestPageState extends ConsumerState<InvestPage> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
+          ///
+          ///
+          Text(
+            "Portfolio",
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+
           //chart box
           Container(
             clipBehavior: Clip.antiAlias,
@@ -92,16 +104,11 @@ class _InvestPageState extends ConsumerState<InvestPage> {
           ),
 
           ///
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Investments",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-            ],
+          Text(
+            "Available Investments",
+            style: TextStyle(
+              fontSize: 18,
+            ),
           ),
 
           ///
@@ -111,36 +118,50 @@ class _InvestPageState extends ConsumerState<InvestPage> {
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1.5,
+              childAspectRatio: 1.2,
               crossAxisSpacing: 4,
               mainAxisSpacing: 4,
             ),
             itemBuilder: (context, index) {
+              ///
               if (index == 0) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text("Tokenized Real Estate"),
-                );
-              }
-              if (index == 1) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text("Tokenized Bonds"),
+                return QuickActionInvestTile(
+                  onTap: () {
+                    print("object");
+                  },
+                  color: Colors.teal,
+                  title: "Stablecoin Liquidity Pools",
+                  icon: Icon(Icons.water_drop_outlined),
+                  subtitle: "Earn up to 28% APR",
                 );
               }
 
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text("Stablecoin Liquidity Pools"),
+              ///
+              if (index == 1) {
+                return QuickActionInvestTile(
+                  onTap: () {},
+                  icon: Icon(Icons.home_work_outlined),
+                  color: Colors.blue,
+                  title: "Tokenized Real Estate",
+                  subtitle: "Earn up to 50% APR",
+                );
+              }
+              if (index == 2) {
+                return QuickActionInvestTile(
+                  onTap: () {},
+                  icon: Icon(Icons.assessment_outlined),
+                  color: Colors.deepPurpleAccent,
+                  title: "RWA",
+                  subtitle: "Earn up to 8% APR",
+                );
+              }
+
+              return QuickActionInvestTile(
+                onTap: () {},
+                color: Colors.brown,
+                icon: Icon(Icons.request_quote_outlined),
+                title: "Tokenized Bonds",
+                subtitle: "Earn up to 27% APR",
               );
             },
           ),
@@ -170,7 +191,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               alignment: Alignment.center,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.blueGrey,
                 borderRadius: BorderRadius.circular(18),
               ),
               child: ListTile(
