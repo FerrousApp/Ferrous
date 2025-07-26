@@ -45,5 +45,3 @@ Reach out on [Twitter](x.com/ferrousapp), or [Email](mailto:team@ferrous.app).
 ### ⚙️ Tech Stack
 
 ---
-
-**Ferrous** — *Africa’s digital investment frontier.*
