@@ -59,8 +59,6 @@ class _WelcomeBackPinEntryPageState
       ///
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0,
-        scrolledUnderElevation: 0,
 
         ///
         title: Text.rich(
@@ -69,8 +67,6 @@ class _WelcomeBackPinEntryPageState
               TextSpan(
                 text: 'Welcome Back, ',
                 style: TextStyle(
-                  height: 0,
-                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -78,8 +74,6 @@ class _WelcomeBackPinEntryPageState
                 text: 'Obiajulu',
                 style: TextStyle(
                   color: Colors.amber,
-                  height: 0,
-                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

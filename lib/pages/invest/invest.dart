@@ -33,7 +33,6 @@ class _InvestPageState extends ConsumerState<InvestPage> {
         padding: const EdgeInsets.all(16.0),
         children: [
           ///
-          ///
           Text(
             "Portfolio",
             style: TextStyle(

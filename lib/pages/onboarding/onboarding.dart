@@ -245,9 +245,6 @@ class _GrowProIntroScreenState extends ConsumerState<GrowProIntroScreen> {
 
       ///
       appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: 0,
-
         ///
         title: Text.rich(
           TextSpan(
