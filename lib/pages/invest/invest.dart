@@ -1,10 +1,7 @@
 import 'package:ferrous/misc/appsizing.dart';
-import 'package:ferrous/pages/home/newhome.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:lottie/lottie.dart';
 
 class InvestPage extends ConsumerStatefulWidget {
   const InvestPage({super.key});
@@ -29,7 +26,23 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
       ///
       body: ListView(
+        padding: const EdgeInsets.all(16.0),
         children: [
+          //chart box
+          Container(
+            height: AppSizing.height(context) * 0.35,
+            margin: EdgeInsets.only(
+              bottom: 8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.amber,
+              ),
+            ),
+          ),
+
+          ///
           GestureDetector(
             onTap: () {
               Navigator.of(context).push(
@@ -38,16 +51,16 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                 ),
               );
             },
-            child: FrostedGlassContainer(
+            child: Container(
               height: 150,
-              margin: EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 0,
+              decoration: BoxDecoration(
+                color: Colors.lightGreen,
+                borderRadius: BorderRadius.circular(18),
               ),
-              color: Colors.amber,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  ///
                   Expanded(
                     flex: 3,
                     child: Container(
@@ -74,7 +87,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                         ),
                       ),
                       subtitle: Text(
-                        "See all your holdings here",
+                        "View all your holdings here",
                       ),
                       trailing: IconButton(
                         onPressed: () {},
@@ -85,6 +98,36 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                 ],
               ),
             ),
+          ),
+
+          ///
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text("data"),
+                ),
+              ),
+              //
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text("data"),
+                ),
+              ),
+            ],
           ),
         ],
       ),

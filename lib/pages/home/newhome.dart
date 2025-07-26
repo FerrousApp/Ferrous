@@ -94,7 +94,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         shrinkWrap: true,
-        children: <Widget>[
+        children: [
           ListTile(
             contentPadding: EdgeInsets.symmetric(
               vertical: 8,
