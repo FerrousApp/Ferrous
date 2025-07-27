@@ -2,10 +2,10 @@ import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
 import 'package:ferrous/pages/ai/ai.dart';
-import 'package:ferrous/pages/home/components.dart/action_button.dart';
+import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
 import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
-import 'package:ferrous/pages/home/components.dart/recommended_items.dart';
+import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -127,33 +127,33 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               const SizedBox(height: 10),
 
-              // Action Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.add,
-                      label: 'Add Money',
-                      onPressed: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.send_outlined,
-                      label: 'Send',
-                      onPressed: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: CustomActionButton(
-                      icon: Icons.swap_horiz,
-                      label: 'Convert',
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
-              ),
+              // // Action Buttons
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     Expanded(
+              //       child: CustomActionButton(
+              //         icon: Icons.add,
+              //         label: 'Add Money',
+              //         onPressed: () {},
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: CustomActionButton(
+              //         icon: Icons.send_outlined,
+              //         label: 'Send',
+              //         onPressed: () {},
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: CustomActionButton(
+              //         icon: Icons.swap_horiz,
+              //         label: 'Convert',
+              //         onPressed: () {},
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 10),
 
               // Recent Transactions Header
@@ -212,52 +212,52 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
 
-                ///
-                subtitle: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      3,
-                      (index) {
-                        ///
-                        if (index == 0) {
-                          return RecommendedItem(
-                            icon: Icons.people,
-                            iconColor: Colors.blue,
-                            title: "Community",
-                            subtitle: "Join our community",
-                            onTap: () {
-                              print("inked community");
-                            },
-                          );
-                        }
+                // ///
+                // subtitle: SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: Row(
+                //     children: List.generate(
+                //       3,
+                //       (index) {
+                //         ///
+                //       //   if (index == 0) {
+                //       //     return RecommendedItem(
+                //       //       icon: Icons.people,
+                //       //       iconColor: Colors.blue,
+                //       //       title: "Community",
+                //       //       subtitle: "Join our community",
+                //       //       onTap: () {
+                //       //         print("inked community");
+                //       //       },
+                //       //     );
+                //       //   }
 
-                        ///
-                        if (index == 1) {
-                          return RecommendedItem(
-                            icon: Icons.bar_chart,
-                            iconColor: Colors.blue,
-                            title: "Investment",
-                            subtitle: "Grow your money",
-                            onTap: () {
-                              print("inked invest");
-                            },
-                          );
-                        }
+                //       //   ///
+                //       //   if (index == 1) {
+                //       //     return RecommendedItem(
+                //       //       icon: Icons.bar_chart,
+                //       //       iconColor: Colors.blue,
+                //       //       title: "Investment",
+                //       //       subtitle: "Grow your money",
+                //       //       onTap: () {
+                //       //         print("inked invest");
+                //       //       },
+                //       //     );
+                //       //   }
 
-                        return RecommendedItem(
-                          icon: Icons.star,
-                          iconColor: Colors.blue,
-                          title: "Bills",
-                          subtitle: "Pay your bills",
-                          onTap: () {
-                            print("inked");
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                //       //   return RecommendedItem(
+                //       //     icon: Icons.star,
+                //       //     iconColor: Colors.blue,
+                //       //     title: "Bills",
+                //       //     subtitle: "Pay your bills",
+                //       //     onTap: () {
+                //       //       print("inked");
+                //       //     },
+                //       //   );
+                //       // },
+                //     ),
+                //   ),
+                // ),
               ),
             ],
           ),

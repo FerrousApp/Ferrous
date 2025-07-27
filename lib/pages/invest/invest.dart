@@ -104,7 +104,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
           ///
           Text(
-            "Investments For You",
+            "Investments For Me",
             style: TextStyle(
               fontSize: 18,
             ),
@@ -129,9 +129,9 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                     print("object");
                   },
                   color: Colors.teal,
-                  title: "Stablecoin Liquidity Pools",
+                  title: "Yield Liquidity Pools",
                   icon: Icon(Icons.water_drop_outlined),
-                  subtitle: "Earn up to 28% APR",
+                  subtitle: "Earn up to 181% APR",
                 );
               }
 
@@ -148,10 +148,10 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               if (index == 2) {
                 return QuickActionInvestTile(
                   onTap: () {},
-                  icon: Icon(Icons.assessment_outlined),
+                  icon: Icon(Icons.hourglass_empty_outlined),
                   color: Colors.deepPurpleAccent,
-                  title: "RWA",
-                  subtitle: "Earn up to 8% APR",
+                  title: "Staking",
+                  subtitle: "Earn up to 2.5% APR",
                 );
               }
 
@@ -210,7 +210,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   ),
                 ),
                 subtitle: Text(
-                  "Account Balance",
+                  "My Account Balance",
                 ),
                 trailing: IconButton(
                   onPressed: () {},

@@ -44,6 +44,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
+          // TODO: add the account balance value here too
           // Row(
           //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           //         children: [

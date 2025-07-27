@@ -1,5 +1,5 @@
-import 'dart:ui';
-
+import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
+import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,6 +48,34 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<ExploreListTile> exploreItems = [
+      ExploreListTile(
+        badgePath: "assets/logos/saucer.png",
+        imagePath: "assets/logos/usdc.png",
+        title: "USDC",
+        subtitle: "USDC Liquidity Pool | SaucerSwap",
+        assetValue: "\$16.8M",
+        apy: "94.98% APR",
+      ),
+      ExploreListTile(
+        badgePath: "assets/logos/saucer.png",
+        imagePath: "assets/logos/usdt.png",
+        title: "USDT",
+        subtitle: "USDT Liquidity Pool | SaucerSwap",
+        assetValue: "\$145.51K",
+        apy: "31.30% APR",
+      ),
+      ExploreListTile(
+        badgePath: "assets/logos/hedera.png",
+        imagePath: "assets/logos/hedera.png",
+        title: "HBAR",
+        subtitle: "Hedera Network Staking | Hedera",
+        assetValue: "\$14.66B",
+        apy: "2.5% ARR",
+      ),
+    ];
+
+    ///
     return Scaffold(
       appBar: AppBar(
         ///
@@ -93,7 +121,6 @@ class _HomePageState extends ConsumerState<HomePage> {
       ///
       body: ListView(
         padding: const EdgeInsets.all(16.0),
-        shrinkWrap: true,
         children: [
           ListTile(
             contentPadding: EdgeInsets.symmetric(
@@ -154,76 +181,59 @@ class _HomePageState extends ConsumerState<HomePage> {
 
           ///
           Text(
-            "Fast Access",
+            "Speed Dial",
             style: TextStyle(
               fontSize: 18,
             ),
           ),
 
-          //
-          // SizedBox(
-          //   height: 10,
-          // ),
-
-          //TODO: animate me, then on tap open the page of all my investments
           SizedBox(
             height: 150,
             child: PageView.builder(
               padEnds: false,
               physics: AlwaysScrollableScrollPhysics(),
               controller: _pageController,
-              itemCount: 5,
+              itemCount: 4,
               itemBuilder: (context, index) {
                 // TODO: make more custom widget, to support portfolio, news, invite friends,
-                return QuickActionPortfolioTile(
+
+                if (index == 0) {
+                  return SpeedDialTile(
+                    color: Colors.blueGrey,
+                    onTap: () {
+                      print("object");
+                    },
+                    leading: Icon(
+                      Icons.newspaper,
+                    ),
+                    title: "News",
+                    subtitle: "Stay up to date on the latest information",
+                  );
+                }
+                if (index == 1) {
+                  return SpeedDialTile(
+                    color: Colors.lightBlueAccent,
+                    onTap: () {
+                      print("object");
+                    },
+                    leading: Icon(
+                      Icons.donut_large_outlined,
+                    ),
+                    title: "My Porfolio",
+                    subtitle: "Take a look at your yield bearing assets",
+                  );
+                }
+
+                return SpeedDialTile(
+                  color: Colors.blueGrey,
                   onTap: () {
                     print("object");
                   },
-                  height: 0,
-                  color: Colors.amber, //.withValues(alpha: 0.3),
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 4,
-                    vertical: 0,
+                  leading: Icon(
+                    Icons.donut_small_outlined,
                   ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12,
-                  ),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        minVerticalPadding: 0,
-                        leading: Icon(
-                          Icons.pie_chart_outline,
-                          color: Colors.blue,
-                        ),
-                        title: Text(
-                          "Asset Ticker",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      ListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        minVerticalPadding: 0,
-                        title: Text(
-                          // amount currently invested
-                          "\$100,000",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Text(
-                          "Profit \u2191%28",
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
+                  title: "Invite a Friend",
+                  subtitle: "Earn up to \$50",
                 );
               },
             ),
@@ -235,70 +245,15 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           ///
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Explore",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-
-              ///
-              Text(
-                "View More",
-              ),
-            ],
+          Text(
+            "Explore",
+            style: TextStyle(
+              fontSize: 18,
+            ),
           ),
 
           ///
-          ...List.generate(
-            10,
-            (index) {
-              return ListTile(
-                contentPadding: EdgeInsets.all(2),
-                leading: Icon(Icons.donut_large),
-                title: Text(
-                  'BTC $index',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    // color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: Text("Bitcoin"),
-                trailing: Wrap(
-                  direction: Axis.vertical,
-                  crossAxisAlignment: WrapCrossAlignment.end,
-                  children: [
-                    Text(
-                      "\$10,000,000,000",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.w700,
-                        height: 0,
-                      ),
-                    ),
-                    Text(
-                      "\u2191%28",
-                      maxLines: 1,
-                      style: TextStyle(
-                        // color: Color.fromRGBO(82, 82, 82, 1),
-                        // fontSize: 10,\
-                        color: Colors.green,
-                        fontWeight: FontWeight.w500,
-                        height: 0,
-                      ),
-                    ),
-                  ],
-                ),
-                onTap: () {},
-              );
-            },
-          ),
+          for (ExploreListTile item in exploreItems) item,
 
           ///
           TextButton.icon(
@@ -315,49 +270,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class QuickActionPortfolioTile extends StatelessWidget {
-  final double height;
-  final Widget child;
-  final Color color;
-  final VoidCallback onTap;
-  final EdgeInsets margin;
-  final EdgeInsets padding;
-
-  const QuickActionPortfolioTile({
-    super.key,
-    required this.height,
-    required this.child,
-    required this.color,
-    required this.margin,
-    required this.padding,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      padding: padding,
-      height: height,
-      decoration: BoxDecoration(
-        // color: color,
-        borderRadius: BorderRadius.circular(12),
-        gradient: LinearGradient(
-          colors: [
-            color.withValues(alpha: 0.5),
-            color.withValues(alpha: 0.4),
-            color.withValues(alpha: 0.3),
-          ],
-        ),
-      ),
-      child: GestureDetector(
-        onTap: onTap,
-        child: child,
       ),
     );
   }
