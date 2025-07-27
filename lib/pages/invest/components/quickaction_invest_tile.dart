@@ -22,8 +22,16 @@ class QuickActionInvestTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 6),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: color,
+        // color: color,
         borderRadius: BorderRadius.circular(12),
+        gradient: LinearGradient(
+          //TODO: reverse if in light mode
+          colors: [
+            color.withValues(alpha: 0.5),
+            color.withValues(alpha: 0.4),
+            color.withValues(alpha: 0.3),
+          ],
+        ),
       ),
       child: GestureDetector(
         onTap: onTap,

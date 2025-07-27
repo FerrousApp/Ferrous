@@ -21,6 +21,11 @@ ThemeData lightTheme = ThemeData(
       surfaceTintColor: Colors.black,
     ),
 
+    ///
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: Colors.amber,
+    ),
+
     /// for the animation to or from pages
     pageTransitionsTheme: PageTransitionsTheme(
       builders: {

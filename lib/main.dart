@@ -8,6 +8,14 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO: important
+// SearchAnchor.bar(
+//     suggestionsBuilder: (context, controller) {
+//       // Return an empty list for now, or provide your own suggestions
+//       return const Iterable<Widget>.empty();
+//     },
+//   ),
+
 Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();

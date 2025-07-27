@@ -1,4 +1,4 @@
-import 'package:ferrous/pages/invest/quickaction_invest_tile.dart';
+import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,7 +34,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
         children: [
           ///
           Text(
-            "Portfolio",
+            "My Portfolio",
             style: TextStyle(
               fontSize: 18,
             ),
@@ -104,7 +104,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
           ///
           Text(
-            "Available Investments",
+            "Investments For You",
             style: TextStyle(
               fontSize: 18,
             ),
@@ -176,7 +176,6 @@ class _InvestPageState extends ConsumerState<InvestPage> {
             label: Text(
               "View All",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.pink, height: 2),
             ),
           ),
 
@@ -190,8 +189,14 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               alignment: Alignment.center,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.blueGrey,
                 borderRadius: BorderRadius.circular(18),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.amber.withValues(alpha: 0.5),
+                    Colors.amber.withValues(alpha: 0.4),
+                    Colors.amber.withValues(alpha: 0.3),
+                  ],
+                ),
               ),
               child: ListTile(
                 contentPadding: EdgeInsets.all(8),

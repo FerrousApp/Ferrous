@@ -10,181 +10,101 @@ class PortfolioPage extends ConsumerStatefulWidget {
 }
 
 class _PortfolioPageState extends ConsumerState<PortfolioPage> {
-  final ScrollController _scrollController = ScrollController();
-  bool _showSearchInAppBar = false;
-  final double _searchBarOffset = 380; // Adjust as needed
-  final TextEditingController _searchController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_handleScroll);
-  }
-
-  void _handleScroll() {
-    if (_scrollController.offset > _searchBarOffset && !_showSearchInAppBar) {
-      setState(() => _showSearchInAppBar = true);
-    } else if (_scrollController.offset <= _searchBarOffset &&
-        _showSearchInAppBar) {
-      setState(() => _showSearchInAppBar = false);
-    }
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    _searchController.dispose();
-    super.dispose();
-  }
-
   ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _showSearchInAppBar
-            ? TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Search Assets',
-                  prefixIcon: const Icon(
-                    Icons.bar_chart,
-                    color: Colors.grey,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.amber.withValues(alpha: 0.3),
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.amber,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.amber,
-                    ),
-                  ),
-                  focusColor: Colors.white,
-                ),
-              )
-            : Text(
-                "Portfolio",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber,
-                ),
-              ),
+        title: Text(
+          "Portfolio",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.amber,
+          ),
+        ),
+
+        ///
+        actions: [
+          SearchAnchor(
+            builder: (context, controller) {
+              return Icon(
+                Icons.search,
+                color: Colors.amber,
+              );
+            },
+            suggestionsBuilder: (context, controller) {
+              // Return an empty list for now, or provide your own suggestions
+              return const Iterable<Widget>.empty();
+            },
+          ),
+        ],
       ),
 
       ///
       body: ListView(
-        controller: _scrollController,
         padding: const EdgeInsets.all(16.0),
         children: [
-          // //chart box
-          // Container(
-          //   height: AppSizing.height(context) * 0.35,
-          //   color: Colors.green,
-          // ),
+          // Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //         children: [
+          //           Expanded(
+          //             child: IconButton(
+          //               style: IconButton.styleFrom(
+          //                 backgroundColor: Colors.red,
+          //                 foregroundColor: Colors.white,
+          //                 shape: CircleBorder(),
+          //               ),
+          //               icon: Icon(Icons.arrow_upward_outlined),
+          //               onPressed: () {},
+          //             ),
+          //           ),
 
+          //           ///
+          //           Expanded(
+          //             child: IconButton(
+          //               style: IconButton.styleFrom(
+          //                 foregroundColor: Colors.white,
+          //                 backgroundColor: Colors.blue,
+          //                 shape: CircleBorder(),
+          //               ),
+          //               icon: Icon(Icons.swap_horiz_outlined),
+          //               onPressed: () {},
+          //             ),
+          //           ),
+
+          //           ///
+          //           Expanded(
+          //             child: IconButton(
+          //               style: IconButton.styleFrom(
+          //                 backgroundColor: Colors.green,
+          //                 foregroundColor: Colors.white,
+          //                 shape: CircleBorder(),
+          //               ),
+          //               icon: Icon(Icons.arrow_downward_outlined),
+          //               onPressed: () {},
+          //             ),
+          //           ),
+          //         ],
+          //       ),
           ///
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.white,
-                    shape: CircleBorder(),
-                  ),
-                  icon: Icon(Icons.arrow_upward_outlined),
-                  onPressed: () {},
-                ),
-              ),
-
-              ///
-              Expanded(
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    shape: CircleBorder(),
-                  ),
-                  icon: Icon(Icons.swap_horiz_outlined),
-                  onPressed: () {},
-                ),
-              ),
-
-              ///
-              Expanded(
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    shape: CircleBorder(),
-                  ),
-                  icon: Icon(Icons.arrow_downward_outlined),
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
-
-          SizedBox(
-            height: 30,
-          ),
-
-          /// search bar
-          if (!_showSearchInAppBar)
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search Assets',
-                prefixIcon: const Icon(
-                  Icons.bar_chart,
-                  color: Colors.grey,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(
-                    color: Colors.amber.withValues(alpha: 0.3),
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(
-                    color: Colors.amber,
-                  ),
-                ),
-                focusColor: Colors.white,
-              ),
-            ),
-
           ///
-          SizedBox(
-            height: 10,
-          ),
+
+          /// TODO: add tabbar to filter the types of investments, color code the investments
 
           ///
           for (int i = 0; i < 10; i++)
             Container(
               padding: const EdgeInsets.all(18),
-              margin: EdgeInsets.symmetric(vertical: 4),
+              margin: EdgeInsets.only(bottom: 4),
               decoration: BoxDecoration(
-                color: Colors.purple,
                 borderRadius: BorderRadius.circular(18),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.indigo.withValues(alpha: 0.5),
+                    Colors.indigo.withValues(alpha: 0.4),
+                    Colors.indigo.withValues(alpha: 0.3),
+                  ],
+                ),
               ),
               child: Column(
                 children: [

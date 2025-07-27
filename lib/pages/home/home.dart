@@ -23,7 +23,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   void _startAutoScroll() async {
     while (mounted) {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 3));
       if (!mounted) break;
       setState(() {
         _currentPage = (_currentPage + 1) % 5;
@@ -102,7 +102,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             minVerticalPadding: 0,
             title: Text(
-              "My portfolio value",
+              "My Portfolio Value",
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -154,77 +154,78 @@ class _HomePageState extends ConsumerState<HomePage> {
 
           ///
           Text(
-            "My Portfolio",
+            "Fast Access",
             style: TextStyle(
               fontSize: 18,
             ),
           ),
 
           //
-          SizedBox(
-            height: 10,
-          ),
+          // SizedBox(
+          //   height: 10,
+          // ),
 
           //TODO: animate me, then on tap open the page of all my investments
-          GestureDetector(
-            onTap: () {},
-            child: SizedBox(
-              height: 150,
-              child: PageView.builder(
-                padEnds: false,
-                physics: AlwaysScrollableScrollPhysics(),
-                controller: _pageController,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return FrostedGlassContainer(
-                    height: 0,
-                    color: Colors.amber.withValues(alpha: 0.3),
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 0,
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12,
-                    ),
-                    child: Column(
-                      children: [
-                        ListTile(
-                          contentPadding: EdgeInsets.all(0),
-                          minVerticalPadding: 0,
-                          leading: Icon(
-                            Icons.pie_chart_outline,
-                            color: Colors.blue,
-                          ),
-                          title: Text(
-                            "Asset Ticker",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+          SizedBox(
+            height: 150,
+            child: PageView.builder(
+              padEnds: false,
+              physics: AlwaysScrollableScrollPhysics(),
+              controller: _pageController,
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                // TODO: make more custom widget, to support portfolio, news, invite friends,
+                return QuickActionPortfolioTile(
+                  onTap: () {
+                    print("object");
+                  },
+                  height: 0,
+                  color: Colors.amber, //.withValues(alpha: 0.3),
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 0,
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12,
+                  ),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        contentPadding: EdgeInsets.all(0),
+                        minVerticalPadding: 0,
+                        leading: Icon(
+                          Icons.pie_chart_outline,
+                          color: Colors.blue,
+                        ),
+                        title: Text(
+                          "Asset Ticker",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Spacer(),
-                        ListTile(
-                          contentPadding: EdgeInsets.all(0),
-                          minVerticalPadding: 0,
-                          title: Text(
-                            // amount currently invested
-                            "\$100,000",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          subtitle: Text(
-                            "Profit \u2191%28",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                      ),
+                      Spacer(),
+                      ListTile(
+                        contentPadding: EdgeInsets.all(0),
+                        minVerticalPadding: 0,
+                        title: Text(
+                          // amount currently invested
+                          "\$100,000",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                        subtitle: Text(
+                          "Profit \u2191%28",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
 
@@ -311,7 +312,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             label: Text(
               "View All",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.pink, height: 2),
             ),
           ),
         ],
@@ -320,46 +320,44 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-class FrostedGlassContainer extends StatelessWidget {
+class QuickActionPortfolioTile extends StatelessWidget {
   final double height;
-  final Widget? child;
+  final Widget child;
   final Color color;
-  final VoidCallback? onTap;
-  final EdgeInsets? margin;
-  final EdgeInsets? padding;
+  final VoidCallback onTap;
+  final EdgeInsets margin;
+  final EdgeInsets padding;
 
-  const FrostedGlassContainer({
+  const QuickActionPortfolioTile({
     super.key,
     required this.height,
-    this.child,
-    this.color = Colors.white,
-    this.onTap,
-    this.margin,
-    this.padding,
+    required this.child,
+    required this.color,
+    required this.margin,
+    required this.padding,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: ClipRRect(
+    return Container(
+      margin: margin,
+      padding: padding,
+      height: height,
+      decoration: BoxDecoration(
+        // color: color,
         borderRadius: BorderRadius.circular(12),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-          child: Container(
-            margin: margin,
-            padding: padding,
-            height: height,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.2),
-              ),
-            ),
-            child: child,
-          ),
+        gradient: LinearGradient(
+          colors: [
+            color.withValues(alpha: 0.5),
+            color.withValues(alpha: 0.4),
+            color.withValues(alpha: 0.3),
+          ],
         ),
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: child,
       ),
     );
   }
