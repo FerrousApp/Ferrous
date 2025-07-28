@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
+import 'package:ferrous/pages/investments/investments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,7 +24,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     _pageController = PageController(
       viewportFraction: 0.7,
     );
-    Timer.periodic(const Duration(seconds: 1), (duration) {
+    Timer.periodic(const Duration(seconds: 3), (duration) {
       autoScroll();
     });
   }
@@ -38,6 +39,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     setState(() {});
 
     try {
+      // _pageController.jumpToPage(0) ;
       await _pageController.animateToPage(
         _currentPage,
         duration: const Duration(milliseconds: 500),
@@ -92,7 +94,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           style: IconButton.styleFrom(
             shape: CircleBorder(
               side: BorderSide(
-                color: Colors.amberAccent,
+                color: Colors.amber,
               ),
             ),
           ),
@@ -206,7 +208,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               itemBuilder: (context, index) {
                 if (index == 0) {
                   return SpeedDialTile(
-                    color: Colors.yellow,
+                    color: Colors.amber,
                     onTap: () {},
                     leading: Icon(
                       Icons.donut_large_outlined,
@@ -220,7 +222,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     color: Colors.lightBlueAccent,
                     onTap: () {},
                     leading: Icon(
-                      Icons.group_add,
+                      Icons.group_add_outlined,
                     ),
                     title: "Invite a Friend",
                     subtitle: "Invite another user to earn awesome rewards.",
@@ -253,7 +255,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   color: Colors.blueGrey,
                   onTap: () {},
                   leading: Icon(
-                    Icons.newspaper,
+                    Icons.newspaper_outlined,
                   ),
                   title: "News",
                   subtitle: "Stay up to date on the latest information.",
@@ -280,7 +282,13 @@ class _HomePageState extends ConsumerState<HomePage> {
 
           ///
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => InvestmentsPage(),
+                ),
+              );
+            },
             style: TextButton.styleFrom(
               overlayColor: Colors.transparent,
             ),

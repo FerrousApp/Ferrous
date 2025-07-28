@@ -4,9 +4,10 @@ Add a support page with live chat
 terms, privacy, support
 add learn to more page 
 add short intro vidoe series to do stuff
+in light mode, all gradients start from the lowest number first
 
 
-add our socials to the more page
+
 Welcome back pin entry:
 Add vibration feedback on tap (Vibration package).
 Hook up biometric login (local_auth package).

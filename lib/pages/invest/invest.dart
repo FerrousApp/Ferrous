@@ -1,4 +1,5 @@
 import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
+import 'package:ferrous/pages/investments/investments.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,10 +34,19 @@ class _InvestPageState extends ConsumerState<InvestPage> {
         padding: const EdgeInsets.all(16.0),
         children: [
           ///
-          Text(
-            "My Portfolio",
-            style: TextStyle(
-              fontSize: 18,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PortfolioPage(),
+                ),
+              );
+            },
+            child: Text(
+              "My Portfolio",
+              style: TextStyle(
+                fontSize: 18,
+              ),
             ),
           ),
 
@@ -88,14 +98,6 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   flex: 4,
                   child: PortfolioLineChart(),
                 ),
-
-                ///
-                // Expanded(
-                //   flex: 1,
-                //   child: Container(
-                //     color: Colors.orange,
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -123,9 +125,17 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               ///
               if (index == 0) {
                 return QuickActionInvestTile(
-                  onTap: () {},
-                  color: Colors.teal,
-                  title: "Yield Liquidity Pools",
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => InvestmentsPage(
+                          selectedTabIndex: index + 1,
+                        ),
+                      ),
+                    );
+                  },
+                  color: Colors.blue,
+                  title: "Liquidity Pools",
                   icon: Icon(Icons.water_drop_outlined),
                   subtitle: "Earn up to 181% APR",
                 );
@@ -134,16 +144,32 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               ///
               if (index == 1) {
                 return QuickActionInvestTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => InvestmentsPage(
+                          selectedTabIndex: index + 1,
+                        ),
+                      ),
+                    );
+                  },
                   icon: Icon(Icons.home_work_outlined),
-                  color: Colors.blue,
-                  title: "Tokenized Real Estate",
+                  color: Colors.teal,
+                  title: "Real Estate",
                   subtitle: "Earn up to 50% APR",
                 );
               }
               if (index == 2) {
                 return QuickActionInvestTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => InvestmentsPage(
+                          selectedTabIndex: index + 1,
+                        ),
+                      ),
+                    );
+                  },
                   icon: Icon(Icons.hourglass_empty_outlined),
                   color: Colors.deepPurpleAccent,
                   title: "Staking",
@@ -152,17 +178,33 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               }
 
               return QuickActionInvestTile(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => InvestmentsPage(
+                        selectedTabIndex: index + 1,
+                      ),
+                    ),
+                  );
+                },
                 color: Colors.brown,
                 icon: Icon(Icons.request_quote_outlined),
-                title: "Tokenized Bonds",
+                title: "Bonds",
                 subtitle: "Earn up to 27% APR",
               );
             },
           ),
 
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => InvestmentsPage(
+                      // selectedTabIndex: 0,
+                      ),
+                ),
+              );
+            },
             style: TextButton.styleFrom(
               overlayColor: Colors.transparent,
             ),

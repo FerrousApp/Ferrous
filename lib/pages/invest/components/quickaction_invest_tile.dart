@@ -33,7 +33,7 @@ class QuickActionInvestTile extends StatelessWidget {
           ],
         ),
       ),
-      child: GestureDetector(
+      child: InkWell(
         onTap: onTap,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

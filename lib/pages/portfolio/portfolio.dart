@@ -90,7 +90,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
           ///
           ///
 
-          /// TODO: add tabbar to filter the types of investments, color code the investments
+          // TODO: add tabbar to filter the types of investments, color code the investments
 
           ///
           for (int i = 0; i < 10; i++)
