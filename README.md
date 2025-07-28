@@ -4,13 +4,10 @@
 
 ### 🔹 Why Ferrous?
 
-Too many people are shut out of meaningful investments. Ferrous bridges the gap — giving anyone access to high-quality, yield-generating assets like:
+In many markets, access to reliable investment opportunities is limited by geography, high entry barriers, lack of transparency, and unstable local financial systems. Traditional banks offer low returns, while access to global financial markets remains out of reach for the average person.
 
-- Stablecoin liquidity pools
-- Tokenized bonds
-- Real-world financial instruments
+At the same time, blockchain has unlocked powerful new financial instruments: from tokenized real-world assets to yield-generating stablecoin protocols, but these are often inaccessible to everyday users due to technical complexity, regulatory concerns, and the need for crypto-native knowledge. There is a growing need for a secure, compliant, and user-friendly platform that bridges fiat currency with safe, transparent blockchain-based investments.
 
-All accessible directly with fiat. No deep crypto knowledge required.
 
 ### 🔒 Built for Trust
 
@@ -35,13 +32,7 @@ Ferrous uses blockchain not for hype — but for clarity, proof, and accountabil
 
 ### 💬 Get Involved
 
-- Founders, devs, designers — we’re open to partnerships
-- Grants, investors, accelerators — let’s talk
+- Founders, devs, designers - we’re open to partnerships
+- Grants, investors, accelerators - let’s talk
 
 Reach out on [Twitter](x.com/ferrousapp), or [Email](mailto:team@ferrous.app).
-
----
-
-### ⚙️ Tech Stack
-
----

@@ -20,7 +20,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.7);
+    _pageController = PageController(
+      viewportFraction: 0.7,
+    );
     Timer.periodic(const Duration(seconds: 1), (duration) {
       autoScroll();
     });
@@ -243,7 +245,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       Icons.school_outlined,
                     ),
                     title: "Ferrous Learn",
-                    subtitle: "Get rewarded while learning aboutour offerings.",
+                    subtitle: "Get rewarded for learning.",
                   );
                 }
 
