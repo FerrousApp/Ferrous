@@ -86,9 +86,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                 ///
                 Expanded(
                   flex: 4,
-                  child: Container(
-                    child: PortfolioLineChart(),
-                  ),
+                  child: PortfolioLineChart(),
                 ),
 
                 ///
@@ -125,9 +123,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               ///
               if (index == 0) {
                 return QuickActionInvestTile(
-                  onTap: () {
-                    print("object");
-                  },
+                  onTap: () {},
                   color: Colors.teal,
                   title: "Yield Liquidity Pools",
                   icon: Icon(Icons.water_drop_outlined),
@@ -166,9 +162,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
           ),
 
           TextButton.icon(
-            onPressed: () {
-              print("view all");
-            },
+            onPressed: () {},
             style: TextButton.styleFrom(
               overlayColor: Colors.transparent,
             ),
@@ -181,9 +175,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
           ///
           GestureDetector(
-            onTap: () {
-              print("object");
-            },
+            onTap: () {},
             child: Container(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               alignment: Alignment.center,

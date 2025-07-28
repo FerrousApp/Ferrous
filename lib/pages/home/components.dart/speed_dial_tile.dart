@@ -38,7 +38,7 @@ class SpeedDialTile extends StatelessWidget {
           ],
         ),
       ),
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Column(
           children: [

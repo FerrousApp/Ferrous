@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:flutter/material.dart';
@@ -13,30 +15,35 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   late final PageController _pageController;
   int _currentPage = 0;
+  int pageCount = 5;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(viewportFraction: 0.7);
-    Future.microtask(_startAutoScroll);
+    Timer.periodic(const Duration(seconds: 1), (duration) {
+      autoScroll();
+    });
   }
 
-  void _startAutoScroll() async {
-    while (mounted) {
-      await Future.delayed(const Duration(seconds: 3));
-      if (!mounted) break;
-      setState(() {
-        _currentPage = (_currentPage + 1) % 5;
-      });
-      try {
-        _pageController.animateToPage(
-          _currentPage,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        );
-      } catch (e) {
-        // Ignore if controller is not attached
-      }
+  autoScroll() async {
+    if (!mounted) return;
+    if (_currentPage == pageCount) {
+      _currentPage = 0;
+    } else {
+      _currentPage = _currentPage + 1;
+    }
+    setState(() {});
+
+    try {
+      await _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    } catch (e) {
+      // this is to avoid the error of doing an action while the controller is animating
+      debugPrint('Error animating to page: $e');
     }
   }
 
@@ -193,47 +200,61 @@ class _HomePageState extends ConsumerState<HomePage> {
               padEnds: false,
               physics: AlwaysScrollableScrollPhysics(),
               controller: _pageController,
-              itemCount: 4,
+              itemCount: pageCount,
               itemBuilder: (context, index) {
-                // TODO: make more custom widget, to support portfolio, news, invite friends,
-
                 if (index == 0) {
                   return SpeedDialTile(
-                    color: Colors.blueGrey,
-                    onTap: () {
-                      print("object");
-                    },
+                    color: Colors.yellow,
+                    onTap: () {},
                     leading: Icon(
-                      Icons.newspaper,
+                      Icons.donut_large_outlined,
                     ),
-                    title: "News",
-                    subtitle: "Stay up to date on the latest information",
+                    title: "My Porfolio",
+                    subtitle: "Take a look at your yield bearing assets.",
                   );
                 }
                 if (index == 1) {
                   return SpeedDialTile(
                     color: Colors.lightBlueAccent,
-                    onTap: () {
-                      print("object");
-                    },
+                    onTap: () {},
                     leading: Icon(
-                      Icons.donut_large_outlined,
+                      Icons.group_add,
                     ),
-                    title: "My Porfolio",
-                    subtitle: "Take a look at your yield bearing assets",
+                    title: "Invite a Friend",
+                    subtitle: "Invite another user to earn awesome rewards.",
+                  );
+                }
+                if (index == 2) {
+                  return SpeedDialTile(
+                    color: Colors.redAccent,
+                    onTap: () {},
+                    leading: Icon(
+                      Icons.verified_outlined,
+                    ),
+                    title: "Complete KYC",
+                    subtitle: "Verify your identity to unlock more features.",
+                  );
+                }
+                if (index == 3) {
+                  return SpeedDialTile(
+                    color: Colors.purpleAccent,
+                    onTap: () {},
+                    leading: Icon(
+                      Icons.school_outlined,
+                    ),
+                    title: "Ferrous Learn",
+                    subtitle: "Get rewarded while learning aboutour offerings.",
                   );
                 }
 
                 return SpeedDialTile(
                   color: Colors.blueGrey,
-                  onTap: () {
-                    print("object");
-                  },
+                  onTap: () {},
                   leading: Icon(
-                    Icons.donut_small_outlined,
+                    Icons.newspaper,
                   ),
-                  title: "Invite a Friend",
-                  subtitle: "Earn up to \$50",
+                  title: "News",
+                  subtitle: "Stay up to date on the latest information.",
                 );
               },
             ),
@@ -257,9 +278,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
           ///
           TextButton.icon(
-            onPressed: () {
-              print("view all");
-            },
+            onPressed: () {},
             style: TextButton.styleFrom(
               overlayColor: Colors.transparent,
             ),

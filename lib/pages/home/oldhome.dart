@@ -2,10 +2,8 @@ import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
 import 'package:ferrous/pages/ai/ai.dart';
-import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
 import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
-import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
