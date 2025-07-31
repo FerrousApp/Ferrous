@@ -12,11 +12,13 @@ ThemeData darkTheme = ThemeData(
   fontFamily: 'JosefinSans',
 
   // scaffold background color
-  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
+  // scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
+  scaffoldBackgroundColor: Color(0xFF121212),
 
   ///
   appBarTheme: AppBarTheme(
-    backgroundColor: Colors.black,
+    // backgroundColor: Colors.black,
+    backgroundColor: Color(0xFF121212),
     elevation: 0,
     surfaceTintColor: Colors.white,
   ),

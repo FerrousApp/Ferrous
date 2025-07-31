@@ -33,6 +33,7 @@ class _EventsPageState extends State<EventsPage> {
 
           ///
           SearchAnchor(
+            dividerColor: Colors.amber,
             builder: (context, controller) => Padding(
               padding: const EdgeInsets.all(12),
               child: const Icon(
@@ -47,16 +48,15 @@ class _EventsPageState extends State<EventsPage> {
       ),
 
       ///
-      body: ListView(
-        children: [
-          for (int index = 0; index < 20; index++)
-            ListTile(
-              onTap: () {
-                print("object");
-              },
-              title: Text('Item #$index'),
-            ),
-        ],
+      body: Center(
+        child: Text(
+          'No action has been taken yet',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.grey.shade600,
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }

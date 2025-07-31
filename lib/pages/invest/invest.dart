@@ -1,3 +1,4 @@
+import 'package:ferrous/pages/balance/balance.dart';
 import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
 import 'package:ferrous/pages/investments/investments.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -217,7 +218,13 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
           ///
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AccountBalancePage(),
+                ),
+              );
+            },
             child: Container(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               alignment: Alignment.center,

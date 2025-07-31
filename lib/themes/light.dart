@@ -24,6 +24,7 @@ ThemeData lightTheme = ThemeData(
     ///
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Colors.amber,
+      
     ),
 
     /// for the animation to or from pages

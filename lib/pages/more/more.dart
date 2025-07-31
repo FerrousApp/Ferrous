@@ -14,6 +14,7 @@ class _MorePageState extends ConsumerState<MorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'More',
           style: TextStyle(
@@ -40,7 +41,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             contentPadding: EdgeInsets.all(0),
             // leading: Icon(Icons.person_outlined),
             title: Text('My Account'),
-            subtitle: Text('Me'),
+
             onTap: () {
               // Navigate to settings page
             },
@@ -50,7 +51,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             contentPadding: EdgeInsets.all(0),
             // leading: Icon(Icons.school_outlined),
             title: Text('Ferrous Learn'),
-            subtitle: Text('Ferrous Learn'),
+
             onTap: () {
               // Navigate to about page
             },
@@ -60,7 +61,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             contentPadding: EdgeInsets.all(0),
             // leading: Icon(Icons.school_outlined),
             title: Text('News'),
-            subtitle: Text('Stay on top of things'),
+
             onTap: () {
               // Navigate to about page
             },
@@ -83,7 +84,6 @@ class _MorePageState extends ConsumerState<MorePage> {
           ///
           MoreActionTile(
             title: Text("Theme"),
-            subtitle: Text("Set app theme"),
             leading: Icon(Icons.color_lens_outlined),
             onTap: () {
               ref.read(themeModeProvider.notifier).changeTheme();
@@ -106,7 +106,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             //   Icons.mode_standby_sharp,
             // ),
             title: Text('Currency'),
-            subtitle: Text("Set your preferred currency"),
+
             onTap: () {
               // Navigate to about page
             },
@@ -119,7 +119,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             //   Icons.language_outlined,
             // ),
             title: Text('Language'),
-            subtitle: Text('Set your preferred language'),
+
             onTap: () {
               // Navigate to about page
             },

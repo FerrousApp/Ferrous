@@ -1,5 +1,5 @@
 import 'package:ferrous/misc/appsizing.dart';
-import 'package:ferrous/pages/onboarding/onboarding.dart';
+import 'package:ferrous/pages/login/login.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -42,14 +42,18 @@ class StartPage extends StatelessWidget {
           ///
           OptionBox(
             onTap: () {
-              Navigator.of(context).push(
+              Navigator.push(
+                context,
                 MaterialPageRoute(
-                  builder: (context) => OnboardingPage(),
+                  builder: (context) => const LoginPage(),
                 ),
               );
             },
-            color: Colors.amber,
-            assetPath: "assets/lotties/2.json",
+            color: Color(0xFF1C1C1E),
+            asset: Lottie.asset(
+              "assets/lotties/signup.json",
+              height: 100,
+            ),
             title: Text(
               "Sign Up",
               textAlign: TextAlign.center,
@@ -76,8 +80,11 @@ class StartPage extends StatelessWidget {
                 ),
               );
             },
-            color: Color(0xFF1C1C1E),
-            assetPath: "assets/lotties/1.json",
+            color: Colors.amber,
+            asset: Lottie.asset(
+              "assets/lotties/login.json",
+              height: 100,
+            ),
             title: Text(
               "Login",
               textAlign: TextAlign.center,
@@ -101,14 +108,14 @@ class OptionBox extends StatelessWidget {
   ///
   const OptionBox({
     super.key,
-    required this.assetPath,
+    required this.asset,
     required this.title,
     required this.subtitle,
     required this.color,
     required this.onTap,
   });
 
-  final String assetPath;
+  final Widget asset;
   final Widget title;
   final Widget subtitle;
   final Color color;
@@ -129,10 +136,8 @@ class OptionBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Lottie.asset(
-              assetPath,
-              height: 100,
-            ), // replace with your own images
+            asset,
+            // replace with your own images
             ListTile(
               title: title,
               subtitle: subtitle,
