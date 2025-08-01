@@ -97,7 +97,11 @@ class ProfilePage extends StatelessWidget {
 
           for (final detail in detailed)
             ListTile(
+              onTap: () {},
               contentPadding: EdgeInsets.zero,
+
+              // minTileHeight: 35,
+
               minVerticalPadding: 0,
               title: Text(detail.title),
               trailing: Text(detail.value),

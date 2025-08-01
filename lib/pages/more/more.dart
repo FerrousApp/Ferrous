@@ -50,6 +50,15 @@ class _MorePageState extends ConsumerState<MorePage> {
           ListTile(
             contentPadding: EdgeInsets.all(0),
             // leading: Icon(Icons.school_outlined),
+            title: Text('KYC'),
+            onTap: () {
+              // Navigate to about page
+            },
+          ),
+
+          ListTile(
+            contentPadding: EdgeInsets.all(0),
+            // leading: Icon(Icons.school_outlined),
             title: Text('Ferrous Learn'),
 
             onTap: () {

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ferrous/pages/asset/asset.dart';
 import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:ferrous/pages/investments/investments.dart';
@@ -68,6 +69,13 @@ class _HomePageState extends ConsumerState<HomePage> {
         subtitle: "USDC Liquidity Pool | SaucerSwap",
         assetValue: "\$16.8M",
         apy: "94.98% APR",
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AssetDetailPage(),
+            ),
+          );
+        },
       ),
       ExploreListTile(
         badgePath: "assets/logos/saucer.png",

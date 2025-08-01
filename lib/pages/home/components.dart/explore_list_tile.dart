@@ -9,6 +9,7 @@ class ExploreListTile extends StatelessWidget {
     required this.subtitle,
     required this.assetValue,
     required this.apy,
+    this.onTap,
   });
 
   final String badgePath;
@@ -17,11 +18,12 @@ class ExploreListTile extends StatelessWidget {
   final String subtitle;
   final String assetValue;
   final String apy;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.all(2),
+      contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 0,
       leading: Badge(
         backgroundColor: Colors.transparent,
@@ -78,7 +80,7 @@ class ExploreListTile extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
