@@ -19,12 +19,40 @@ Ferrous uses blockchain not for hype — but for clarity, proof, and accountabil
 - People in emerging markets seeking real alternatives to inflation
 - Builders who believe in open, accessible finance
 
-### 🛠️ What's Inside (Coming Soon)
+### 🛠️ What's Inside
 
-- Fiat on-ramps (NGN, KES, more)
-- Simple dashboards with real returns
-- Secure, audited smart contracts
-- Localized risk ratings
+**For Investors**
+
+- **Access to Global Investment Opportunities**  
+  Invest in multiple highly vetted real-world assets, all from a single dashboard as Ferrous handles the hassle of dealing with multiple companies.
+
+- **Real Returns, Real Assets using your local currency**  
+  Ferrous connects you to yield-bearing opportunities backed by real-world value with your local fiat eliminating the friction to access global markets.
+
+- **Transparency & Security**  
+  All investments are tracked on-chain, offering full visibility into how your funds are being used and what returns you’re earning.
+
+- **No Crypto Knowledge Needed**  
+  With a simple interface, Ferrous is beginner-friendly, you don’t need to understand blockchain to start investing.
+
+- **Compliant & Regulated Access**  
+  All opportunities on Ferrous go through due diligence and risk assessment, providing you safer, more reliable access to modern finance.
+
+**For Providers**
+
+- **Diversified Investor Base**  
+  Reach thousands of retail users without needing to market to each individually. Ferrous aggregates demand, enabling efficient capital raising from multiple regions and currencies.
+
+- **Access to Untapped Capital**  
+  Ferrous gives providers access to a growing pool of high networth individuals and high income earners especially in emerging markets who want safe, yield-bearing opportunities.
+
+- **Transparent On-Chain Infrastructure**  
+  All investments are tokenized and tracked on-chain, providing verifiable proof-of-holdings, fund flows, and performance, which builds trust with end users.
+
+- **Faster raise times compared to traditional platforms.**
+
+- **Low fundraising fees** 
+  By eliminating middlemen and using efficient blockchain infrastructure so more of the raised capital goes directly to the project.
 
 > Ferrous is still in development — but we’re building with purpose.
 
