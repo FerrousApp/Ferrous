@@ -1,5 +1,4 @@
 import 'package:ferrous/global/components/details_row.dart';
-import 'package:ferrous/misc/appsizing.dart';
 
 import 'package:flutter/material.dart';
 

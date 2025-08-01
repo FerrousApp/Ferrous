@@ -9,9 +9,9 @@ In many markets, access to reliable investment opportunities is limited by geogr
 At the same time, blockchain has unlocked powerful new financial instruments: from tokenized real-world assets to yield-generating stablecoin protocols, but these are often inaccessible to everyday users due to technical complexity, regulatory concerns, and the need for crypto-native knowledge. There is a growing need for a secure, compliant, and user-friendly platform that bridges fiat currency with safe, transparent blockchain-based investments.
 
 
-### 🔒 Built for Trust
+### 🔒 Built for You
 
-Ferrous uses blockchain not for hype — but for clarity, proof, and accountability. Every asset is transparent, every process designed for safety.
+Ferrous uses blockchain not for hype, but for flexibility, proof, and accountability. Every asset is transparent, every process designed for safety.
 
 ### 🌍 Who It’s For
 
