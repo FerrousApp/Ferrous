@@ -47,6 +47,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
               "My Portfolio",
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.grey,
               ),
             ),
           ),
@@ -108,6 +109,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
             "Investments For Me",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.grey,
             ),
           ),
 

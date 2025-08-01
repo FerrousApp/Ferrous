@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:ferrous/pages/investments/investments.dart';
+import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -98,7 +99,13 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const ProfilePage(),
+              ),
+            );
+          },
           icon: Icon(Icons.person_outline),
         ),
 
@@ -143,6 +150,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               "My Portfolio Value",
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.grey,
               ),
             ),
             subtitle: Text(
@@ -195,6 +203,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             "Speed Dial",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.grey,
             ),
           ),
 
@@ -213,7 +222,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     leading: Icon(
                       Icons.donut_large_outlined,
                     ),
-                    title: "My Porfolio",
+                    title: "My Portfolio",
                     subtitle: "Take a look at your yield bearing assets.",
                   );
                 }
@@ -274,6 +283,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             "Explore",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.grey,
             ),
           ),
 

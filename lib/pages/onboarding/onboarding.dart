@@ -123,7 +123,6 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => StartPage(),
-              
             ),
           );
         },
