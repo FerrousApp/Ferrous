@@ -1,3 +1,4 @@
+import 'package:ferrous/misc/demo_data.dart';
 import 'package:flutter/material.dart';
 
 class ExploreListTile extends StatelessWidget {
@@ -19,6 +20,17 @@ class ExploreListTile extends StatelessWidget {
   final String assetValue;
   final String apy;
   final VoidCallback? onTap;
+
+  factory ExploreListTile.fromAsset(DemoAssetData asset) {
+    return ExploreListTile(
+      badgePath: asset.badge,
+      imagePath: asset.logo,
+      title: asset.ticker,
+      subtitle: "${asset.name} | ${asset.providerName}",
+      assetValue: asset.totalValue,
+      apy: asset.returnOnInvestment,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

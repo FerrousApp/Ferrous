@@ -38,7 +38,9 @@ class SpeedDialTile extends StatelessWidget {
           ],
         ),
       ),
-      child: GestureDetector(
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: onTap,
         child: Column(
           children: [
@@ -71,5 +73,3 @@ class SpeedDialTile extends StatelessWidget {
     );
   }
 }
-
-List<SpeedDialTile> speedDialItems = [];

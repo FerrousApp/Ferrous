@@ -103,6 +103,7 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: TabBarView(
+            
             children: [
               for (int tabIndex = 0;
                   tabIndex < InvestmentsPage._tabOptions.length;

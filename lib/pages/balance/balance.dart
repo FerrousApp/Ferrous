@@ -147,11 +147,18 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
                     ),
                   ),
                   title: Text('Account $type'),
-                  subtitle: Text('\$${(index + 1) * 1000}'),
+                  subtitle: Text("\u20A6${(index + 1) * 1000}"),
+                  trailing: Text(DateTime.now()
+                      .subtract(Duration(days: index))
+                      .toLocal()
+                      .toString()
+                      .split(' ')[0]),
+
+                  ///
                   children: [
                     ListTile(
                       title: Text('Balance Item ${index + 1}'),
-                      subtitle: Text('\$${(index + 1) * 1000}'),
+                      subtitle: Text('\u20A6${(index + 1) * 1000}'),
                       onTap: () {},
                     ),
                   ],

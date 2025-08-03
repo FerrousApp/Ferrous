@@ -78,7 +78,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                       );
                     },
                     title: Text(
-                      "\$300,000,20.00",
+                      "\$1,000,000",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

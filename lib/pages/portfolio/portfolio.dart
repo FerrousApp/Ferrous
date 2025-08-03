@@ -122,14 +122,22 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
                       itemCount: filtered.length,
                       itemBuilder: (context, i) {
                         final item = filtered[i];
-                        return ListTile(
+                        return ExpansionTile(
+                          tilePadding: EdgeInsetsGeometry.zero,
                           title: Text(item['title'] ?? ''),
                           subtitle: Text('Type: ${item['type']}'),
-                          leading: const Icon(Icons.account_balance_wallet),
-                          trailing: const Icon(Icons.chevron_right),
-                          onTap: () {
-                            // Handle tap
-                          },
+                          leading: const Icon(Icons.donut_large_outlined),
+                          showTrailingIcon: false,
+                          shape: Border(),
+                          children: [
+                            ListTile(
+                              title: Text('Details for ${item['title']}'),
+                              subtitle: Text('Type: ${item['type']}'),
+                            ),
+                          ],
+                          // onTap: () {
+                          //   // Handle tap
+                          // },
                         );
                       },
                     );
@@ -144,7 +152,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
 
               ///
               // for (int i = 0; i < 10; i++)
-              //   AssetContainer(),
+              // AssetContainer(),
             ],
           ),
         ),

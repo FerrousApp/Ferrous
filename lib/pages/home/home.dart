@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:ferrous/misc/demo_data.dart';
 import 'package:ferrous/pages/asset/asset.dart';
 import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
 import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
 import 'package:ferrous/pages/investments/investments.dart';
+import 'package:ferrous/pages/portfolio/portfolio.dart';
 import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,17 +42,17 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
     setState(() {});
 
-    try {
-      // _pageController.jumpToPage(0) ;
-      await _pageController.animateToPage(
-        _currentPage,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    } catch (e) {
-      // this is to avoid the error of doing an action while the controller is animating
-      debugPrint('Error animating to page: $e');
-    }
+    // try {
+    // _pageController.jumpToPage(0) ;
+    await _pageController.animateToPage(
+      _currentPage,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+    // } catch (e) {
+    //   // this is to avoid the error of doing an action while the controller is animating
+    //   debugPrint('Error animating to page: $e');
+    // }
   }
 
   @override
@@ -61,39 +63,25 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<ExploreListTile> exploreItems = [
-      ExploreListTile(
-        badgePath: "assets/logos/saucer.png",
-        imagePath: "assets/logos/usdc.png",
-        title: "USDC",
-        subtitle: "USDC Liquidity Pool | SaucerSwap",
-        assetValue: "\$16.8M",
-        apy: "94.98% APR",
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AssetDetailPage(),
-            ),
-          );
-        },
-      ),
-      ExploreListTile(
-        badgePath: "assets/logos/saucer.png",
-        imagePath: "assets/logos/usdt.png",
-        title: "USDT",
-        subtitle: "USDT Liquidity Pool | SaucerSwap",
-        assetValue: "\$145.51K",
-        apy: "31.30% APR",
-      ),
-      ExploreListTile(
-        badgePath: "assets/logos/hedera.png",
-        imagePath: "assets/logos/hedera.png",
-        title: "HBAR",
-        subtitle: "Hedera Network Staking | Hedera",
-        assetValue: "\$14.66B",
-        apy: "2.5% ARR",
-      ),
-    ];
+    final exploreItems = demoAssets
+        .map(
+          (asset) => ExploreListTile(
+            badgePath: asset.badge,
+            imagePath: asset.logo,
+            title: asset.ticker,
+            subtitle: asset.name,
+            assetValue: asset.totalValue,
+            apy: asset.returnOnInvestment,
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AssetDetailPage(assetData: asset),
+                ),
+              );
+            },
+          ),
+        )
+        .toList();
 
     ///
     return Scaffold(
@@ -226,7 +214,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                 if (index == 0) {
                   return SpeedDialTile(
                     color: Colors.amber,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PortfolioPage(),
+                        ),
+                      );
+                    },
                     leading: Icon(
                       Icons.donut_large_outlined,
                     ),
