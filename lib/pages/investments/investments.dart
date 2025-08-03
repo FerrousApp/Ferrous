@@ -1,3 +1,6 @@
+import 'package:ferrous/misc/demo_data.dart';
+import 'package:ferrous/pages/asset/asset.dart';
+import 'package:ferrous/pages/balance/balance.dart';
 import 'package:flutter/material.dart';
 
 class InvestmentsPage extends StatefulWidget {
@@ -103,34 +106,272 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: TabBarView(
-            
             children: [
-              for (int tabIndex = 0;
-                  tabIndex < InvestmentsPage._tabOptions.length;
-                  tabIndex++)
-                Builder(
-                  builder: (context) {
-                    final filtered = _filteredInvestments(tabIndex);
-                    if (filtered.isEmpty) {
-                      return const Center(child: Text('No investments found.'));
-                    }
-                    return ListView.builder(
-                      itemCount: filtered.length,
-                      itemBuilder: (context, i) {
-                        final item = filtered[i];
-                        return ListTile(
-                          title: Text(item['title'] ?? ''),
-                          subtitle: Text('Type: ${item['type']}'),
-                          leading: const Icon(Icons.account_balance_wallet),
-                          trailing: const Icon(Icons.chevron_right),
+              // all investments tab
+              ListView(
+                children: [
+                  ///
+                  ...demoAssetsInvestments.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
+
+                      children: [
+                        ListTile(
                           onTap: () {
-                            // Handle tap
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
                           },
-                        );
-                      },
-                    );
-                  },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                      // onTap: () {
+                      //   // Handle tap
+                      // },
+                    ),
+                  )
+                ],
+              ),
+
+              /// account balances tab
+              // ListView(
+              //   children: [
+              //     ExpansionTile(
+              //       tilePadding: EdgeInsets.all(2),
+              //       shape: Border(),
+              //       onExpansionChanged: (value) {},
+              //       title: Text(
+              //         "Nigerian Naira",
+              //         style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //       subtitle: Text("NGN"),
+              //       leading: CircleAvatar(
+              //         child: Text(
+              //           "\u{1F1F3}\u{1F1EC}",
+              //         ),
+              //       ),
+              //       showTrailingIcon: false,
+              //       children: [
+              //         ListTile(
+              //           onTap: () {
+              //             Navigator.of(context).push(
+              //               MaterialPageRoute(
+              //                 builder: (context) => AccountBalancePage(),
+              //               ),
+              //             );
+              //           },
+              //           title: Text("Provider"),
+              //           subtitle: Text("Nigerian Government"),
+              //           trailing: Text(
+              //             "\u20A61,000,000",
+              //             style: TextStyle(
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
+
+              /// Liquidity pools
+              ListView(
+                children: [
+                  ...demoAssetsLP.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              /// Real estate
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Hang in there, ',
+                        style: TextStyle(
+                          // color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Something\'s coming!',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
+
+              /// Staking
+              ListView(
+                children: [
+                  ///
+                  ...demoAssetsStaking.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
+
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                      // onTap: () {
+                      //   // Handle tap
+                      // },
+                    ),
+                  )
+                ],
+              ),
+
+              /// Bonds
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Hang in there, ',
+                        style: TextStyle(
+                          // color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Something\'s coming!',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // for (int tabIndex = 0;
+              //     tabIndex < InvestmentsPage._tabOptions.length;
+              //     tabIndex++)
+              //   Builder(
+              //     builder: (context) {
+              //       final filtered = _filteredInvestments(tabIndex);
+              //       if (filtered.isEmpty) {
+              //         return const Center(child: Text('No investments found.'));
+              //       }
+              //       return ListView.builder(
+              //         itemCount: filtered.length,
+              //         itemBuilder: (context, i) {
+              //           final item = filtered[i];
+              //           return ListTile(
+              //             title: Text(item['title'] ?? ''),
+              //             subtitle: Text('Type: ${item['type']}'),
+              //             leading: const Icon(Icons.account_balance_wallet),
+              //             trailing: const Icon(Icons.chevron_right),
+              //             onTap: () {
+              //               // Handle tap
+              //             },
+              //           );
+              //         },
+              //       );
+              //     },
+              //   ),
             ],
           ),
         ),

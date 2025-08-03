@@ -90,3 +90,71 @@ final List<DemoAssetData> demoAssets = [
   hederaStaking,
   usdtHbarSaucerSwap,
 ];
+final List<DemoAssetData> demoAssetsLP = [
+  usdcHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+];
+final List<DemoAssetData> demoAssetsStaking = [
+  // usdcHbarSaucerSwap,
+  hederaStaking,
+  // usdtHbarSaucerSwap,
+];
+
+final List<DemoAssetData> demoAssetsInvestments = [
+  hederaStaking,
+  ...[
+    DemoAssetData(
+      logo: "assets/logos/ondo.png",
+      badge: "assets/logos/us_treasury.png",
+      ticker: "OUSG",
+      name: "Ondo US Treasury Yield",
+      totalValue: "\$150M",
+      returnOnInvestment: "4.8% APY",
+      overview:
+          "Ondo Finance offers tokenized exposure to short-term U.S. Treasury Bills via the OUSG token. These tokens represent ownership in a BlackRock-managed ETF and are fully backed by U.S. Treasuries, giving stable, low-risk returns in a compliant and transparent structure.",
+      providerName: "Ondo Finance",
+      providerInfo:
+          "Ondo is a leading DeFi protocol focused on tokenized securities and RWAs. It partners with traditional asset managers like BlackRock to bridge real-world financial instruments to blockchain. Ondo is supported by top-tier firms like Pantera Capital and Coinbase Ventures.",
+      disclaimer:
+          "Performance may vary with interest rate changes. Not FDIC insured. Conduct your own due diligence before investing.",
+      position: "1,200 OUSG",
+      positionValue: "\$1,235.60",
+    ),
+    DemoAssetData(
+      logo: "assets/logos/goldfinch.png",
+      badge: "assets/logos/goldfinch.png",
+      ticker: "GFI-Loan",
+      name: "Goldfinch Private Credit",
+      totalValue: "\$120M",
+      returnOnInvestment: "11.0% APY",
+      overview:
+          "Goldfinch offers decentralized access to private credit opportunities. Investors supply stablecoins to vetted borrowers in emerging markets, such as fintechs and microfinance institutions, generating attractive, non-correlated yield.",
+      providerName: "Goldfinch",
+      providerInfo:
+          "Goldfinch is a decentralized credit protocol focused on unlocking capital for real-world borrowers. It is backed by a16z, Coinbase, and IDEO CoLab. Goldfinch combines blockchain transparency with traditional underwriting.",
+      disclaimer:
+          "Returns depend on borrower repayment. Credit risk and protocol risk apply. Not risk-free.",
+      position: "2,000 GFI-Loan tokens",
+      positionValue: "\$2,150.00",
+    ),
+    DemoAssetData(
+      logo: "assets/logos/maple.png",
+      badge: "assets/logos/credit.png",
+      ticker: "MPL-TRANCH",
+      name: "Maple Direct Lending",
+      totalValue: "\$95M",
+      returnOnInvestment: "10.2% APY",
+      overview:
+          "Maple enables permissioned lending pools to real-world borrowers such as crypto firms and fintechs. Users can provide USDC to diversified lending pools and earn high-yield returns through institutional credit exposure.",
+      providerName: "Maple Finance",
+      providerInfo:
+          "Maple is a DeFi lending protocol enabling undercollateralized loans for institutional borrowers. Trusted by lenders like Orthogonal, Maven 11, and BlockTower. Maple has facilitated over \$2B in loans since launch.",
+      disclaimer:
+          "Investors bear credit risk and platform risk. Not FDIC insured or risk-free.",
+      position: "500 MPL-TRANCH",
+      positionValue: "\$540.00",
+    ),
+  ],
+  usdcHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+];

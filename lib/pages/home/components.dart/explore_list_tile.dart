@@ -59,7 +59,6 @@ class ExploreListTile extends StatelessWidget {
         style: TextStyle(
           fontWeight: FontWeight.bold,
           // color: Colors.grey,
-          fontSize: 16,
         ),
       ),
       subtitle: Text(

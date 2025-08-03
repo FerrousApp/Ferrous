@@ -137,7 +137,7 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
                 return ExpansionTile(
                   // showTrailingIcon: false,
                   tilePadding: EdgeInsets.all(2),
-                  shape: RoundedRectangleBorder(),
+                  shape: Border(),
                   onExpansionChanged: (value) {},
                   leading: CircleAvatar(
                     backgroundColor: color.withValues(alpha: 0.2),

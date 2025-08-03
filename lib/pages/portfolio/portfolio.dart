@@ -1,3 +1,6 @@
+import 'package:ferrous/misc/demo_data.dart';
+import 'package:ferrous/pages/asset/asset.dart';
+import 'package:ferrous/pages/balance/balance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -111,42 +114,322 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
           padding: const EdgeInsets.all(16.0),
           child: TabBarView(
             children: [
-              for (int tabIndex = 0; tabIndex < _tabOptions.length; tabIndex++)
-                Builder(
-                  builder: (context) {
-                    final filtered = _filteredInvestments(tabIndex);
-                    if (filtered.isEmpty) {
-                      return const Center(child: Text('No investments found.'));
-                    }
-                    return ListView.builder(
-                      itemCount: filtered.length,
-                      itemBuilder: (context, i) {
-                        final item = filtered[i];
-                        return ExpansionTile(
-                          tilePadding: EdgeInsetsGeometry.zero,
-                          title: Text(item['title'] ?? ''),
-                          subtitle: Text('Type: ${item['type']}'),
-                          leading: const Icon(Icons.donut_large_outlined),
-                          showTrailingIcon: false,
-                          shape: Border(),
-                          children: [
-                            ListTile(
-                              title: Text('Details for ${item['title']}'),
-                              subtitle: Text('Type: ${item['type']}'),
+              
+              // all investments tab
+              ListView(
+                children: [
+                  ExpansionTile(
+                    tilePadding: EdgeInsets.all(2),
+                    shape: Border(),
+                    onExpansionChanged: (value) {},
+                    title: Text(
+                      "NGN",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text("Nigerian Naira"),
+                    leading: CircleAvatar(
+                      child: Text(
+                        "\u{1F1F3}\u{1F1EC}",
+                      ),
+                    ),
+                    showTrailingIcon: false,
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => AccountBalancePage(),
                             ),
-                          ],
-                          // onTap: () {
-                          //   // Handle tap
-                          // },
-                        );
-                      },
-                    );
-                  },
+                          );
+                        },
+                        title: Text("Provider"),
+                        subtitle: Text("Nigerian Government"),
+                        trailing: Text(
+                          "\u20A61,000,000",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ///
+                  ...demoAssets.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
+
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                      // onTap: () {
+                      //   // Handle tap
+                      // },
+                    ),
+                  )
+                ],
+              ),
+
+              /// account balances tab
+              ListView(
+                children: [
+                  ExpansionTile(
+                    tilePadding: EdgeInsets.all(2),
+                    shape: Border(),
+                    onExpansionChanged: (value) {},
+                    title: Text(
+                      "Nigerian Naira",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text("NGN"),
+                    leading: CircleAvatar(
+                      child: Text(
+                        "\u{1F1F3}\u{1F1EC}",
+                      ),
+                    ),
+                    showTrailingIcon: false,
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => AccountBalancePage(),
+                            ),
+                          );
+                        },
+                        title: Text("Provider"),
+                        subtitle: Text("Nigerian Government"),
+                        trailing: Text(
+                          "\u20A61,000,000",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              /// Liquidity pools
+              ListView(
+                children: [
+                  ...demoAssetsLP.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              /// Real estate
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Its lonely here, ',
+                        style: TextStyle(
+                          // color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Start Investing!',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+              ),
 
-              //TODO: make investments into expandable list tile
+              /// Staking
+              ListView(
+                children: [
+                  ///
+                  ...demoAssetsStaking.map(
+                    (asset) => ExpansionTile(
+                      tilePadding: EdgeInsets.all(2),
+                      shape: Border(),
+                      onExpansionChanged: (value) {},
+                      title: Text(
+                        asset.ticker,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(asset.name),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                      ),
+                      showTrailingIcon: false,
 
-              // TODO: add the account balance value here too
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AssetDetailPage(
+                                  assetData: asset,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text("Provider"),
+                          subtitle: Text(asset.providerName),
+                          trailing: Text(
+                            asset.returnOnInvestment,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                      // onTap: () {
+                      //   // Handle tap
+                      // },
+                    ),
+                  )
+                ],
+              ),
+
+              /// Bonds
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Its lonely here, ',
+                        style: TextStyle(
+                          // color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Start Investing!',
+                        style: TextStyle(
+                          color: Colors.amber,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // for (int tabIndex = 0; tabIndex < _tabOptions.length; tabIndex++)
+
+              //   ///
+              //   Builder(
+              //     builder: (context) {
+              //       final filtered = _filteredInvestments(tabIndex);
+              //       if (filtered.isEmpty) {
+              //         return const Center(
+              //           child: Text('No investments found.'),
+              //         );
+              //       }
+              //       return ListView.builder(
+              //         itemCount: filtered.length,
+              //         itemBuilder: (context, i) {
+              //           final item = filtered[i];
+              //           return ExpansionTile(
+              //             tilePadding: EdgeInsets.all(2),
+              //             shape: Border(),
+              //             onExpansionChanged: (value) {},
+
+              //             title: Text(item['title'] ?? ''),
+              //             subtitle: Text('Type: ${item['type']}'),
+              //             leading: const Icon(Icons.donut_large_outlined),
+              //             showTrailingIcon: false,
+
+              //             children: [
+              //               ListTile(
+              //                 title: Text('Details for ${item['title']}'),
+              //                 subtitle: Text('Type: ${item['type']}'),
+              //               ),
+              //             ],
+              //             // onTap: () {
+              //             //   // Handle tap
+              //             // },
+              //           );
+              //         },
+              //       );
+              //     },
+              //   ),
 
               // TODO: add tabbar to filter the types of investments, color code the investments
 
