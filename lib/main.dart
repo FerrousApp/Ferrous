@@ -8,7 +8,6 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,7 +76,6 @@ class _MainAppState extends ConsumerState<MainApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      // home: OnboardingPage(),
       home: OnboardingPage(),
     );
   }

@@ -13,12 +13,6 @@ At the same time, blockchain has unlocked powerful new financial instruments: fr
 
 Ferrous uses blockchain not for hype, but for flexibility, proof, and accountability. Every asset is transparent, every process designed for safety.
 
-### 🌍 Who It’s For
-
-- First-time investors looking for stable returns
-- People in emerging markets seeking real alternatives to inflation
-- Builders who believe in open, accessible finance
-
 ### 🛠️ What's Inside
 
 **For Investors**
@@ -64,3 +58,20 @@ Ferrous uses blockchain not for hype, but for flexibility, proof, and accountabi
 - Grants, investors, accelerators - let’s talk
 
 Reach out on [Twitter](x.com/ferrousapp), or [Email](mailto:team@ferrous.app).
+
+
+### How to run the MVP on this repo
+- Install Flutter 3.32.8 and perform the neccesary setups
+
+- Clone the repo
+
+Open your terminal and run:
+```bash
+git clone https://github.com/FerrousApp/Ferrous.git
+cd Ferrous
+```
+
+- Run the command below to fetch the neccesary dependencies and build the MVP
+```bash
+make install
+```

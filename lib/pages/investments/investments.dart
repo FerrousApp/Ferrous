@@ -1,6 +1,5 @@
 import 'package:ferrous/misc/demo_data.dart';
 import 'package:ferrous/pages/asset/asset.dart';
-import 'package:ferrous/pages/balance/balance.dart';
 import 'package:flutter/material.dart';
 
 class InvestmentsPage extends StatefulWidget {
