@@ -48,7 +48,7 @@ Ferrous uses blockchain not for hype, but for flexibility, proof, and accountabi
 - **Low fundraising fees** 
   By eliminating middlemen and using efficient blockchain infrastructure so more of the raised capital goes directly to the project.
 
-> Ferrous is still in development — but we’re building with purpose.
+> Ferrous is still in development; we’re building with purpose.
 
 ---
 
