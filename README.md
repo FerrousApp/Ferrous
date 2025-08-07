@@ -59,9 +59,6 @@ Ferrous uses blockchain not for hype, but for flexibility, proof, and accountabi
 
 Reach out on [Twitter](x.com/ferrousapp), or [Email](mailto:team@ferrous.app).
 
-
-**[Download the MVP]**(https://github.com/FerrousApp/Ferrous/releases/download/v0/app-release.apk)
-
 ### How to run the MVP on this repo
 - Install Flutter 3.32.8 and perform the neccesary setups
 
@@ -77,3 +74,5 @@ cd Ferrous
 ```bash
 make install
 ```
+
+**Download the an already built MVP** https://github.com/FerrousApp/Ferrous/releases/download/v0/app-release.apk
