@@ -1,6 +1,6 @@
 # Ferrous
 
-**Ferrous** gives you access to a curated portfolio of compliant blockchain based global financial instruments, ranging from real-world assets (RWAs) to tokenized bonds, yield-bearing defi instruments and  stablecoin liquidity pools etc
+**Ferrous** gives you access to a curated portfolio of global blockchain based financial instruments, using your local money. Instruments ranging from real-world assets (RWAs) to tokenized bonds, real estate, stocks and yield-bearing defi instruments etc.
 
 ### 🔹 Why Ferrous?
 
