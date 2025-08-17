@@ -37,19 +37,25 @@ class ExploreListTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 0,
-      leading: Badge(
-        backgroundColor: Colors.transparent,
-        alignment: Alignment.topLeft,
-        label: Image.asset(
-          badgePath,
-          height: 18,
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+      leading: SizedBox(
+        height: 50,
+        width: 50,
+        child: Badge(
+          backgroundColor: Colors.transparent,
+          alignment: Alignment.topLeft,
+          label: Image.asset(
+            badgePath,
+            height: 15,
           ),
-          child: Image.asset(imagePath),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Image.asset(
+              imagePath,
+            ),
+          ),
         ),
       ),
 

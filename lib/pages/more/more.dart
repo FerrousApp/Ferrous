@@ -1,3 +1,4 @@
+import 'package:ferrous/pages/profile/profile.dart';
 import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,10 +41,16 @@ class _MorePageState extends ConsumerState<MorePage> {
           ListTile(
             contentPadding: EdgeInsets.all(0),
             // leading: Icon(Icons.person_outlined),
-            title: Text('My Account'),
+            title: Text('My Profile'),
 
             onTap: () {
               // Navigate to settings page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
+                ),
+              );
             },
           ),
 

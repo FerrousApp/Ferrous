@@ -9,7 +9,8 @@ ThemeData lightTheme = ThemeData(
     ),
 
     /// text font
-    fontFamily: 'JosefinSans',
+    // fontFamily: 'JosefinSans',
+    fontFamily: 'Montserrat',
 
     // scaffold background color
     scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),

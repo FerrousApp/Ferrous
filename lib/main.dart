@@ -8,6 +8,7 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO: switch to montserrat
 Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();
