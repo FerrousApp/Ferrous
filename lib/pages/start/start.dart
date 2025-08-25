@@ -1,5 +1,5 @@
 import 'package:ferrous/misc/appsizing.dart';
-import 'package:ferrous/pages/login/login.dart';
+import 'package:ferrous/pages/signin/signin.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -35,7 +35,7 @@ class StartPage extends StatelessWidget {
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
           ///
 
@@ -45,7 +45,8 @@ class StartPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
+                  builder: (context) => const SignInPage(),
+                  // builder: (context) => const LoginPage(),
                 ),
               );
             },

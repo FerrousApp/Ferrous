@@ -4,30 +4,24 @@ import 'package:flutter/material.dart';
 class ExploreListTile extends StatelessWidget {
   const ExploreListTile({
     super.key,
-    required this.badgePath,
     required this.imagePath,
     required this.title,
     required this.subtitle,
-    required this.assetValue,
     required this.apy,
     this.onTap,
   });
 
-  final String badgePath;
   final String imagePath;
   final String title;
   final String subtitle;
-  final String assetValue;
   final String apy;
   final VoidCallback? onTap;
 
   factory ExploreListTile.fromAsset(DemoAssetData asset) {
     return ExploreListTile(
-      badgePath: asset.badge,
       imagePath: asset.logo,
       title: asset.ticker,
       subtitle: "${asset.name} | ${asset.providerName}",
-      assetValue: asset.totalValue,
       apy: asset.returnOnInvestment,
     );
   }
@@ -35,36 +29,17 @@ class ExploreListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.zero,
-      horizontalTitleGap: 0,
-      leading: SizedBox(
-        height: 50,
-        width: 50,
-        child: Badge(
-          backgroundColor: Colors.transparent,
-          alignment: Alignment.topLeft,
-          label: Image.asset(
-            badgePath,
-            height: 15,
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Image.asset(
-              imagePath,
-            ),
-          ),
-        ),
+      internalAddSemanticForOnTap: true,
+      contentPadding: EdgeInsets.all(2),
+      leading: Image.asset(
+        imagePath,
+        height: 36,
+        width: 36,
       ),
-
-      ///
       title: Text(
         title,
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          // color: Colors.grey,
         ),
       ),
       subtitle: Text(
@@ -72,30 +47,14 @@ class ExploreListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         maxLines: 2,
       ),
-      trailing: Wrap(
-        direction: Axis.vertical,
-        crossAxisAlignment: WrapCrossAlignment.end,
-        children: [
-          Text(
-            assetValue,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.w700,
-              height: 0,
-            ),
-          ),
-          Text(
-            apy,
-            maxLines: 1,
-            style: TextStyle(
-              color: Colors.blueGrey,
-              fontWeight: FontWeight.w500,
-              height: 0,
-            ),
-          ),
-        ],
+      trailing: Text(
+        apy,
+        maxLines: 1,
+        style: TextStyle(
+          color: Colors.blueGrey,
+          fontWeight: FontWeight.w600,
+          height: 0,
+        ),
       ),
       onTap: onTap,
     );

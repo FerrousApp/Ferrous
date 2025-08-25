@@ -38,16 +38,10 @@ class QuickActionInvestTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            icon,
             Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            icon,
-            Text(
-              subtitle,
             ),
           ],
         ),

@@ -1,11 +1,11 @@
 import 'package:ferrous/pages/balance/balance.dart';
+import 'package:ferrous/pages/events/events.dart';
 import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
-import 'package:ferrous/pages/investments/investments.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
 
 class InvestPage extends ConsumerStatefulWidget {
@@ -32,87 +32,8 @@ class _InvestPageState extends ConsumerState<InvestPage> {
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12),
         children: [
-          ///
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => PortfolioPage(),
-                ),
-              );
-            },
-            child: Text(
-              "My Portfolio",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
-              ),
-            ),
-          ),
-
-          //chart box
-          Container(
-            clipBehavior: Clip.antiAlias,
-            height: AppSizing.height(context) * 0.4,
-            margin: EdgeInsets.only(
-              bottom: 10,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Colors.transparent,
-              ),
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PortfolioPage(),
-                        ),
-                      );
-                    },
-                    title: Text(
-                      "\$1,000,000",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 34,
-                        height: -1,
-                      ),
-                    ),
-
-                    ///
-                    subtitle: Text(
-                      "1.34% (\$6.94) Today",
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-
-                ///
-                Expanded(
-                  flex: 4,
-                  child: PortfolioLineChart(),
-                ),
-              ],
-            ),
-          ),
-
-          ///
-          Text(
-            "Investments For Me",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
-            ),
-          ),
-
           ///
           GridView.builder(
             shrinkWrap: true,
@@ -120,7 +41,7 @@ class _InvestPageState extends ConsumerState<InvestPage> {
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1.2,
+              childAspectRatio: 2,
               crossAxisSpacing: 4,
               mainAxisSpacing: 4,
             ),
@@ -131,16 +52,17 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => InvestmentsPage(
-                          selectedTabIndex: index + 1,
-                        ),
+                        builder: (context) => PortfolioPage(),
                       ),
                     );
                   },
                   color: Colors.blue,
-                  title: "Liquidity Pools",
-                  icon: Icon(Icons.water_drop_outlined),
-                  subtitle: "Earn up to 181% APR",
+                  title: "Portfolio",
+                  icon: Icon(
+                    Icons.donut_large_outlined,
+                  ),
+                  subtitle: "",
+                  // subtitle: "\u20A6200,000",
                 );
               }
 
@@ -150,16 +72,16 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => InvestmentsPage(
-                          selectedTabIndex: index + 1,
-                        ),
+                        builder: (context) => AccountBalancePage(),
                       ),
                     );
                   },
-                  icon: Icon(Icons.home_work_outlined),
+                  icon: Icon(
+                    Icons.wallet,
+                  ),
                   color: Colors.teal,
-                  title: "Real Estate",
-                  subtitle: "Earn up to 50% APR",
+                  title: "Wallet",
+                  subtitle: "",
                 );
               }
               if (index == 2) {
@@ -167,101 +89,28 @@ class _InvestPageState extends ConsumerState<InvestPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => InvestmentsPage(
-                          selectedTabIndex: index + 1,
-                        ),
+                        builder: (context) => EventsPage(),
                       ),
                     );
                   },
                   icon: Icon(Icons.hourglass_empty_outlined),
                   color: Colors.deepPurpleAccent,
-                  title: "Staking",
-                  subtitle: "Earn up to 2.5% APR",
+                  title: "History",
+                  subtitle: "",
                 );
               }
 
               return QuickActionInvestTile(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => InvestmentsPage(
-                        selectedTabIndex: index + 1,
-                      ),
-                    ),
-                  );
-                },
+                onTap: () {},
                 color: Colors.brown,
                 icon: Icon(Icons.request_quote_outlined),
-                title: "Bonds",
-                subtitle: "Earn up to 27% APR",
+                title: "",
+                subtitle: "",
               );
             },
           ),
 
-          TextButton.icon(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => InvestmentsPage(
-                      // selectedTabIndex: 0,
-                      ),
-                ),
-              );
-            },
-            style: TextButton.styleFrom(
-              overlayColor: Colors.transparent,
-            ),
-            icon: Icon(Icons.trending_up),
-            label: Text(
-              "View All",
-              textAlign: TextAlign.center,
-            ),
-          ),
-
-          ///
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AccountBalancePage(),
-                ),
-              );
-            },
-            child: Container(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              alignment: Alignment.center,
-              height: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.amber.withValues(alpha: 0.5),
-                    Colors.amber.withValues(alpha: 0.4),
-                    Colors.amber.withValues(alpha: 0.3),
-                  ],
-                ),
-              ),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(8),
-                leading: Icon(
-                  Icons.account_balance_wallet_outlined,
-                ),
-                title: Text(
-                  "\$100,000",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                subtitle: Text(
-                  "My Account Balance",
-                ),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.arrow_forward_outlined),
-                ),
-              ),
-            ),
-          ),
+          /// Insert tab bar view here
         ],
       ),
     );

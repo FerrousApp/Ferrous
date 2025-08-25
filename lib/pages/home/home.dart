@@ -44,6 +44,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     // try {
     // _pageController.jumpToPage(0) ;
+    if (!mounted) return;
     await _pageController.animateToPage(
       _currentPage,
       duration: const Duration(milliseconds: 500),
@@ -63,14 +64,14 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final exploreItems = demoAssets
+    final exploreItems = demoAssetsInvestments
         .map(
           (asset) => ExploreListTile(
-            badgePath: asset.badge,
             imagePath: asset.logo,
             title: asset.ticker,
             subtitle: asset.name,
-            assetValue: asset.totalValue,
+
+            // assetValue: asset.totalValue,
             apy: asset.returnOnInvestment,
             onTap: () {
               Navigator.of(context).push(
@@ -127,82 +128,52 @@ class _HomePageState extends ConsumerState<HomePage> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.notifications_none),
           ),
         ],
       ),
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
           ListTile(
-            contentPadding: EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 0,
-            ),
+            contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
             title: Text(
-              "My Portfolio Value",
+              "Total Value",
+              // "",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.grey,
               ),
             ),
+
+            // TODO: ontap, blur widget
             subtitle: Text(
-              "\$1,000,000",
+              "\u20A61,000,000",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 36,
                 // height: 2,
               ),
             ),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.visibility_outlined),
+
+            /// profit percent
+            trailing: Text(
+              "\u2191 24%",
+              style: TextStyle(
+                color: Colors.green,
+              ),
             ),
           ),
 
-          ///
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.green.withValues(alpha: 0.3),
-                  borderRadius: BorderRadius.circular(36),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 6,
-                  vertical: 0,
-                ),
-                child: Text(
-                  "24hr profit is \$500,000",
-                  style: TextStyle(
-                    color: Colors.green,
-                  ),
-                ),
-              ),
-
-              /// profit percent
-              Text("\u219124%"),
-            ],
-          ),
-
-          ///
+          /// --
           SizedBox(
             height: 30,
           ),
 
           ///
-          Text(
-            "Speed Dial",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
-            ),
-          ),
-
           SizedBox(
             height: 150,
             child: PageView.builder(
@@ -224,8 +195,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                     leading: Icon(
                       Icons.donut_large_outlined,
                     ),
-                    title: "My Portfolio",
-                    subtitle: "Take a look at your yield bearing assets.",
+                    title: "Portfolio",
+                    subtitle: "My investments",
                   );
                 }
                 if (index == 1) {
@@ -236,7 +207,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       Icons.group_add_outlined,
                     ),
                     title: "Invite a Friend",
-                    subtitle: "Invite another user to earn awesome rewards.",
+                    subtitle: "Invite to earn rewards",
                   );
                 }
                 if (index == 2) {
@@ -247,18 +218,28 @@ class _HomePageState extends ConsumerState<HomePage> {
                       Icons.verified_outlined,
                     ),
                     title: "Complete KYC",
-                    subtitle: "Verify your identity to unlock more features.",
+                    subtitle: "Verify your identity",
                   );
                 }
+
                 if (index == 3) {
                   return SpeedDialTile(
                     color: Colors.purpleAccent,
                     onTap: () {},
-                    leading: Icon(
-                      Icons.school_outlined,
+                    leading: IconButton(
+                      icon: Text(
+                        String.fromCharCodes([0xD835, 0xDD4F]),
+                        style: TextStyle(
+                          fontSize: 24,
+                          // color: Colors.grey,
+                        ),
+                      ),
+                      onPressed: () {
+                        // Navigate to Telegram channel
+                      },
                     ),
-                    title: "Ferrous Learn",
-                    subtitle: "Get rewarded for learning.",
+                    title: "X",
+                    subtitle: "Know when we post",
                   );
                 }
 
@@ -266,16 +247,16 @@ class _HomePageState extends ConsumerState<HomePage> {
                   color: Colors.blueGrey,
                   onTap: () {},
                   leading: Icon(
-                    Icons.newspaper_outlined,
+                    Icons.public,
                   ),
-                  title: "News",
-                  subtitle: "Stay up to date on the latest information.",
+                  title: "Website",
+                  subtitle: "More Information",
                 );
               },
             ),
           ),
 
-          //
+          ///
           SizedBox(
             height: 30,
           ),
@@ -302,7 +283,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               );
             },
             style: TextButton.styleFrom(
-              overlayColor: Colors.transparent,
+              foregroundColor: Colors.green,
             ),
             icon: Icon(Icons.trending_up),
             label: Text(

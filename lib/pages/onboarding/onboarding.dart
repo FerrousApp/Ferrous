@@ -1,4 +1,4 @@
-import 'package:ferrous/pages/start/start.dart';
+import 'package:ferrous/pages/signin/signin.dart';
 import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,7 +45,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
           ///
           Column(
@@ -122,12 +122,12 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => StartPage(),
+              builder: (context) => SignInPage(),
             ),
           );
         },
         onLongPress: () {
-          print("long press");
+          print("long press for theme change");
           ref.read(themeModeProvider.notifier).changeTheme();
         },
         child: const Text(

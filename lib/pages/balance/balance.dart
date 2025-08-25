@@ -25,17 +25,8 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
-          // Text(
-          //   'No balance information available',
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(
-          //     color: Colors.grey.shade600,
-          //     fontSize: 16,
-          //   ),
-          // ),
-
           ///
           Container(
             height: AppSizing.height(context) * 0.15,
@@ -57,24 +48,13 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
                   icon: Text("\u{1F1F3}\u{1F1EC}"),
                 ),
 
-                ///
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '\u20A61,000,000',
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    ///
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.visibility_outlined),
-                    ),
-                  ],
+                ///TODO: on tap blur/ change visibility
+                Text(
+                  '\u20A61,000,000',
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

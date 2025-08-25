@@ -27,6 +27,8 @@ ThemeData darkTheme = ThemeData(
   ///
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: Colors.amber,
+    // backgroundColor: Color.fromRGBO(255, 193, 7, 0.2),
+    // backgroundColor: Color.fromRGBO(99, 88, 53, 1),
   ),
 
   /// for the animation to or from pages

@@ -3,8 +3,7 @@ import 'package:ferrous/misc/demo_data.dart';
 import 'package:ferrous/pages/invest/invest.dart';
 import 'package:flutter/material.dart';
 
-//TODO: make for LP instead of hedera staking
-
+// TODO: may add events to this page, to show specific actions
 class AssetDetailPage extends StatefulWidget {
   final DemoAssetData assetData;
 
@@ -21,36 +20,54 @@ class _AssetDetailPageState extends State<AssetDetailPage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "Asset Detail",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: const Color.fromRGBO(255, 193, 7, 1),
+          // backgroundColor: Colors.blueAccent,
+          title: ListTile(
+            minVerticalPadding: 0,
+            contentPadding: const EdgeInsets.all(0),
+
+            ///
+            title: Text(
+              widget.assetData.ticker,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            ///
+            subtitle: Text(
+              widget.assetData.name,
+              style: TextStyle(
+                color: Colors.amber,
+              ),
+            ),
+
+            /// TODO: on tap, open a detail info of the asset and provider - most likely move the tabbar view here and make items in the page bigger
+            trailing: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.amber, // border color
+                ),
+                // borderRadius:
+                //     BorderRadius.circular(8), // optional rounded corners
+              ),
+              child: ClipRect(
+                child: Image.asset(
+                  widget.assetData.logo,
+                  height: 40,
+                  width: 40,
+                ),
+              ),
             ),
           ),
         ),
 
         ///
         body: ListView(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(12),
           children: [
             ///
             ListTile(
-              contentPadding: EdgeInsets.zero,
-              onTap: () {},
-              leading: Image.asset(
-                widget.assetData.logo,
-              ),
-              title: Text(widget.assetData.ticker),
-              subtitle: Text(widget.assetData.name),
-
-              /// profit percent
-              trailing: Text("\u219124%"),
-            ),
-
-            ///
-            ListTile(
-              contentPadding: EdgeInsets.zero,
+              minVerticalPadding: 0,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

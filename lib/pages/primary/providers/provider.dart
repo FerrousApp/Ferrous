@@ -9,6 +9,6 @@ class PrimaryPageIndex extends StateNotifier<int> {
 }
 
 final primaryPageIndexProvider =
-    StateNotifierProvider<PrimaryPageIndex, int>((ref) {
+    StateNotifierProvider.autoDispose<PrimaryPageIndex, int>((ref) {
   return PrimaryPageIndex();
 });

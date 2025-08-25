@@ -27,7 +27,7 @@ class _MorePageState extends ConsumerState<MorePage> {
 
       ///
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
           Text(
             "Me",

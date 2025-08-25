@@ -13,7 +13,7 @@ ThemeData lightTheme = ThemeData(
     fontFamily: 'Montserrat',
 
     // scaffold background color
-    scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+    scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
 
     ///
     appBarTheme: const AppBarTheme(
@@ -25,7 +25,8 @@ ThemeData lightTheme = ThemeData(
     ///
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Colors.amber,
-      
+      // backgroundColor: Colors.white,
+      // backgroundColor: Colors.amber.shade50,
     ),
 
     /// for the animation to or from pages

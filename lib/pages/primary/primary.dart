@@ -1,6 +1,6 @@
 import 'package:ferrous/pages/home/home.dart';
 import 'package:ferrous/pages/invest/invest.dart';
-import 'package:ferrous/pages/events/events.dart';
+
 import 'package:ferrous/pages/more/more.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:flutter/material.dart';
@@ -31,14 +31,14 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
       ///
       body: PageView.builder(
         controller: primaryPageController,
-        itemCount: 4,
+        itemCount: 3,
         onPageChanged: (value) async {
           ref.read(primaryPageIndexProvider.notifier).setIndex(value);
         },
         itemBuilder: ((context, index) => const [
               HomePage(),
               InvestPage(),
-              EventsPage(),
+              // EventsPage(),
               MorePage(),
             ].elementAt(index)),
       ),
@@ -61,10 +61,10 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
             icon: Icon(Icons.trending_up),
             label: 'Invest',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Events',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.history),
+          //   label: 'Events',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.precision_manufacturing),
             label: 'More',

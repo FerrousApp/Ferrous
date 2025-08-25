@@ -67,8 +67,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           ),
         ),
       ),
+
+      ///
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12.0),
 
         ///
         children: [

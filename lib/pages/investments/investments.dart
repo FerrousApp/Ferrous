@@ -71,6 +71,12 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
 
           ///
           actions: [
+            /// TODO: will popup bottom modal bar to sort the page contents
+            Icon(
+              Icons.filter_list_outlined,
+            ),
+
+            ///
             SearchAnchor(
               builder: (context, controller) => Padding(
                 padding: const EdgeInsets.all(12),
@@ -103,7 +109,7 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
 
         ///
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12),
           child: TabBarView(
             children: [
               // all investments tab
@@ -111,94 +117,47 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
                 children: [
                   ///
                   ...demoAssetsInvestments.map(
-                    (asset) => ExpansionTile(
-                      tilePadding: EdgeInsets.all(2),
-                      shape: Border(),
-                      onExpansionChanged: (value) {},
+                    (asset) => ListTile(
+                      contentPadding: EdgeInsets.all(2),
+                      leading: Image.asset(
+                        asset.logo,
+                        height: 36,
+                        width: 36,
+                      ),
                       title: Text(
                         asset.ticker,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      subtitle: Text(asset.name),
-                      leading: Image.asset(
-                        asset.logo,
-                        height: 36,
+                      subtitle: Text(
+                        asset.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
-                      showTrailingIcon: false,
-
-                      children: [
-                        ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => AssetDetailPage(
-                                  assetData: asset,
-                                ),
-                              ),
-                            );
-                          },
-                          title: Text("Provider"),
-                          subtitle: Text(asset.providerName),
-                          trailing: Text(
-                            asset.returnOnInvestment,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                      trailing: Text(
+                        asset.returnOnInvestment,
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontWeight: FontWeight.w600,
+                          height: 0,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AssetDetailPage(
+                              assetData: asset,
                             ),
                           ),
-                        ),
-                      ],
-                      // onTap: () {
-                      //   // Handle tap
-                      // },
+                        );
+                      },
                     ),
                   )
                 ],
               ),
-
-              /// account balances tab
-              // ListView(
-              //   children: [
-              //     ExpansionTile(
-              //       tilePadding: EdgeInsets.all(2),
-              //       shape: Border(),
-              //       onExpansionChanged: (value) {},
-              //       title: Text(
-              //         "Nigerian Naira",
-              //         style: TextStyle(
-              //           fontWeight: FontWeight.bold,
-              //         ),
-              //       ),
-              //       subtitle: Text("NGN"),
-              //       leading: CircleAvatar(
-              //         child: Text(
-              //           "\u{1F1F3}\u{1F1EC}",
-              //         ),
-              //       ),
-              //       showTrailingIcon: false,
-              //       children: [
-              //         ListTile(
-              //           onTap: () {
-              //             Navigator.of(context).push(
-              //               MaterialPageRoute(
-              //                 builder: (context) => AccountBalancePage(),
-              //               ),
-              //             );
-              //           },
-              //           title: Text("Provider"),
-              //           subtitle: Text("Nigerian Government"),
-              //           trailing: Text(
-              //             "\u20A61,000,000",
-              //             style: TextStyle(
-              //               fontWeight: FontWeight.bold,
-              //             ),
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ),
 
               /// Liquidity pools
               ListView(
@@ -344,33 +303,6 @@ class _InvestmentsPageState extends State<InvestmentsPage> {
                   ),
                 ),
               ),
-
-              // for (int tabIndex = 0;
-              //     tabIndex < InvestmentsPage._tabOptions.length;
-              //     tabIndex++)
-              //   Builder(
-              //     builder: (context) {
-              //       final filtered = _filteredInvestments(tabIndex);
-              //       if (filtered.isEmpty) {
-              //         return const Center(child: Text('No investments found.'));
-              //       }
-              //       return ListView.builder(
-              //         itemCount: filtered.length,
-              //         itemBuilder: (context, i) {
-              //           final item = filtered[i];
-              //           return ListTile(
-              //             title: Text(item['title'] ?? ''),
-              //             subtitle: Text('Type: ${item['type']}'),
-              //             leading: const Icon(Icons.account_balance_wallet),
-              //             trailing: const Icon(Icons.chevron_right),
-              //             onTap: () {
-              //               // Handle tap
-              //             },
-              //           );
-              //         },
-              //       );
-              //     },
-              //   ),
             ],
           ),
         ),

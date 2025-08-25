@@ -84,7 +84,7 @@ class _WelcomeBackPinEntryPageState
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         children: [
           const Text(
             'Enter your 4-Digit PIN',

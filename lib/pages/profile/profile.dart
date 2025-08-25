@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
 
       ///
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12.0),
         children: [
           // ListTile(
           //   contentPadding: EdgeInsets.zero,
@@ -112,7 +112,7 @@ class ProfilePage extends StatelessWidget {
 
           ///TODO: pay a one time fee for a ferrous id
           const Text(
-            "Ferrous ID",
+            "ION Points",
             style: TextStyle(
               fontSize: 18,
               color: Colors.grey,
@@ -130,20 +130,23 @@ class ProfilePage extends StatelessWidget {
             elevation: 0,
             child: ListTile(
               contentPadding: const EdgeInsets.all(20),
-              onTap: () {},
+              tileColor: Colors.amber.withValues(alpha: 0.2),
               title: Text(
-                "Your ION Identity",
+                "Get Rewarded!",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle:
-                  Text("Create a unique identity to interact with Ferrous"),
+              subtitle: Text(
+                "Earn up to \$1000 for completing tasks",
+              ),
               trailing: CircleAvatar(
+                backgroundColor: Colors.amber.withValues(alpha: 0.5),
                 child: Text(
                   "\u{1F71D}",
                 ),
               ),
+              onTap: () {},
             ),
           ),
 

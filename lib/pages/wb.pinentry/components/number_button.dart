@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NumberButton extends ConsumerWidget {
+class NumberButton extends StatelessWidget {
   final String number;
   final Function(String) onPressed;
   final Color color;
@@ -14,7 +13,7 @@ class NumberButton extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onPressed(number),
       child: Container(
