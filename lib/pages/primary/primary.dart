@@ -14,12 +14,13 @@ class PrimaryPage extends ConsumerStatefulWidget {
 }
 
 class _PrimaryPageState extends ConsumerState<PrimaryPage> {
-  PageController primaryPageController = PageController(initialPage: 0);
+  // moved out for use in the homepage
+  // PageController primaryPageController = PageController(initialPage: 0);
 
   @override
   void dispose() {
     super.dispose();
-    primaryPageController.dispose();
+    // primaryPageController.dispose();
   }
 
   @override
@@ -30,7 +31,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
     return Scaffold(
       ///
       body: PageView.builder(
-        controller: primaryPageController,
+        controller: currentPage,
         itemCount: 3,
         onPageChanged: (value) async {
           ref.read(primaryPageIndexProvider.notifier).setIndex(value);
@@ -38,19 +39,18 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
         itemBuilder: ((context, index) => const [
               HomePage(),
               InvestPage(),
-              // EventsPage(),
               MorePage(),
             ].elementAt(index)),
       ),
 
       ///
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
+        currentIndex: currentPage.initialPage,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
           // jump to page
           ref.read(primaryPageIndexProvider.notifier).setIndex(index);
-          primaryPageController.jumpToPage(index);
+          currentPage.jumpToPage(index);
         },
         items: const [
           BottomNavigationBarItem(
@@ -61,10 +61,6 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
             icon: Icon(Icons.trending_up),
             label: 'Invest',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.history),
-          //   label: 'Events',
-          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.precision_manufacturing),
             label: 'More',

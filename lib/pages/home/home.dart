@@ -1,14 +1,12 @@
-import 'dart:async';
-
-import 'package:ferrous/misc/demo_data.dart';
-import 'package:ferrous/pages/asset/asset.dart';
-import 'package:ferrous/pages/home/components.dart/explore_list_tile.dart';
-import 'package:ferrous/pages/home/components.dart/speed_dial_tile.dart';
-import 'package:ferrous/pages/investments/investments.dart';
+import 'package:ferrous/pages/balance/balance.dart';
+import 'package:ferrous/pages/events/events.dart';
+import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
+import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -18,71 +16,10 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  late final PageController _pageController;
-  int _currentPage = 0;
-  int pageCount = 5;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(
-      viewportFraction: 0.7,
-    );
-    Timer.periodic(const Duration(seconds: 3), (duration) {
-      autoScroll();
-    });
-  }
-
-  autoScroll() async {
-    if (!mounted) return;
-    if (_currentPage == pageCount) {
-      _currentPage = 0;
-    } else {
-      _currentPage = _currentPage + 1;
-    }
-    setState(() {});
-
-    // try {
-    // _pageController.jumpToPage(0) ;
-    if (!mounted) return;
-    await _pageController.animateToPage(
-      _currentPage,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-    // } catch (e) {
-    //   // this is to avoid the error of doing an action while the controller is animating
-    //   debugPrint('Error animating to page: $e');
-    // }
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final exploreItems = demoAssetsInvestments
-        .map(
-          (asset) => ExploreListTile(
-            imagePath: asset.logo,
-            title: asset.ticker,
-            subtitle: asset.name,
-
-            // assetValue: asset.totalValue,
-            apy: asset.returnOnInvestment,
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AssetDetailPage(assetData: asset),
-                ),
-              );
-            },
-          ),
-        )
-        .toList();
+    ///
+    final currentPage = ref.watch(primaryPageIndexProvider);
 
     ///
     return Scaffold(
@@ -141,7 +78,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
             title: Text(
-              "Total Value",
+              "Account Value",
               // "",
               style: TextStyle(
                 fontSize: 18,
@@ -173,86 +110,90 @@ class _HomePageState extends ConsumerState<HomePage> {
             height: 30,
           ),
 
-          ///
-          SizedBox(
-            height: 150,
-            child: PageView.builder(
-              padEnds: false,
-              physics: AlwaysScrollableScrollPhysics(),
-              controller: _pageController,
-              itemCount: pageCount,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return SpeedDialTile(
-                    color: Colors.amber,
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PortfolioPage(),
-                        ),
-                      );
-                    },
-                    leading: Icon(
-                      Icons.donut_large_outlined,
-                    ),
-                    title: "Portfolio",
-                    subtitle: "My investments",
-                  );
-                }
-                if (index == 1) {
-                  return SpeedDialTile(
-                    color: Colors.lightBlueAccent,
-                    onTap: () {},
-                    leading: Icon(
-                      Icons.group_add_outlined,
-                    ),
-                    title: "Invite a Friend",
-                    subtitle: "Invite to earn rewards",
-                  );
-                }
-                if (index == 2) {
-                  return SpeedDialTile(
-                    color: Colors.redAccent,
-                    onTap: () {},
-                    leading: Icon(
-                      Icons.verified_outlined,
-                    ),
-                    title: "Complete KYC",
-                    subtitle: "Verify your identity",
-                  );
-                }
-
-                if (index == 3) {
-                  return SpeedDialTile(
-                    color: Colors.purpleAccent,
-                    onTap: () {},
-                    leading: IconButton(
-                      icon: Text(
-                        String.fromCharCodes([0xD835, 0xDD4F]),
-                        style: TextStyle(
-                          fontSize: 24,
-                          // color: Colors.grey,
-                        ),
-                      ),
-                      onPressed: () {
-                        // Navigate to Telegram channel
-                      },
-                    ),
-                    title: "X",
-                    subtitle: "Know when we post",
-                  );
-                }
-
-                return SpeedDialTile(
-                  color: Colors.blueGrey,
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.public,
-                  ),
-                  title: "Website",
-                  subtitle: "More Information",
-                );
+          ClipRRect(
+            clipBehavior: Clip.antiAlias,
+            borderRadius: BorderRadius.circular(12),
+            child: GestureDetector(
+              onTap: () {
+                // sequence to jump to the invest page
+                ref.read(primaryPageIndexProvider.notifier).setIndex(1);
+                currentPage.jumpToPage(1);
               },
+              child: Container(
+                height: 200,
+                clipBehavior: Clip.hardEdge,
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  // color: Colors.amber,
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.amber.withValues(alpha: 0.7),
+                      Colors.amber.withValues(alpha: 0.6),
+                      Colors.amber.withValues(alpha: 0.5),
+                    ],
+                  ),
+                ),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    ///
+                    Lottie.asset(
+                      'assets/lotties/onboard.json',
+                    ),
+
+                    ///
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ///
+                        Text(
+                          "Enjoy up to 99% returns annually!",
+                          style: TextStyle(
+                            // fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                          ),
+                        ),
+
+                        Spacer(),
+
+                        ///
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton.icon(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.black87
+                                    : Colors.white70,
+                                backgroundColor: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.white
+                                    : Color(0xFF121212),
+                              ),
+                              onPressed: () {
+                                // sequence to jump to the invest page
+                                ref
+                                    .read(primaryPageIndexProvider.notifier)
+                                    .setIndex(1);
+                                currentPage.jumpToPage(1);
+                              },
+                              label: Icon(Icons.arrow_forward),
+                              icon: Text(
+                                "Start Investing",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
 
@@ -263,7 +204,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
           ///
           Text(
-            "Explore",
+            "Actions",
             style: TextStyle(
               fontSize: 18,
               color: Colors.grey,
@@ -271,25 +212,117 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
 
           ///
-          for (ExploreListTile item in exploreItems) item,
+          GridView.builder(
+            shrinkWrap: true,
+            itemCount: 6,
+            padding: EdgeInsets.zero,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 1.5,
+              crossAxisCount: 2,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
+            ),
+            itemBuilder: (context, index) {
+              ///
+              if (index == 0) {
+                return QuickActionInvestTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PortfolioPage(),
+                      ),
+                    );
+                  },
+                  color: Colors.blue,
+                  title: "Portfolio",
+                  icon: Icon(
+                    Icons.donut_large_outlined,
+                  ),
+                  subtitle: "",
+                  // subtitle: "\u20A6200,000",
+                );
+              }
 
-          ///
-          TextButton.icon(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => InvestmentsPage(),
-                ),
+              ///
+              if (index == 1) {
+                return QuickActionInvestTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => AccountBalancePage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.wallet,
+                  ),
+                  color: Colors.teal,
+                  title: "Wallet",
+                  subtitle: "",
+                );
+              }
+
+              ///
+              if (index == 2) {
+                return QuickActionInvestTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EventsPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.hourglass_empty_outlined),
+                  color: Colors.deepPurpleAccent,
+                  title: "History",
+                  subtitle: "",
+                );
+              }
+
+              ///
+              if (index == 3) {
+                return QuickActionInvestTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EventsPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.verified_outlined),
+                  color: Colors.red,
+                  title: "Verify My Identity",
+                  subtitle: "",
+                );
+              }
+
+              ///
+              if (index == 4) {
+                return QuickActionInvestTile(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => EventsPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.group_outlined),
+                  color: Colors.pinkAccent,
+                  title: "Invite a Friend",
+                  subtitle: "",
+                );
+              }
+
+              ///
+              return QuickActionInvestTile(
+                onTap: () {},
+                color: Colors.brown,
+                icon: Icon(Icons.public),
+                title: "Stay Updated",
+                subtitle: "",
               );
             },
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.green,
-            ),
-            icon: Icon(Icons.trending_up),
-            label: Text(
-              "View All",
-              textAlign: TextAlign.center,
-            ),
           ),
         ],
       ),

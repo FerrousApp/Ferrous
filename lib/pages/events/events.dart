@@ -21,6 +21,23 @@ class _EventsPageState extends State<EventsPage> {
           ),
         ),
 
+        ///
+        flexibleSpace: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                //TODO: invert in light mode
+                Colors.amber.withValues(alpha: 0.5),
+                Colors.amber.withValues(alpha: 0.3),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
+
         actions: [
           IconButton(
             onPressed: () {},
