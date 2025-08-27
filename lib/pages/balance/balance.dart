@@ -15,10 +15,27 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Account Balance',
+          'Balance',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.amber,
+          ),
+        ),
+
+        ///
+        flexibleSpace: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                //TODO: invert in light mode
+                Colors.amber.withValues(alpha: 0.5),
+                Colors.amber.withValues(alpha: 0.3),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
         ),
       ),
@@ -95,6 +112,7 @@ class _AccountBalancePageState extends State<AccountBalancePage> {
             "Events",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.grey,
             ),
           ),
 

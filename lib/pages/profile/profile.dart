@@ -32,6 +32,24 @@ class ProfilePage extends StatelessWidget {
             "obiajulu@ferrous.app",
             style: TextStyle(
               color: Colors.amber,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
+        ///
+        flexibleSpace: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                //TODO: invert in light mode
+                Colors.amber.withValues(alpha: 0.5),
+                Colors.amber.withValues(alpha: 0.3),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
         ),

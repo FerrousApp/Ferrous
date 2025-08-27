@@ -66,6 +66,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   fontSize: 40,
                   // color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  // fontFamily: "JosefinSans",
                   height: 1,
                 ),
               ),
@@ -75,6 +76,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   fontSize: 40,
                   // color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  // fontFamily: "JosefinSans",
                   height: 1,
                 ),
               ),
@@ -84,6 +86,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
                   fontSize: 40,
                   // color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  // fontFamily: "JosefinSans",
                   height: 1,
                 ),
               ),
@@ -93,7 +96,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage> {
 
               ///
               Text(
-                "Manage your curated portfolio of flexible high yield blockchain based multinational investments.",
+                "Access multinational high yield\nand flexible real world assets\nlike Gold, Bonds, and Treasuries.",
                 style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).brightness == Brightness.light

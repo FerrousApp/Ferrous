@@ -20,6 +20,7 @@ class SpeedDialTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 200,
       margin: EdgeInsets.symmetric(
         horizontal: 4,
         vertical: 0,
@@ -73,3 +74,7 @@ class SpeedDialTile extends StatelessWidget {
     );
   }
 }
+
+
+
+

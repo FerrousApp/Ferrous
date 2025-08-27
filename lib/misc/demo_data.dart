@@ -35,7 +35,7 @@ final hederaStaking = DemoAssetData(
   ticker: "HBAR",
   name: "Hedera",
   totalValue: "\$14.66B",
-  returnOnInvestment: "2.5% apy",
+  returnOnInvestment: "2.5%",
   overview:
       "Hedera offers liquid staking for HBAR holders, allowing you to earn rewards by staking your tokens to a consensus node without locking your funds. Your entire balance is staked automatically, and tokens remain accessible at all times. \n\nTo earn rewards, you must be staked to a node for at least 24 hours, the node must meet its minimum stake, and the global staking reward account must hold enough HBAR. When active, staking rewards can reach up to 2.5% annually. Rewards go to the final account in the chain unless redirected. Staking helps secure the network while giving you passive HBAR income - with no slashing, no lockup, and no complicated setup.",
   providerName: "Hedera Hashgraph",
@@ -56,7 +56,7 @@ final usdcHbarSaucerSwap = DemoAssetData(
   // name: "USDC-HBAR Liquidity Pool",
   name: "Circle USD",
   totalValue: "\$13.31M",
-  returnOnInvestment: "94.99% apy",
+  returnOnInvestment: "94.99%",
   overview:
       "The USDC/HBAR liquidity pool on SaucerSwap is a core part of the Hedera DeFi ecosystem. It's a pool of USDC and HBAR tokens locked in a smart contract that enables automated trading. This mechanism removes the need for a traditional order book, making it a key hub for converting a stablecoin into the network's native token. \n\nFor traders, this pool allows for instant token swaps. Users can trade their USDC for HBAR (or HBAR for USDC) at a price determined by the ratio of tokens within the pool. This process leverages Hedera's high transaction speed, minimal fees, and a fair transaction ordering system that helps prevent market manipulation. \n\nFor liquidity providers (LPs), this pool is an opportunity to earn passive income. By depositing an equal value of both USDC and HBAR, LPs enable these trades. In return, they receive a share of the trading fees collected from every swap. This can be further supplemented by additional token rewards from the SaucerSwap protocol itself.",
   providerName: "Saucer Swap",
@@ -74,7 +74,7 @@ final usdtHbarSaucerSwap = DemoAssetData(
   // name: "USDT-HBAR Liquidity Pool",
   name: "Tether USD",
   totalValue: "\$71.52K",
-  returnOnInvestment: "31.39% apy",
+  returnOnInvestment: "31.39%",
   overview:
       "The USDT/HBAR liquidity pool on SaucerSwap is a core part of the Hedera DeFi ecosystem. It's a pool of USDT and HBAR tokens locked in a smart contract that enables automated trading. This mechanism removes the need for a traditional order book, making it a key hub for converting a stablecoin into the network's native token. \n\nFor traders, this pool allows for instant token swaps. Users can trade their USDT for HBAR (or HBAR for USDT) at a price determined by the ratio of tokens within the pool. This process leverages Hedera's high transaction speed, minimal fees, and a fair transaction ordering system that helps prevent market manipulation. \n\nFor liquidity providers (LPs), this pool is an opportunity to earn passive income. By depositing an equal value of both USDT and HBAR, LPs enable these trades. In return, they receive a share of the trading fees collected from every swap. This can be further supplemented by additional token rewards from the SaucerSwap protocol itself.",
   providerName: "Saucer Swap",
@@ -111,7 +111,7 @@ final List<DemoAssetData> demoAssetsInvestments = [
       ticker: "OUSG",
       name: "Ondo US Treasury Yield",
       totalValue: "\$150M",
-      returnOnInvestment: "4.8% apy",
+      returnOnInvestment: "4.8%",
       overview:
           "Ondo Finance offers tokenized exposure to short-term U.S. Treasury Bills via the OUSG token. These tokens represent ownership in a BlackRock-managed ETF and are fully backed by U.S. Treasuries, giving stable, low-risk returns in a compliant and transparent structure.",
       providerName: "Ondo Finance",
@@ -128,7 +128,7 @@ final List<DemoAssetData> demoAssetsInvestments = [
       ticker: "GFI-Loan",
       name: "Goldfinch Private Credit",
       totalValue: "\$120M",
-      returnOnInvestment: "11.0% apy",
+      returnOnInvestment: "11.0%",
       overview:
           "Goldfinch offers decentralized access to private credit opportunities. Investors supply stablecoins to vetted borrowers in emerging markets, such as fintechs and microfinance institutions, generating attractive, non-correlated yield.",
       providerName: "Goldfinch",
@@ -145,7 +145,7 @@ final List<DemoAssetData> demoAssetsInvestments = [
       ticker: "MPL-TRANCH",
       name: "Maple Direct Lending",
       totalValue: "\$95M",
-      returnOnInvestment: "10.2% apy",
+      returnOnInvestment: "10.2%",
       overview:
           "Maple enables permissioned lending pools to real-world borrowers such as crypto firms and fintechs. Users can provide USDC to diversified lending pools and earn high-yield returns through institutional credit exposure.",
       providerName: "Maple Finance",
@@ -158,5 +158,15 @@ final List<DemoAssetData> demoAssetsInvestments = [
     ),
   ],
   usdcHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
+  usdtHbarSaucerSwap,
   usdtHbarSaucerSwap,
 ];

@@ -1,6 +1,7 @@
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/misc/demo_data.dart';
-import 'package:ferrous/pages/invest/invest.dart';
+import 'package:ferrous/pages/invest/invest%20copy.dart';
+
 import 'package:flutter/material.dart';
 
 // TODO: may add events to this page, to show specific actions
@@ -23,7 +24,7 @@ class _AssetDetailPageState extends State<AssetDetailPage> {
           // backgroundColor: Colors.blueAccent,
           title: ListTile(
             minVerticalPadding: 0,
-            contentPadding: const EdgeInsets.all(0),
+            contentPadding: EdgeInsets.zero,
 
             ///
             title: Text(
