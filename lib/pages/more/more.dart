@@ -63,26 +63,6 @@ class _MorePageState extends ConsumerState<MorePage> {
             },
           ),
 
-          ListTile(
-            contentPadding: EdgeInsets.all(0),
-            // leading: Icon(Icons.school_outlined),
-            title: Text('Ferrous Learn'),
-
-            onTap: () {
-              // Navigate to about page
-            },
-          ),
-
-          ListTile(
-            contentPadding: EdgeInsets.all(0),
-            // leading: Icon(Icons.school_outlined),
-            title: Text('News'),
-
-            onTap: () {
-              // Navigate to about page
-            },
-          ),
-
           ///
           SizedBox(
             height: 30,
@@ -113,19 +93,6 @@ class _MorePageState extends ConsumerState<MorePage> {
                     Icons.mode_night_outlined,
                     color: Colors.blue[900],
                   ),
-          ),
-
-          ///
-          ListTile(
-            contentPadding: EdgeInsets.all(0),
-            // leading: Icon(
-            //   Icons.mode_standby_sharp,
-            // ),
-            title: Text('Currency'),
-
-            onTap: () {
-              // Navigate to about page
-            },
           ),
 
           ///

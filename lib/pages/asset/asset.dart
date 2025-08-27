@@ -1,6 +1,5 @@
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/misc/demo_data.dart';
-import 'package:ferrous/pages/invest/invest%20copy.dart';
 
 import 'package:flutter/material.dart';
 
@@ -88,9 +87,8 @@ class _AssetDetailPageState extends State<AssetDetailPage> {
             SizedBox(height: 30),
 
             Container(
-              height: AppSizing.height(context) * 0.3,
-              child: PortfolioLineChart(),
-            ),
+                height: AppSizing.height(context) * 0.3,
+                child: Text("chart goes here"),),
 
             ///
             ///TODO: add a section to show amount holding, current value, and other details

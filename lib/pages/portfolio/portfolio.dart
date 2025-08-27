@@ -1,4 +1,5 @@
 import 'package:ferrous/misc/demo_data.dart';
+import 'package:ferrous/pages/asset/asset.dart';
 import 'package:ferrous/pages/balance/balance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -85,6 +86,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
             ),
             subtitle: Text("Nigerian Naira"),
             leading: CircleAvatar(
+              radius: 18,
               child: Text(
                 "\u{1F1F3}\u{1F1EC}",
               ),
@@ -134,7 +136,9 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => AccountBalancePage(),
+                        builder: (context) => AssetDetailPage(
+                          assetData: asset,
+                        ),
                       ),
                     );
                   },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class QuickActionInvestTile extends StatelessWidget {
-  const QuickActionInvestTile({
+class QuickActionTile extends StatelessWidget {
+  const QuickActionTile({
     super.key,
     required this.color,
     required this.onTap,

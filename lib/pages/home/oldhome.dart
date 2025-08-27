@@ -1,7 +1,6 @@
 import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
-import 'package:ferrous/pages/ai/ai.dart';
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';
 import 'package:ferrous/pages/home/components.dart/currency_change_modal.dart';
 import 'package:ferrous/pages/profile/profile.dart';
@@ -36,35 +35,6 @@ class _HomePageState extends ConsumerState<HomePage> {
           },
           child: Text("OM"),
         ),
-
-        ///
-        actions: [
-          InkResponse(
-            onTap: () {
-              print("for ION AI");
-              Navigator.push(
-                context,
-                PageRouteAnimations.slideTransitionRoute(
-                  IONAIPage(),
-                  durationMs: 1000,
-                ),
-              );
-            },
-            splashColor: Colors.amberAccent,
-            child: Hero(
-              transitionOnUserGestures: true,
-              tag: 'ionIcon',
-              child: Icon(
-                Icons.bubble_chart_outlined,
-                color: Colors.amber,
-              ),
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
-          ),
-        ],
       ),
 
       ///

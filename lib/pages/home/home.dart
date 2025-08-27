@@ -1,6 +1,6 @@
 import 'package:ferrous/pages/balance/balance.dart';
 import 'package:ferrous/pages/events/events.dart';
-import 'package:ferrous/pages/invest/components/quickaction_invest_tile.dart';
+import 'package:ferrous/pages/home/components.dart/quickaction_tile.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:ferrous/pages/profile/profile.dart';
@@ -128,9 +128,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                   // color: Colors.amber,
                   gradient: LinearGradient(
                     colors: [
+                      Colors.amber.withValues(alpha: 0.8),
                       Colors.amber.withValues(alpha: 0.7),
                       Colors.amber.withValues(alpha: 0.6),
-                      Colors.amber.withValues(alpha: 0.5),
                     ],
                   ),
                 ),
@@ -226,7 +226,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             itemBuilder: (context, index) {
               ///
               if (index == 0) {
-                return QuickActionInvestTile(
+                return QuickActionTile(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -246,7 +246,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
               ///
               if (index == 1) {
-                return QuickActionInvestTile(
+                return QuickActionTile(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -265,7 +265,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
               ///
               if (index == 2) {
-                return QuickActionInvestTile(
+                return QuickActionTile(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -282,7 +282,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
               ///
               if (index == 3) {
-                return QuickActionInvestTile(
+                return QuickActionTile(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -299,7 +299,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
               ///
               if (index == 4) {
-                return QuickActionInvestTile(
+                return QuickActionTile(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -315,7 +315,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               }
 
               ///
-              return QuickActionInvestTile(
+              return QuickActionTile(
                 onTap: () {},
                 color: Colors.brown,
                 icon: Icon(Icons.public),
