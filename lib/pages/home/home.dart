@@ -1,4 +1,6 @@
-import 'package:ferrous/pages/balance/balance.dart';
+import 'dart:ui';
+
+import 'package:ferrous/pages/wallet/wallet.dart';
 import 'package:ferrous/pages/events/events.dart';
 import 'package:ferrous/pages/home/components.dart/quickaction_tile.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
@@ -16,6 +18,8 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  bool valueIsHidden = false; // Track blur toggle
+
   @override
   Widget build(BuildContext context) {
     ///
@@ -72,32 +76,45 @@ class _HomePageState extends ConsumerState<HomePage> {
 
       ///
       body: ListView(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12),
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
             minVerticalPadding: 0,
-            title: Text(
+            splashColor: Colors.transparent,
+            onTap: () {
+              setState(() {
+                valueIsHidden = !valueIsHidden; // toggle blur state
+              });
+            },
+
+            ///
+            title: const Text(
               "Account Value",
-              // "",
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.grey,
               ),
             ),
 
-            // TODO: ontap, blur widget
-            subtitle: Text(
-              "\u20A61,000,000",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 36,
-                // height: 2,
+            ///
+            subtitle: ImageFiltered(
+              imageFilter: ImageFilter.blur(
+                sigmaX: 15,
+                sigmaY: 15,
+              ),
+              enabled: valueIsHidden,
+              child: const Text(
+                "₦1,000,000",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
 
-            /// profit percent
-            trailing: Text(
+            ///
+            trailing: const Text(
               "\u2191 24%",
               style: TextStyle(
                 color: Colors.green,
