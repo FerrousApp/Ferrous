@@ -23,4 +23,25 @@ Animate PIN dots (AnimatedSwitcher).
 
 
 global:
-chnage all to consumer widgets
+change all to consumer widgets
+
+
+
+
+
+
+{
+  "message": "User registered successfully.",
+  "user": {
+    "id": "01e4d397-9ea8-493a-b701-6617c8d98985",
+    "first_name": "string",
+    "last_name": "string",
+    "phone_number": "string",
+    "email": "oambanefo@outlook.com",
+    "date_of_birth": "2025-08-28T00:00:00.000Z",
+    "country_of_origin": "string",
+    "created_at": "2025-08-29T10:21:55.354Z"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwMWU0ZDM5Ny05ZWE4LTQ5M2EtYjcwMS02NjE3YzhkOTg5ODUiLCJhdXRoSWQiOiJjMmIyYmEwNi02ZWNlLTRiM2YtYWFmMy1jYWRmM2Y1NDg4NTYiLCJpYXQiOjE3NTY0NjI5MTUsImV4cCI6MTc1Nzc1ODkxNX0.6aDJPrOt21DtRNi1-_HIoi7oDSpOPtauo4W8G-ZH9FU",
+  "refreshToken": "78179a1e3bbe0ee5ec9b170022a0387215daa92715eeebc75e3349127e7e6d280579d8d9e374c0b7"
+}

@@ -157,6 +157,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     ///
                     Lottie.asset(
                       'assets/lotties/onboard.json',
+                      height: 300,
                     ),
 
                     ///
@@ -167,7 +168,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         Text(
                           "Enjoy up to 99% returns annually!",
                           style: TextStyle(
-                            // fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w500,
                             fontSize: 20,
                           ),
                         ),

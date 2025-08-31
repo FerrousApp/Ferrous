@@ -32,7 +32,7 @@ class ProfilePage extends StatelessWidget {
             "obiajulu@ferrous.app",
             style: TextStyle(
               color: Colors.amber,
-              fontWeight: FontWeight.bold,
+              // fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -59,28 +59,6 @@ class ProfilePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(12.0),
         children: [
-          // ListTile(
-          //   contentPadding: EdgeInsets.zero,
-          //   leading: const CircleAvatar(
-          //     radius: 30,
-          //     child: Text(
-          //       "OM",
-          //       style: TextStyle(
-          //         color: Colors.white,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //   ),
-          //   title: Text(
-          //     "Obiajulu Mbanefo",
-          //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          //   ),
-          //   subtitle: Text("adamant@potato.com"),
-          // ),
-
-          ///
-          // const SizedBox(height: 30),
-
           ///
           const Text(
             "Personal Details",
@@ -91,35 +69,10 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
 
-          ///
-          // const SizedBox(height: 10),
-
-          ///
-          // Card(
-          //   elevation: 0,
-          //   shape: RoundedRectangleBorder(
-          //     borderRadius: BorderRadius.circular(
-          //       16,
-          //     ),
-          //   ),
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(16),
-          //     child: ListView.builder(
-          //       padding: EdgeInsets.zero,
-          //       shrinkWrap: true,
-          //       itemCount: detailed.length,
-          //       itemBuilder: (context, index) => detailed[index],
-          //     ),
-          //   ),
-          // ),
-
           for (final detail in detailed)
             ListTile(
               onTap: () {},
               contentPadding: EdgeInsets.zero,
-
-              // minTileHeight: 35,
-
               minVerticalPadding: 0,
               title: Text(detail.title),
               trailing: Text(detail.value),
@@ -136,10 +89,8 @@ class ProfilePage extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          // const SizedBox(height: 10),
 
           ///
-
           Card(
             clipBehavior: Clip.antiAlias,
             shape: RoundedRectangleBorder(
@@ -179,9 +130,6 @@ class ProfilePage extends StatelessWidget {
               },
               style: TextButton.styleFrom(
                 foregroundColor: Colors.red,
-                // backgroundColor: Colors.transparent,
-                // shadowColor: Colors.transparent,
-                // elevation: 0,
               ),
               icon: Icon(Icons.delete_forever_outlined),
               label: const Text("Close Account"),

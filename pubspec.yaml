@@ -7,22 +7,22 @@ environment:
   sdk: ^3.6.2
 
 dependencies:
+  dio: ^5.9.0
   fl_chart: ^1.0.0
   flutter:
     sdk: flutter
   flutter_displaymode: ^0.6.0
   flutter_riverpod: ^2.6.1
+  flutter_secure_storage: ^9.2.4
   intl: ^0.20.2
   lottie: ^3.3.1
   riverpod: ^2.6.1
   shared_preferences: ^2.5.3
-  
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  # change_app_package_name: ^1.5.0
 
 flutter:
   uses-material-design: true
@@ -32,7 +32,7 @@ flutter:
     - assets/lotties/
     - assets/icons/
     - assets/logos/
-  
+
   fonts:
     - family: Montserrat
       fonts:

@@ -174,7 +174,19 @@ class _MorePageState extends ConsumerState<MorePage> {
                 },
               ),
             ],
-          )
+          ),
+
+          ///
+          TextButton.icon(
+            onPressed: () {
+              //logout logic
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+            ),
+            icon: Icon(Icons.logout),
+            label: Text("Sign Out"),
+          ),
         ],
       ),
     );

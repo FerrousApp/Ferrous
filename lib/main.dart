@@ -4,11 +4,12 @@ import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// TODO: switch to montserrat
+// TODO: look into segemented button for sorting the history/events page
 Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ Future<void> main() async {
   // bubble gum sans for logo
 
   // force portrait
-  // await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
