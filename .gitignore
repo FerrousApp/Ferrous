@@ -12,7 +12,9 @@
 .swiftpm/
 migrate_working_dir/
 
+
 re.http
+*.http
 
 # IntelliJ related
 *.iml
