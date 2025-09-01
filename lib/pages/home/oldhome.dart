@@ -1,4 +1,3 @@
-import 'package:ferrous/misc/page_transition_animations.dart';
 import 'package:ferrous/misc/appsizing.dart';
 
 import 'package:ferrous/pages/home/components.dart/balance_item.dart';

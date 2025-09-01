@@ -65,7 +65,7 @@ class _WelcomeBackPinEntryPageState
           TextSpan(
             children: [
               TextSpan(
-                text: 'Welcome Back, ',
+                text: 'Welcome, ',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

@@ -55,34 +55,3 @@ class FadePageTransitionsBuilder extends PageTransitionsBuilder {
     );
   }
 }
-
-// /// A [PageTransitionsBuilder] that provides a slide transition from bottom to top.
-// ///
-// /// This builder can be used in [ThemeData.pageTransitionsTheme] to apply
-// /// a consistent slide transition across all routes for a specific platform.
-// class SlidePageTransitionsBuilder extends PageTransitionsBuilder {
-//   const SlidePageTransitionsBuilder();
-
-//   @override
-//   Widget buildTransitions<T>(
-//     PageRoute<T> route,
-//     BuildContext context,
-//     Animation<double> animation,
-//     Animation<double> secondaryAnimation,
-//     Widget child,
-//   ) {
-//     // Define the Tween for the slide position.
-//     // begin: Offset(0.0, 1.0) means starting from the bottom of the screen (0.0 horizontal, 1.0 vertical offset).
-//     // end: Offset.zero means ending at its original position (0.0 horizontal, 0.0 vertical offset).
-//     var begin = const Offset(0.0, 1.0);
-//     var end = Offset.zero;
-//     // Animate the position using the primary animation provided by the PageRoute.
-//     var offsetAnimation =
-//         Tween<Offset>(begin: begin, end: end).animate(animation);
-
-//     return SlideTransition(
-//       position: offsetAnimation,
-//       child: child,
-//     );
-//   }
-// }
