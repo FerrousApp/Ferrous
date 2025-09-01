@@ -36,6 +36,32 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
         }
+        /// when i want to push to play store, i may have to uncomment this. see https://developer.android.com/build/build-variants#kts
+        // debug {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+        //     signingConfig = signingConfigs.getByName("debug")
+        // }
+    }
+
+    flavorDimensions += "default"
+    productFlavors{
+        create("production"){
+            dimension = "default"
+            resValue(type="string", name="app_name", value="Ferrous")
+        }
+        create("staging"){
+            dimension = "default"
+            resValue(type="string", name="app_name", value="Ferrous.stg")
+            applicationIdSuffix = ".stg"
+            versionNameSuffix = "-stg"
+        }
+        create("dev"){
+            dimension = "default"
+            resValue(type="string", name="app_name", value="Ferrous.dev")
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ferrous/flavors/config.dart';
+
 import 'package:ferrous/pages/onboarding/onboarding.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
@@ -35,11 +36,10 @@ Future<void> main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
 
-  ///
   FlavorConfig(
-    flavor: Flavor.production,
-    baseUrl: "production",
-    name: "production",
+    flavor: Flavor.dev,
+    baseUrl: "development",
+    name: "development",
   );
 
   runApp(
@@ -86,7 +86,11 @@ class _MainAppState extends ConsumerState<MainApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      home: OnboardingPage(),
+      home: Banner(
+        message: FlavorConfig.instance.name,
+        location: BannerLocation.topStart,
+        child: OnboardingPage(),
+      ),
     );
   }
 }

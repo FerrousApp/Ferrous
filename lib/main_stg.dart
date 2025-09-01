@@ -35,11 +35,10 @@ Future<void> main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
 
-  ///
   FlavorConfig(
-    flavor: Flavor.production,
-    baseUrl: "production",
-    name: "production",
+    flavor: Flavor.staging,
+    baseUrl: "Staging",
+    name: "Staging",
   );
 
   runApp(
@@ -86,7 +85,11 @@ class _MainAppState extends ConsumerState<MainApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      home: OnboardingPage(),
+      home: Banner(
+        message: FlavorConfig.instance.name,
+        location: BannerLocation.topStart,
+        child: OnboardingPage(),
+      ),
     );
   }
 }

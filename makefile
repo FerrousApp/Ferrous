@@ -17,5 +17,17 @@ clean:
 install:
 	flutter clean
 	flutter pub get
-	flutter build apk
-	flutter install apk
+	flutter build apk --flavor production
+	flutter install --flavor production
+
+installstg:
+	flutter clean
+	flutter pub get
+	flutter build apk --flavor staging
+	flutter install --flavor staging
+
+installdev:
+	flutter clean
+	flutter pub get
+	flutter build apk --flavor dev
+	flutter install --flavor dev

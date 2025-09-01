@@ -1,0 +1,45 @@
+enum Flavor {
+  production,
+  staging,
+  dev,
+}
+
+// # singleton class: ensures there is only one global instance of a class
+class FlavorConfig {
+  final Flavor flavor;
+  final String baseUrl;
+  final String name;
+
+  // declare static variable with the same type as class to create the singleton
+  static FlavorConfig? _instance;
+
+  //  create private constructor
+  FlavorConfig._(
+    this.flavor,
+    this.baseUrl,
+    this.name,
+  );
+
+  // factory constructor: checks if instance is null, if it is, create one, else return existing one
+  factory FlavorConfig({
+    required Flavor flavor,
+    required String baseUrl,
+    required String name,
+  }) {
+    _instance ??= FlavorConfig._(flavor, baseUrl, name);
+    return _instance!;
+  }
+
+  // static getter: to get an instance of the class without needing to instantiate it
+  static FlavorConfig get instance {
+    if (_instance == null) {
+      throw Exception("FlavorConfig not initialized");
+    }
+    return _instance!;
+  }
+
+  // static checkers
+  bool get isProduction => flavor == Flavor.production;
+  bool get isStaging => flavor == Flavor.staging;
+  bool get isDev => flavor == Flavor.dev;
+}
