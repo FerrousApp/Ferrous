@@ -14,7 +14,7 @@ clean:
 	flutter clean
 	flutter pub get
 
-install:
+installprod:
 	flutter clean
 	flutter pub get
 	flutter build apk --flavor production
@@ -26,7 +26,7 @@ installstg:
 	flutter build apk --flavor staging
 	flutter install --flavor staging
 
-installdev:
+install:
 	flutter clean
 	flutter pub get
 	flutter build apk --flavor dev

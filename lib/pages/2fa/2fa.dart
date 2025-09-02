@@ -1,7 +1,10 @@
+import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/pages/signup/signup.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 class TwoStepVerificationPage extends ConsumerStatefulWidget {
   const TwoStepVerificationPage({super.key});
@@ -13,30 +16,41 @@ class TwoStepVerificationPage extends ConsumerStatefulWidget {
 
 class _TwoStepVerificationPageState
     extends ConsumerState<TwoStepVerificationPage> {
-  final TextEditingController _otpController = TextEditingController();
+  final TextEditingController otpController = TextEditingController();
+  final focusNode = FocusNode();
 
   @override
   void dispose() {
-    _otpController.dispose();
+    // Later when you want to unfocus:
+    otpController.clear();
+    otpController.dispose();
+    focusNode.unfocus();
+    focusNode.dispose();
     super.dispose();
   }
 
   Future<void> _pasteFromClipboard() async {
     final data = await Clipboard.getData('text/plain');
     if (data != null && data.text != null) {
-      // final text = data.text!.replaceAll(RegExp(r'\D'), '').substring(0, 6);
-      String text = data.text!.trim();
-      // Remove any non-digit characters
-      text = text.replaceAll(RegExp(r'\D'), '');
-      _otpController.text = text;
+      // Keep only digits
+      String digitsOnly = data.text!.replaceAll(RegExp(r'\D'), '');
+
+      // Take up to 6 characters safely
+      String text =
+          digitsOnly.length > 6 ? digitsOnly.substring(0, 6) : digitsOnly;
+
+      otpController.text = text;
       setState(() {});
     }
   }
 
   void _submit() {
-    final code = _otpController.text;
+    /// create an instance of scaffold messenger to avoid repition
+    final messenger = ScaffoldMessenger.of(context);
+
+    final code = otpController.text;
     if (code.length == 6) {
-      ScaffoldMessenger.of(context).clearSnackBars();
+      messenger.clearSnackBars();
       // Proceed to verify code
       print('Code submitted: $code');
 
@@ -46,99 +60,162 @@ class _TwoStepVerificationPageState
           builder: (context) => const WelcomeBackPinEntryPage(),
         ),
       );
+      otpController.clear();
+      focusNode.unfocus();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Enter the full 6-digit code")),
+      messenger.showSnackBar(
+        const SnackBar(
+          content: Text("Enter the full 6-digit code"),
+        ),
       );
+
+      Future.delayed(const Duration(seconds: 1), () {
+        if (!mounted) return;
+        messenger.clearSnackBars();
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        title: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'Verify ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: 'OTP',
+                style: TextStyle(
+                  color: Colors.amber,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 24),
-            const Text(
-              '2-step verification',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text('Enter the code from your authenticator app'),
-            const SizedBox(height: 32),
 
-            // OTP input field
-            Center(
-              child: SizedBox(
-                width: width * 0.8,
+      ///
+      body: ListView(
+        padding: EdgeInsets.all(12),
+        shrinkWrap: true,
+        children: [
+          ///
+          Lottie.asset(
+            "assets/lotties/login.json",
+            height: 300,
+          ),
+
+          ///
+
+          Text(
+            "Check Your Email",
+            // style: TextStyle(
+            //     // fontSize: 18,
+            //     // color: Colors.grey,
+            //     ),
+          ),
+
+          // AppSizing.k20(context),
+
+          // const SizedBox(height: 20),
+
+          // OTP input field
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                flex: 5,
                 child: TextField(
-                  controller: _otpController,
+                  controller: otpController,
+                  focusNode: focusNode,
                   keyboardType: TextInputType.number,
                   maxLength: 6,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 24, letterSpacing: 32),
-                  decoration: const InputDecoration(
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    // fontSize: 20,
+                    letterSpacing: 30,
+                  ),
+                  decoration: InputDecoration(
                     counterText: '',
-                    border: InputBorder.none,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.amber,
+                      ),
+                    ),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black12),
+                      borderSide: BorderSide(
+                        color: Colors.amber,
+                      ),
                     ),
                   ),
                   onChanged: (value) {
-                    if (value.length == 6) FocusScope.of(context).unfocus();
+                    if (value.length == 6) {
+                      focusNode.unfocus();
+                      _submit();
+                    }
+                  },
+                  onTapOutside: (value) {
+                    focusNode.unfocus();
                   },
                 ),
               ),
-            ),
 
-            const SizedBox(height: 16),
-
-            // Paste from clipboard
-            Center(
-              child: ElevatedButton.icon(
-                onPressed: _pasteFromClipboard,
-                icon: const Icon(Icons.paste, size: 18),
-                label: const Text('Paste from clipboard'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.blue,
-                  backgroundColor: const Color(0xFFE7F1FF),
-                  elevation: 0,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 32),
-
-            // Submit button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _submit,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              ///
+              // Paste from clipboard
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                  tooltip: "Copy from clipboard",
+                  color: Colors.blue,
+                  onPressed: _pasteFromClipboard,
+                  icon: Icon(
+                    Icons.paste,
                   ),
                 ),
-                child: const Text(
-                  'Log into your account',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 30),
+
+          // Submit button
+          Center(
+            child: ElevatedButton.icon(
+              icon: Icon(Icons.login_outlined),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.amber,
+                elevation: 0,
+              ),
+              label: const Text(
+                'Sign In',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              onPressed: _submit,
+
+              ///
+              onLongPress: () {
+                otpController.clear();
+                focusNode.unfocus();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SignupPage(),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

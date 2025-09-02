@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:ferrous/flavors/config.dart';
 
-import 'package:ferrous/pages/onboarding/onboarding.dart';
+import 'package:ferrous/pages/landing/landing.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:ferrous/themes/theme_provider.dart';
@@ -11,7 +11,6 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// TODO: look into segemented button for sorting the history/events page
 Future<void> main() async {
   // flutter binding stuff
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +20,8 @@ Future<void> main() async {
   // force portrait
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // for apps over android 15
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   // set status bar color and nav bar color
   // SystemChrome.setSystemUIOverlayStyle(
@@ -38,8 +38,7 @@ Future<void> main() async {
 
   FlavorConfig(
     flavor: Flavor.dev,
-    baseUrl: "development",
-    name: "development",
+    baseUrl: "https://api.ferrous.app/api/",
   );
 
   runApp(
@@ -82,15 +81,10 @@ class _MainAppState extends ConsumerState<MainApp> {
     loadPreferredThemeOnStartup();
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      home: Banner(
-        message: FlavorConfig.instance.name,
-        location: BannerLocation.topStart,
-        child: OnboardingPage(),
-      ),
+      home: LandingPage(),
     );
   }
 }

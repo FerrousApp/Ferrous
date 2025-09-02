@@ -1,4 +1,4 @@
-import 'package:ferrous/global/components/details_row.dart';
+import 'package:ferrous/pages/profile/components/details_row.dart';
 
 import 'package:flutter/material.dart';
 

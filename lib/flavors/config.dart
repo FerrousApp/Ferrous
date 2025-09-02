@@ -8,7 +8,6 @@ enum Flavor {
 class FlavorConfig {
   final Flavor flavor;
   final String baseUrl;
-  final String name;
 
   // declare static variable with the same type as class to create the singleton
   static FlavorConfig? _instance;
@@ -17,16 +16,14 @@ class FlavorConfig {
   FlavorConfig._(
     this.flavor,
     this.baseUrl,
-    this.name,
   );
 
   // factory constructor: checks if instance is null, if it is, create one, else return existing one
   factory FlavorConfig({
     required Flavor flavor,
     required String baseUrl,
-    required String name,
   }) {
-    _instance ??= FlavorConfig._(flavor, baseUrl, name);
+    _instance ??= FlavorConfig._(flavor, baseUrl);
     return _instance!;
   }
 

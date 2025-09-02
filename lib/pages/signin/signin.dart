@@ -1,4 +1,4 @@
-import 'package:ferrous/pages/signin/components/2fa.dart';
+import 'package:ferrous/pages/2fa/2fa.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -11,15 +11,15 @@ class SignInPage extends ConsumerStatefulWidget {
 }
 
 class _SignInPageState extends ConsumerState<SignInPage> {
-  bool is2faReady = false;
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final focusNode = FocusNode();
 
   @override
   void dispose() {
-    _emailController.dispose();
-
-    // FocusScope.of(context).unfocus();
-
+    emailController.clear();
+    emailController.dispose();
+    focusNode.unfocus();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -50,87 +50,103 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       ),
 
       ///
-      body: is2faReady == false
-          ? ListView(
-              padding: EdgeInsets.all(16),
-              children: [
-                ///
-                Lottie.asset(
-                  "assets/lotties/signup.json",
-                  height: 300,
-                ),
+      body: ListView(
+        padding: EdgeInsets.all(12),
+        children: [
+          ///
+          Lottie.asset(
+            "assets/lotties/signup.json",
+            height: 300,
+          ),
 
-                ///
-                Text(
-                  "Enter your email to continue",
-                  // "",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
+          ///
+          Text(
+            "Proceed With Your Email",
+            // "",
+            // style: TextStyle(
+            //     // fontSize: 18,
+            //     // color: Colors.grey,
+            //     ),
+          ),
+
+          // AppSizing.k20(context),
+          // SizedBox(
+          //   height: 20,
+          // ),
+
+          ///
+          TextField(
+            focusNode: focusNode,
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              // fontSize: 20,
+              // letterSpacing: 32,
+            ),
+            decoration: InputDecoration(
+              counterText: '',
+              // hintText: "barbara@contoso.com",
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide(
+              //     color: Colors.amber,
+              //   ),
+              // ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.amber,
+                ),
+              ),
+
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.amber,
+                ),
+              ),
+            ),
+            onChanged: (value) {
+              // validate email
+            },
+            onTapOutside: (value) {
+              focusNode.unfocus();
+            },
+          ),
+
+          SizedBox(
+            height: 30,
+          ),
+
+          /// submit button
+          Center(
+            child: TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.amber,
+                elevation: 0,
+              ),
+              icon: Icon(Icons.play_arrow_outlined),
+              label: Text(
+                "Continue",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              ///
+              onPressed: () {
+                emailController.clear();
+                focusNode.unfocus();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => TwoStepVerificationPage(),
                   ),
-                ),
-
-                SizedBox(
-                  height: 20,
-                ),
-
-                ///
-                TextField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    // fontSize: 20,
-                    // letterSpacing: 32,
-                  ),
-                  decoration: const InputDecoration(
-                    counterText: '',
-                    // hintText: "barbara@contoso.com",
-                    border: InputBorder.none,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ),
-                  onChanged: (value) {
-                    // validate email
-                  },
-                  onTapOutside: (value) {
-                    FocusScope.of(context).unfocus();
-                  },
-                ),
-
-                SizedBox(
-                  height: 30,
-                ),
-
-                /// submit button
-                Center(
-                  child: TextButton.icon(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.amber,
-                      elevation: 0,
-                    ),
-                    icon: Icon(Icons.play_arrow_outlined),
-                    label: Text(
-                      "Continue",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        is2faReady = true;
-                      });
-                    },
-                  ),
-                )
-              ],
-            )
-          : TwoStepVerificationPage(),
+                );
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

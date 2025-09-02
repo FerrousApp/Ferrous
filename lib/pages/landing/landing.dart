@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-class OnboardingPage extends ConsumerStatefulWidget {
-  const OnboardingPage({super.key});
+class LandingPage extends ConsumerStatefulWidget {
+  const LandingPage({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _OnboardingPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LandingPageState();
 }
 
-class _OnboardingPageState extends ConsumerState<OnboardingPage> {
+class _LandingPageState extends ConsumerState<LandingPage> {
   ///
   @override
   Widget build(BuildContext context) {

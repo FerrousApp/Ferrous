@@ -25,6 +25,15 @@ ThemeData darkTheme = ThemeData(
   ),
 
   ///
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Color(0xFF121212),
+    contentTextStyle: const TextStyle(
+      color: Colors.white,
+      fontFamily: 'Montserrat',
+    ),
+  ),
+
+  ///
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: Colors.amber,
     // backgroundColor: Color.fromRGBO(255, 193, 7, 0.2),

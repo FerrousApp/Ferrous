@@ -23,6 +23,15 @@ ThemeData lightTheme = ThemeData(
     ),
 
     ///
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.white,
+      contentTextStyle: const TextStyle(
+        color: Colors.black,
+        fontFamily: 'Montserrat',
+      ),
+    ),
+
+    ///
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Colors.amber,
       // backgroundColor: Colors.white,
