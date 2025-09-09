@@ -34,6 +34,13 @@ ThemeData darkTheme = ThemeData(
   ),
 
   ///
+  bottomSheetTheme: BottomSheetThemeData(
+    elevation: 0,
+    modalElevation: 0,
+    shape: Border(),
+  ),
+
+  ///
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: Colors.amber,
     // backgroundColor: Color.fromRGBO(255, 193, 7, 0.2),

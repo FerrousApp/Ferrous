@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:ferrous/global/providers/provider.dart';
+import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/wallet/wallet.dart';
 import 'package:ferrous/pages/events/events.dart';
-import 'package:ferrous/pages/home/components.dart/quickaction_tile.dart';
+import 'package:ferrous/pages/home/components/quickaction_tile.dart';
 import 'package:ferrous/pages/portfolio/portfolio.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:ferrous/pages/profile/profile.dart';
@@ -18,12 +20,16 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  bool valueIsHidden = false; // Track blur toggle
-
+  ///
   @override
   Widget build(BuildContext context) {
     ///
     final currentPage = ref.watch(primaryPageIndexProvider);
+
+    ///
+    final isBlurred = ref.watch(blurValueStateProvider);
+
+    print(isBlurred);
 
     ///
     return Scaffold(
@@ -83,9 +89,8 @@ class _HomePageState extends ConsumerState<HomePage> {
             minVerticalPadding: 0,
             splashColor: Colors.transparent,
             onTap: () {
-              setState(() {
-                valueIsHidden = !valueIsHidden; // toggle blur state
-              });
+              // blur or unblur the account value
+              ref.read(blurValueStateProvider.notifier).setState(!isBlurred);
             },
 
             ///
@@ -103,7 +108,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 sigmaX: 15,
                 sigmaY: 15,
               ),
-              enabled: valueIsHidden,
+              enabled: isBlurred,
               child: const Text(
                 "₦1,000,000",
                 style: TextStyle(
@@ -137,7 +142,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 currentPage.jumpToPage(1);
               },
               child: Container(
-                height: 200,
+                height: AppSizing.height(context) * 0.3,
                 clipBehavior: Clip.hardEdge,
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -199,7 +204,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                               },
                               label: Icon(Icons.arrow_forward),
                               icon: Text(
-                                "Start Investing",
+                                "Explore",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -326,7 +331,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     );
                   },
                   icon: Icon(Icons.group_outlined),
-                  color: Colors.pinkAccent,
+                  color: Colors.blueGrey,
                   title: "Invite a Friend",
                   subtitle: "",
                 );

@@ -98,7 +98,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
             ),
             children: [
               ListTile(
-                title: Text("ex."),
+                title: Text("\u20A6100,000,000"),
                 subtitle: Text("This asset makes up 5% of your portfolio."),
                 onTap: () {
                   Navigator.of(context).push(
@@ -117,6 +117,11 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
               tilePadding: EdgeInsets.all(2),
               shape: Border(),
               onExpansionChanged: (value) {},
+              leading: Image.asset(
+                asset.logo,
+                height: 36,
+                width: 36,
+              ),
               title: Text(
                 asset.ticker,
                 style: TextStyle(
@@ -124,12 +129,9 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
                 ),
               ),
               subtitle: Text(asset.name),
-              leading: Image.asset(
-                asset.logo,
-                height: 36,
-                width: 36,
+              trailing: Text(
+                asset.position,
               ),
-              showTrailingIcon: false,
 
               children: [
                 ListTile(
@@ -143,15 +145,9 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
                     );
                   },
                   title: Text(
-                    "\u20A61,000,000",
+                    asset.positionValue,
                   ),
-                  subtitle: Text("portfolio value"),
-                  trailing: Text(
-                    "5%",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  subtitle: Text("This asset makes up 5% of your portfolio."),
                 ),
               ],
               // onTap: () {

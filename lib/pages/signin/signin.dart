@@ -60,18 +60,8 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           ),
 
           ///
-          Text(
-            "Proceed With Your Email",
-            // "",
-            // style: TextStyle(
-            //     // fontSize: 18,
-            //     // color: Colors.grey,
-            //     ),
-          ),
-
-          // AppSizing.k20(context),
-          // SizedBox(
-          //   height: 20,
+          // Text(
+          //   "Proceed With Your Email",
           // ),
 
           ///
@@ -82,28 +72,36 @@ class _SignInPageState extends ConsumerState<SignInPage> {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontWeight: FontWeight.w500,
+              fontSize: 20,
               // fontSize: 20,
               // letterSpacing: 32,
             ),
             decoration: InputDecoration(
-              counterText: '',
-              // hintText: "barbara@contoso.com",
-              // border: OutlineInputBorder(
-              //   borderSide: BorderSide(
-              //     color: Colors.amber,
-              //   ),
-              // ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.amber,
-                ),
+              hintText: "barbara@contoso.com",
+              hintStyle: TextStyle(
+                color: Colors.grey,
               ),
-
+              focusedBorder: InputBorder.none,
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.amber,
                 ),
               ),
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide(
+              //     color: Colors.amber,
+              //   ),
+              // ),
+              // focusedBorder: UnderlineInputBorder(
+              //   borderSide: BorderSide(
+              //     color: Colors.amber,
+              //   ),
+              // ),
+              // enabledBorder: OutlineInputBorder(
+              //   borderSide: BorderSide(
+              //     color: Colors.amber,
+              //   ),
+              // ),
             ),
             onChanged: (value) {
               // validate email
@@ -118,32 +116,33 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           ),
 
           /// submit button
-          Center(
-            child: TextButton.icon(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.amber,
-                elevation: 0,
+          TextButton.icon(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.black,
+              backgroundColor: Colors.amber,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(
+                vertical: 12,
               ),
-              icon: Icon(Icons.play_arrow_outlined),
-              label: Text(
-                "Continue",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-
-              ///
-              onPressed: () {
-                emailController.clear();
-                focusNode.unfocus();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => TwoStepVerificationPage(),
-                  ),
-                );
-              },
             ),
+            icon: Icon(Icons.play_arrow_outlined),
+            label: Text(
+              "Continue",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            ///
+            onPressed: () {
+              emailController.clear();
+              focusNode.unfocus();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TwoStepVerificationPage(),
+                ),
+              );
+            },
           )
         ],
       ),

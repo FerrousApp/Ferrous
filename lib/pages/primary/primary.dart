@@ -1,5 +1,5 @@
 import 'package:ferrous/pages/home/home.dart';
-import 'package:ferrous/pages/invest/invest.dart';
+import 'package:ferrous/pages/explore/explore.dart';
 
 import 'package:ferrous/pages/more/more.dart';
 import 'package:ferrous/pages/primary/providers/provider.dart';
@@ -38,7 +38,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
         },
         itemBuilder: ((context, index) => const [
               HomePage(),
-              InvestPage(),
+              ExplorePage(),
               MorePage(),
             ].elementAt(index)),
       ),
@@ -59,7 +59,7 @@ class _PrimaryPageState extends ConsumerState<PrimaryPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.trending_up),
-            label: 'Invest',
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.precision_manufacturing),

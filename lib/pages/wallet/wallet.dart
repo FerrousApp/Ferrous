@@ -8,6 +8,25 @@ class AccountBalancePage extends StatefulWidget {
   State<AccountBalancePage> createState() => _AccountBalancePageState();
 }
 
+//TODO: add
+// Powered by
+// Row(
+//   mainAxisAlignment: MainAxisAlignment.center,
+//   children: const [
+//     Text(
+//       "Powered by ",
+//       style: TextStyle(color: Colors.grey, fontSize: 12),
+//     ),
+//     Text(
+//       "Busha",
+//       style: TextStyle(
+//         color: Colors.green,
+//         fontWeight: FontWeight.bold,
+//       ),
+//     ),
+//   ],
+// ),
+
 class _AccountBalancePageState extends State<AccountBalancePage> {
   ///
   @override

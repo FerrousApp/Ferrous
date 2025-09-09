@@ -4,16 +4,19 @@ import 'package:ferrous/misc/demo_data.dart';
 import 'package:flutter/material.dart';
 
 // TODO: may add events to this page, to show specific actions
-class AssetDetailPage extends StatefulWidget {
+
+/// TODO detail info of the asset and provider and disclaimers - most likely move the tabbar view here and make items in the page bigger
+class AssetProviderDetailPage extends StatefulWidget {
   final DemoAssetData assetData;
 
-  const AssetDetailPage({super.key, required this.assetData});
+  const AssetProviderDetailPage({super.key, required this.assetData});
 
   @override
-  State<AssetDetailPage> createState() => _AssetDetailPageState();
+  State<AssetProviderDetailPage> createState() =>
+      _AssetProviderDetailPageState();
 }
 
-class _AssetDetailPageState extends State<AssetDetailPage> {
+class _AssetProviderDetailPageState extends State<AssetProviderDetailPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -93,29 +96,6 @@ class _AssetDetailPageState extends State<AssetDetailPage> {
 
             ///
             ///TODO: add a section to show amount holding, current value, and other details
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton.icon(
-                  onPressed: () {},
-                  label: Text("Buy"),
-                  icon: Icon(Icons.add_circle_outline_outlined),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.green,
-                    backgroundColor: Colors.green.withValues(alpha: 0.2),
-                  ),
-                ),
-                TextButton.icon(
-                  onPressed: () {},
-                  label: Text("Sell"),
-                  icon: Icon(Icons.remove_circle_outline_outlined),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.red,
-                    backgroundColor: Colors.red.withValues(alpha: 0.2),
-                  ),
-                ),
-              ],
-            ),
 
             ///
             TabBar(

@@ -1,4 +1,3 @@
-import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/signup/signup.dart';
 import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
 import 'package:flutter/material.dart';
@@ -113,18 +112,7 @@ class _TwoStepVerificationPageState
           ),
 
           ///
-
-          Text(
-            "Check Your Email",
-            // style: TextStyle(
-            //     // fontSize: 18,
-            //     // color: Colors.grey,
-            //     ),
-          ),
-
-          // AppSizing.k20(context),
-
-          // const SizedBox(height: 20),
+          // Text("We Sent a Code, Check Your Email"),
 
           // OTP input field
           Row(
@@ -140,21 +128,27 @@ class _TwoStepVerificationPageState
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    // fontSize: 20,
+                    fontSize: 20,
                     letterSpacing: 30,
                   ),
                   decoration: InputDecoration(
                     counterText: '',
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.amber,
-                      ),
+                    hintText: "123456",
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
                     ),
+                    focusedBorder: InputBorder.none,
+                    // enabledBorder: InputBorder.none,
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.amber,
                       ),
                     ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(
+                    //     color: Colors.amber,
+                    //   ),
+                    // ),
                   ),
                   onChanged: (value) {
                     if (value.length == 6) {
@@ -187,33 +181,34 @@ class _TwoStepVerificationPageState
           const SizedBox(height: 30),
 
           // Submit button
-          Center(
-            child: ElevatedButton.icon(
-              icon: Icon(Icons.login_outlined),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.amber,
-                elevation: 0,
+          ElevatedButton.icon(
+            icon: Icon(Icons.login_outlined),
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.black,
+              backgroundColor: Colors.amber,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(
+                vertical: 12,
               ),
-              label: const Text(
-                'Sign In',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              onPressed: _submit,
-
-              ///
-              onLongPress: () {
-                otpController.clear();
-                focusNode.unfocus();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => SignupPage(),
-                  ),
-                );
-              },
             ),
+            label: const Text(
+              'Sign In',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: _submit,
+
+            ///
+            onLongPress: () {
+              otpController.clear();
+              focusNode.unfocus();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SignupPage(),
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'dart:io';
-import 'package:ferrous/flavors/config.dart';
+import 'package:ferrous/flavor/config.dart';
+import 'package:ferrous/global/no_internet.dart';
 import 'package:ferrous/pages/landing/landing.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
@@ -41,7 +42,6 @@ Future<void> main() async {
   FlavorConfig(
     flavor: Flavor.production,
     baseUrl: "production",
-    
   );
 
   runApp(

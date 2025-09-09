@@ -1,3 +1,4 @@
+import 'package:ferrous/misc/appsizing.dart';
 import 'package:ferrous/pages/signin/signin.dart';
 import 'package:ferrous/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,13 @@ class _LandingPageState extends ConsumerState<LandingPage> {
               ),
 
               ///
+              SizedBox(
+                height: AppSizing.height(context) * 0.04,
+              ),
+
+              ///
               const Text(
-                'Invest.',
+                'Access.',
                 style: TextStyle(
                   fontSize: 40,
                   // color: Colors.white,

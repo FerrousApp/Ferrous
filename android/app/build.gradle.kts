@@ -50,12 +50,6 @@ android {
             dimension = "default"
             resValue(type="string", name="app_name", value="Ferrous")
         }
-        create("staging"){
-            dimension = "default"
-            resValue(type="string", name="app_name", value="Ferrous.stg")
-            applicationIdSuffix = ".stg"
-            versionNameSuffix = "-stg"
-        }
         create("dev"){
             dimension = "default"
             resValue(type="string", name="app_name", value="Ferrous.dev")

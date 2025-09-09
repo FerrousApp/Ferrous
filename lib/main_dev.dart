@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:ferrous/flavors/config.dart';
-
+import 'package:ferrous/flavor/config.dart';
+import 'package:ferrous/global/no_internet.dart';
 import 'package:ferrous/pages/landing/landing.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
@@ -56,21 +56,21 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
-  // load the preferred theme on startup
+  /// load the preferred theme on startup
   loadPreferredThemeOnStartup() {
     SharedPreferences.getInstance().then((prefs) {
       bool? isNight = prefs.getBool('night');
 
       if (isNight == null) {
-        ref.watch(themeModeProvider.notifier).setTheme(ThemeMode.system);
+        ref.read(themeModeProvider.notifier).setTheme(ThemeMode.system);
       }
 
       if (isNight == true) {
-        ref.watch(themeModeProvider.notifier).toDark();
+        ref.read(themeModeProvider.notifier).toDark();
       }
 
       if (isNight == false) {
-        ref.watch(themeModeProvider.notifier).toLight();
+        ref.read(themeModeProvider.notifier).toLight();
       }
     });
   }
@@ -85,6 +85,18 @@ class _MainAppState extends ConsumerState<MainApp> {
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
       home: LandingPage(),
+
+      // home: LandingPage(),
+      // home: StreamBuilder(
+      //   stream: InternetConnection().onStatusChange,
+      //   builder: (context, snapshot) {
+      //     if (snapshot.data == InternetStatus.connected) {
+      //       return LandingPage();
+      //     } else {
+      //       return NoInternetPage();
+      //     }
+      //   },
+      // ),
     );
   }
 }

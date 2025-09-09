@@ -2,21 +2,21 @@ import 'package:ferrous/misc/demo_data.dart';
 import 'package:ferrous/pages/asset/asset.dart';
 import 'package:flutter/material.dart';
 
-class InvestPage extends StatefulWidget {
-  const InvestPage({super.key});
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({super.key});
 
   @override
-  State<InvestPage> createState() => _InvestPageState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _InvestPageState extends State<InvestPage> {
+class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          'Invest',
+          'Explore',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.amber,
@@ -53,6 +53,7 @@ class _InvestPageState extends State<InvestPage> {
           ///
           ...demoAssetsInvestments.map(
             (asset) => ListTile(
+              // minVerticalPadding: 0,
               contentPadding: EdgeInsets.all(2),
 
               leading: Image.asset(

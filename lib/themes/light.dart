@@ -32,6 +32,13 @@ ThemeData lightTheme = ThemeData(
     ),
 
     ///
+    bottomSheetTheme: BottomSheetThemeData(
+      elevation: 0,
+      modalElevation: 0,
+      shape: Border(),
+    ),
+
+    ///
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Colors.amber,
       // backgroundColor: Colors.white,
