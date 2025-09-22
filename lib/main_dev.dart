@@ -1,7 +1,8 @@
 import 'dart:io';
-import 'package:ferrous/flavor/config.dart';
-import 'package:ferrous/global/no_internet.dart';
+import 'package:ferrous/global/client.dart';
 import 'package:ferrous/pages/landing/landing.dart';
+import 'package:ferrous/global/flavor/config.dart';
+import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';
 import 'package:ferrous/themes/theme_provider.dart';
@@ -84,8 +85,10 @@ class _MainAppState extends ConsumerState<MainApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
-      home: LandingPage(),
+      home: PrimaryPage(),
 
+
+      // home: LandingPage(),
       // home: LandingPage(),
       // home: StreamBuilder(
       //   stream: InternetConnection().onStatusChange,

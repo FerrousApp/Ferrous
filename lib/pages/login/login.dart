@@ -91,7 +91,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                const TwoStepVerificationPage(),
+                                const TwoStepVerificationPage(
+                                  email: "",
+                                ),
                           ),
                         );
                         // Navigate to email link/passwordless sign-in

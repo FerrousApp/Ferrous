@@ -16,18 +16,7 @@
                 "lib/main.dart"
             ]
         },
-        {
-            "name": "staging",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main_stg.dart",
-            "args": [
-                "--flavor",
-                "stg",
-                "target",
-                "lib/main_stg.dart"
-            ]
-        },
+
         {
             "name": "development",
             "request": "launch",

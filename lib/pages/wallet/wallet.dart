@@ -1,11 +1,11 @@
 import 'package:ferrous/misc/appsizing.dart';
 import 'package:flutter/material.dart';
 
-class AccountBalancePage extends StatefulWidget {
-  const AccountBalancePage({super.key});
+class WalletPage extends StatefulWidget {
+  const WalletPage({super.key});
 
   @override
-  State<AccountBalancePage> createState() => _AccountBalancePageState();
+  State<WalletPage> createState() => _WalletPageState();
 }
 
 //TODO: add
@@ -27,14 +27,14 @@ class AccountBalancePage extends StatefulWidget {
 //   ],
 // ),
 
-class _AccountBalancePageState extends State<AccountBalancePage> {
+class _WalletPageState extends State<WalletPage> {
   ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Balance',
+          'Wallet',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.amber,

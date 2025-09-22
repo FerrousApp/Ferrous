@@ -64,7 +64,7 @@ final usdcHbarSaucerSwap = DemoAssetData(
       "SaucerSwap is a decentralized exchange (DEX) built on the Hedera network, designed to provide fast, secure, and low-cost trading of digital assets. It utilizes an automated market maker (AMM) model, allowing users to trade tokens directly from their wallets without relying on a centralized order book. \n\nThe platform supports various liquidity pools, enabling users to earn fees by providing liquidity. SaucerSwap also integrates with Hedera's unique features, such as its high throughput and low transaction costs, making it an efficient choice for DeFi activities on the network.",
   disclaimer:
       "The primary risk for LPs is impermanent loss. This occurs when the price of the deposited tokens changes, resulting in the value of the LP's position being less than if they had simply held the assets outside of the pool. The rewards earned from fees and farming are meant to offset this potential loss.",
-  position: "\$200 USDC",
+  position: "200 USDC",
   positionValue: "\u20A6300,000",
 );
 final usdtHbarSaucerSwap = DemoAssetData(
@@ -82,7 +82,7 @@ final usdtHbarSaucerSwap = DemoAssetData(
       "'SaucerSwap is a decentralized exchange (DEX) built on the Hedera network, designed to provide fast, secure, and low-cost trading of digital assets. It utilizes an automated market maker (AMM) model, allowing users to trade tokens directly from their wallets without relying on a centralized order book. \n\nThe platform supports various liquidity pools, enabling users to earn fees by providing liquidity. SaucerSwap also integrates with Hedera's unique features, such as its high throughput and low transaction costs, making it an efficient choice for DeFi activities on the network.",
   disclaimer:
       "The primary risk for LPs is impermanent loss. This occurs when the price of the deposited tokens changes, resulting in the value of the LP's position being less than if they had simply held the assets outside of the pool. The rewards earned from fees and farming are meant to offset this potential loss.",
-  position: "\$500 USDT",
+  position: "500 USDT",
   positionValue: "\u20A6750,000",
 );
 
@@ -158,15 +158,5 @@ final List<DemoAssetData> demoAssetsInvestments = [
     ),
   ],
   usdcHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
-  usdtHbarSaucerSwap,
   usdtHbarSaucerSwap,
 ];

@@ -1,6 +1,5 @@
 enum Flavor {
   production,
-  staging,
   dev,
 }
 
@@ -37,6 +36,6 @@ class FlavorConfig {
 
   // static checkers
   bool get isProduction => flavor == Flavor.production;
-  bool get isStaging => flavor == Flavor.staging;
+
   bool get isDev => flavor == Flavor.dev;
 }

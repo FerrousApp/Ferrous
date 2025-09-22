@@ -1,8 +1,10 @@
 import 'package:ferrous/misc/demo_data.dart';
+import 'package:ferrous/misc/user.dart';
 import 'package:ferrous/pages/asset/asset.dart';
 import 'package:ferrous/pages/wallet/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class PortfolioPage extends ConsumerStatefulWidget {
   const PortfolioPage({super.key});
@@ -15,6 +17,11 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
   ///
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userStateProvider);
+    final currencyFormat = NumberFormat.currency(
+      symbol: "₦",
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -92,7 +99,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
               ),
             ),
             trailing: Text(
-              "\u20A6100,000,000",
+              currencyFormat.format(user.accountValue),
               maxLines: 2,
               style: TextStyle(),
             ),
@@ -103,7 +110,7 @@ class _PortfolioPageState extends ConsumerState<PortfolioPage> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => AccountBalancePage(),
+                      builder: (context) => WalletPage(),
                     ),
                   );
                 },

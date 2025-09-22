@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:ferrous/flavor/config.dart';
-import 'package:ferrous/global/no_internet.dart';
+import 'package:ferrous/global/flavor/config.dart';
+
 import 'package:ferrous/pages/landing/landing.dart';
 import 'package:ferrous/themes/dark.dart';
 import 'package:ferrous/themes/light.dart';

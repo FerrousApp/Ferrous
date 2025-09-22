@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:ferrous/global/providers/provider.dart';
 import 'package:ferrous/misc/appsizing.dart';
+import 'package:ferrous/misc/user.dart';
 import 'package:ferrous/pages/wallet/wallet.dart';
 import 'package:ferrous/pages/events/events.dart';
 import 'package:ferrous/pages/home/components/quickaction_tile.dart';
@@ -10,6 +11,7 @@ import 'package:ferrous/pages/primary/providers/provider.dart';
 import 'package:ferrous/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -25,11 +27,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     ///
     final currentPage = ref.watch(primaryPageIndexProvider);
-
-    ///
     final isBlurred = ref.watch(blurValueStateProvider);
+    final user = ref.watch(userStateProvider);
 
-    print(isBlurred);
+    final currencyFormat = NumberFormat.currency(
+      symbol: "₦",
+    );
 
     ///
     return Scaffold(
@@ -109,8 +112,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                 sigmaY: 15,
               ),
               enabled: isBlurred,
-              child: const Text(
-                "₦1,000,000",
+              child: Text(
+                currencyFormat.format(user.accountValue),
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
@@ -273,7 +276,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => AccountBalancePage(),
+                        builder: (context) => WalletPage(),
                       ),
                     );
                   },

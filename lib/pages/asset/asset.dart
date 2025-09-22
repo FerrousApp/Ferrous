@@ -168,7 +168,15 @@ class _AssetDetailPageState extends State<AssetDetailPage> {
                       decoration: InputDecoration(
                         hintText: "10.00",
                         // hintText: "\u20A6200",
-                        prefixIcon: Icon(Icons.ac_unit),
+                        prefixIcon: Text(
+                          // "₦",
+                          "\u20A6",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                        // prefixIcon: Icon(Icons.ac_unit),
 
                         counter: Offstage(),
                         hintStyle: TextStyle(

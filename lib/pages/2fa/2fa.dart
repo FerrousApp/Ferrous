@@ -1,12 +1,19 @@
-import 'package:ferrous/pages/signup/signup.dart';
-import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
+import 'package:dio/dio.dart';
+import 'package:ferrous/pages/2fa/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:ferrous/pages/signup/signup.dart';
+import 'package:ferrous/pages/wb.pinentry/wb.pinentry.dart';
+
 class TwoStepVerificationPage extends ConsumerStatefulWidget {
-  const TwoStepVerificationPage({super.key});
+  final String email;
+  const TwoStepVerificationPage({
+    super.key,
+    required this.email,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -17,6 +24,7 @@ class _TwoStepVerificationPageState
     extends ConsumerState<TwoStepVerificationPage> {
   final TextEditingController otpController = TextEditingController();
   final focusNode = FocusNode();
+  AsyncValue<Map<String, dynamic>>? _verificationState;
 
   @override
   void dispose() {
@@ -43,35 +51,74 @@ class _TwoStepVerificationPageState
     }
   }
 
-  void _submit() {
-    /// create an instance of scaffold messenger to avoid repition
+  void _submit() async {
+    // Clear any existing snackbars
     final messenger = ScaffoldMessenger.of(context);
+    messenger.clearSnackBars();
 
-    final code = otpController.text;
-    if (code.length == 6) {
-      messenger.clearSnackBars();
-      // Proceed to verify code
-      print('Code submitted: $code');
+    final code = otpController.text.trim();
+    final email = widget.email;
 
+    if (code.length != 6) {
+      messenger.showSnackBar(
+        const SnackBar(
+          content: Text("Enter the full 6-digit code"),
+        ),
+      );
+      return;
+    }
+
+    // Set the state to loading
+    setState(() {
+      _verificationState = const AsyncValue.loading();
+    });
+
+    // Call the provider using ref.read and the family argument
+    try {
+      final response = await ref.read(
+        verifyOTPEmailProvider(
+          {"email": email, "otp": code},
+        ).future,
+      );
+
+      // After async gap, check if the widget is still mounted before proceeding
+      if (!mounted) return;
+
+      // Set the state to data
+      setState(() {
+        _verificationState = AsyncValue.data(response);
+      });
+
+      // On success, navigate to the next page
+      otpController.clear();
+      focusNode.unfocus();
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => const WelcomeBackPinEntryPage(),
         ),
       );
-      otpController.clear();
-      focusNode.unfocus();
-    } else {
+    } catch (e) {
+      // After async gap, check if the widget is still mounted
+      if (!mounted) return;
+
+      // Set the state to error
+      setState(() {
+        _verificationState = AsyncValue.error(e, StackTrace.current);
+      });
+
+      // Show error message from Dio or other sources
+      String errorMessage = 'Failed to verify OTP. Please try again.';
+      if (e is DioException && e.response?.data != null) {
+        errorMessage = e.response!.data['message'] ?? errorMessage;
+      } else {
+        errorMessage = e.toString();
+      }
       messenger.showSnackBar(
-        const SnackBar(
-          content: Text("Enter the full 6-digit code"),
+        SnackBar(
+          content: Text(errorMessage),
         ),
       );
-
-      Future.delayed(const Duration(seconds: 1), () {
-        if (!mounted) return;
-        messenger.clearSnackBars();
-      });
     }
   }
 
@@ -181,25 +228,34 @@ class _TwoStepVerificationPageState
           const SizedBox(height: 30),
 
           // Submit button
+
           ElevatedButton.icon(
-            icon: Icon(Icons.login_outlined),
+            icon: _verificationState?.isLoading == true
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(color: Colors.black),
+                  )
+                : const Icon(Icons.login_outlined),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,
               backgroundColor: Colors.amber,
               elevation: 0,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 12,
               ),
             ),
-            label: const Text(
-              'Sign In',
-              style: TextStyle(
+            label: Text(
+              _verificationState?.isLoading == true
+                  ? 'Verifying...'
+                  : 'Sign In',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: _submit,
-
-            ///
+            onPressed: _verificationState?.isLoading == true
+                ? null
+                : _submit, // Disable button while loading
             onLongPress: () {
               otpController.clear();
               focusNode.unfocus();
