@@ -86,8 +86,23 @@ final usdtHbarSaucerSwap = DemoAssetData(
   positionValue: "\u20A6750,000",
 );
 
+final algorand = DemoAssetData(
+    logo: "assets/logos/algorand.png",
+    badge: "",
+    ticker: "ALGO",
+    name: "Algorand",
+    totalValue: "totalValue",
+    returnOnInvestment: "5%",
+    overview: "overview",
+    providerName: "providerName",
+    providerInfo: "providerInfo",
+    disclaimer: "disclaimer",
+    position: "position",
+    positionValue: "positionValue");
+
 ///
 final List<DemoAssetData> demoAssets = [
+  algorand,
   usdcHbarSaucerSwap,
   hederaStaking,
   usdtHbarSaucerSwap,
@@ -97,12 +112,14 @@ final List<DemoAssetData> demoAssetsLP = [
   usdtHbarSaucerSwap,
 ];
 final List<DemoAssetData> demoAssetsStaking = [
+  algorand,
   // usdcHbarSaucerSwap,
   hederaStaking,
   // usdtHbarSaucerSwap,
 ];
 
 final List<DemoAssetData> demoAssetsInvestments = [
+  algorand,
   hederaStaking,
   ...[
     DemoAssetData(

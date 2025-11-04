@@ -1,5 +1,5 @@
 ss24:
-	adb connect 192.168.1.210
+	adb connect 192.168.1.244
 
 spxl:
 	adb connect 192.168.1.176
@@ -20,14 +20,9 @@ installprod:
 	flutter build apk --flavor production
 	flutter install --flavor production
 
-installstg:
-	flutter clean
-	flutter pub get
-	flutter build apk --flavor staging
-	flutter install --flavor staging
 
 install:
 	flutter clean
 	flutter pub get
-	flutter build apk --flavor dev
+	flutter build apk --flavor dev --target lib/main_dev.dart
 	flutter install --flavor dev

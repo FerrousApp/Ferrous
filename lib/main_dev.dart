@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'package:ferrous/global/client.dart';
-import 'package:ferrous/pages/landing/landing.dart';
 import 'package:ferrous/global/flavor/config.dart';
 import 'package:ferrous/pages/primary/primary.dart';
 import 'package:ferrous/themes/dark.dart';
@@ -86,7 +84,6 @@ class _MainAppState extends ConsumerState<MainApp> {
       darkTheme: darkTheme,
       themeMode: ref.watch(themeModeProvider),
       home: PrimaryPage(),
-
 
       // home: LandingPage(),
       // home: LandingPage(),
